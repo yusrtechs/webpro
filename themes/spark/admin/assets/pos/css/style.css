@@ -1,0 +1,144 @@
+@media screen and (max-width: 900px) 
+{
+	#pos #leftdiv
+	{
+		width:100%;
+		max-width:100%;
+		min-width:100%;
+	}
+	#pos #cp #cpinner
+	{
+		display:none;
+	}
+	
+	body 
+	{
+		height:auto !important;
+		min-height:auto !important;
+		overflow:scroll !important;
+	}
+	
+	body , .container , .header-nav
+	{
+		width:100% !important;
+		min-width:100%;
+	}
+	
+	#left-top > div
+	{
+		position: static !important;
+		right: -9999px;
+		
+	}
+	
+	.modal-dialog
+	{
+		width:100% !important;
+	}
+	
+	.ui-keyboard
+	{
+		display:none !important;
+	}
+	
+	.header-nav ul:nth-child(2) 
+	{
+		display:none;
+	}
+	.pos-logo-lg
+	{
+		display:block;
+		
+	}
+	a.navbar-brand
+	{
+		float:left;
+	}
+	.pos-logo-sm
+	{
+		display:none;
+	}
+	.bars_pos
+	{
+		float: right;
+		color: #fff;
+		font-size: 21px;
+		margin: 3px 0 0 0;
+		display:block !important;
+	}
+	.btn-cat-con
+	{
+		display:none;
+	}
+	
+	.navbar-nav > li 
+	{
+		float: left;
+		width: 50%;
+		padding: 0 5px;
+	}
+	.header-nav li a.btn
+	{
+		width:100%;
+	}
+	
+	.user_profile
+	{
+		width:100% !important;
+		padding:0px !important;
+		float: right !important;
+	}
+	.pull-right 
+	{
+		float: right  !important;
+	}
+	.header-nav a.btn.account
+	{
+		padding: 10px 2px 5px 10px !important;
+	}
+	.open ul
+	{
+		display:block !important;
+	}
+	.dropdown-menu
+	{
+		z-index:999999999 !important;
+	}
+	.navbar
+	{
+		z-index:99;
+	}
+	
+	.modal-body .col-xs-7 , .modal-body .col-sm-9 , .modal-body .col-sm-3
+	{
+		width:100%;
+	}
+	
+	.btn-group, .btn-group-vertical
+	{
+		display:block;
+	}
+}
+
+.bars_pos
+	{
+		display:none;
+	}
+	
+#left-top>div:nth-child(1)
+	{
+		position: static !important;
+		right: -9999px;
+		display:none;
+		
+	}
+	
+	
+#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
+	#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
+	canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
+	
+#pos #product-list
+{
+	overflow-y:scroll !important;
+}

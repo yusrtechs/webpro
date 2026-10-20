@@ -1,0 +1,9 @@
+INFO - 2026-01-11 10:48:13 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7808) Status (1) Description <p>حوالة من المالك</p>
+INFO - 2026-01-11 10:56:30 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7808) Status (0) Description <p>حوالة من المالك</p>
+INFO - 2026-01-11 10:56:50 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7808) Status (1) Description <p>حوالة من المالك</p>
+INFO - 2026-01-11 11:00:11 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7809) Status (1) Description <p>سجب من المالك</p>
+INFO - 2026-01-11 11:00:47 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7780) Status (0) Description <p>مبيعات الى ايادي المستقبل</p>
+INFO - 2026-01-11 11:02:32 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7780) Status (1) Description <p>مبيعات الى ايادي المستقبل</p>
+INFO - 2026-01-11 14:31:29 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7810) Status (1) Description <p>سداد لشركة سناء</p>
+INFO - 2026-01-11 14:32:45 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7811) Status (1) Description <p>سحب من المالك</p>
+INFO - 2026-01-11 15:41:33 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7812) Status (1) Description <p>تسية المبيعات</p>

@@ -1,0 +1,387 @@
+/* ============================================================================
+   Spark ERP Design System — Cards
+   Version: 1.0.0
+   
+   Card components namespaced under .spark-card.
+   Does NOT modify the existing .box or .panel classes.
+   ============================================================================ */
+
+/* ==========================================================================
+   BASE CARD
+   ========================================================================== */
+
+.spark-card {
+  background-color: var(--spark-surface);
+  border: 1px solid var(--spark-border-light);
+  border-radius: var(--spark-radius-lg);
+  box-shadow: var(--spark-shadow-xs);
+  overflow: hidden;
+}
+
+
+/* ==========================================================================
+   CARD HEADER
+   ========================================================================== */
+
+.spark-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spark-space-3);
+  padding-block: var(--spark-space-3);
+  padding-inline: var(--spark-space-4);
+  border-block-end: 1px solid var(--spark-border-light);
+  min-height: 48px;
+}
+
+.spark-card-header-title {
+  font-size: var(--spark-text-md);
+  font-weight: var(--spark-weight-semibold);
+  color: var(--spark-text);
+  line-height: var(--spark-leading-normal);
+  margin: 0;
+}
+
+.spark-card-header-subtitle {
+  font-size: var(--spark-text-sm);
+  color: var(--spark-text-muted);
+  margin: 0;
+}
+
+.spark-card-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-2);
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   CARD BODY
+   ========================================================================== */
+
+.spark-card-body {
+  padding: var(--spark-space-4);
+}
+
+
+/* ==========================================================================
+   CARD FOOTER
+   ========================================================================== */
+
+.spark-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spark-space-2);
+  padding-block: var(--spark-space-3);
+  padding-inline: var(--spark-space-4);
+  border-block-start: 1px solid var(--spark-border-light);
+  background-color: var(--spark-bg);
+}
+
+/* Left-align footer items (e.g., secondary actions) */
+.spark-card-footer-start {
+  margin-inline-end: auto;
+}
+
+
+/* ==========================================================================
+   CARD FLUSH
+   No body padding — used when embedding tables directly in cards.
+   ========================================================================== */
+
+.spark-card-flush > .spark-card-body {
+  padding: 0;
+}
+
+
+/* ==========================================================================
+   STAT CARD
+   Dashboard metric card: value + label + icon + optional change indicator.
+   ========================================================================== */
+
+.spark-stat-card {
+  background-color: var(--spark-surface);
+  border: 1px solid var(--spark-border-light);
+  border-radius: var(--spark-radius-lg);
+  box-shadow: var(--spark-shadow-xs);
+  overflow: hidden;
+  transition: box-shadow var(--spark-transition-slow);
+}
+
+.spark-stat-card:hover {
+  box-shadow: var(--spark-shadow-sm);
+}
+
+.spark-stat-card-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--spark-space-4);
+  gap: var(--spark-space-3);
+}
+
+.spark-stat-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spark-space-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.spark-stat-card-label {
+  font-size: var(--spark-text-sm);
+  font-weight: var(--spark-weight-medium);
+  color: var(--spark-text-secondary);
+  line-height: var(--spark-leading-normal);
+}
+
+.spark-stat-card-value {
+  font-size: var(--spark-text-2xl);
+  font-weight: var(--spark-weight-bold);
+  color: var(--spark-text);
+  line-height: var(--spark-leading-tight);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.spark-stat-card-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-1);
+  font-size: var(--spark-text-xs);
+  font-weight: var(--spark-weight-medium);
+  line-height: 1;
+  padding-block: var(--spark-space-0-5);
+  padding-inline: var(--spark-space-2);
+  border-radius: var(--spark-radius-full);
+}
+
+.spark-stat-card-change.is-positive {
+  color: var(--spark-success);
+  background-color: var(--spark-success-subtle);
+}
+
+.spark-stat-card-change.is-negative {
+  color: var(--spark-danger);
+  background-color: var(--spark-danger-subtle);
+}
+
+.spark-stat-card-change.is-neutral {
+  color: var(--spark-text-muted);
+  background-color: var(--spark-disabled-bg);
+}
+
+.spark-stat-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--spark-radius-lg);
+  font-size: var(--spark-text-xl);
+  flex-shrink: 0;
+}
+
+/* Stat card icon color variants */
+.spark-stat-card-icon.is-primary {
+  background-color: var(--spark-primary-subtle);
+  color: var(--spark-primary);
+}
+
+.spark-stat-card-icon.is-success {
+  background-color: var(--spark-success-subtle);
+  color: var(--spark-success);
+}
+
+.spark-stat-card-icon.is-warning {
+  background-color: var(--spark-warning-subtle);
+  color: var(--spark-warning);
+}
+
+.spark-stat-card-icon.is-danger {
+  background-color: var(--spark-danger-subtle);
+  color: var(--spark-danger);
+}
+
+.spark-stat-card-icon.is-info {
+  background-color: var(--spark-info-subtle);
+  color: var(--spark-info);
+}
+
+/* Stat card footer (optional trend line or link) */
+.spark-stat-card-footer {
+  padding-block: var(--spark-space-2);
+  padding-inline: var(--spark-space-4);
+  border-block-start: 1px solid var(--spark-border-light);
+  font-size: var(--spark-text-xs);
+  color: var(--spark-text-muted);
+  background-color: var(--spark-bg);
+}
+
+
+/* ==========================================================================
+   CHART CARD
+   Card designed to hold a chart (Highcharts, Chart.js, etc.)
+   ========================================================================== */
+
+.spark-chart-card {
+  background-color: var(--spark-surface);
+  border: 1px solid var(--spark-border-light);
+  border-radius: var(--spark-radius-lg);
+  box-shadow: var(--spark-shadow-xs);
+  overflow: hidden;
+}
+
+.spark-chart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spark-space-3);
+  padding-block: var(--spark-space-3);
+  padding-inline: var(--spark-space-4);
+  border-block-end: 1px solid var(--spark-border-light);
+}
+
+.spark-chart-card-title {
+  font-size: var(--spark-text-md);
+  font-weight: var(--spark-weight-semibold);
+  color: var(--spark-text);
+  margin: 0;
+}
+
+.spark-chart-card-body {
+  padding: var(--spark-space-4);
+  min-height: 200px;
+}
+
+/* Chart placeholder for test page */
+.spark-chart-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  background-color: var(--spark-bg);
+  border-radius: var(--spark-radius-md);
+  color: var(--spark-text-muted);
+  font-size: var(--spark-text-sm);
+  border: 1px dashed var(--spark-border);
+}
+
+
+/* ==========================================================================
+   INFO CARD
+   Card with a prominent icon and descriptive content.
+   ========================================================================== */
+
+.spark-info-card {
+  background-color: var(--spark-surface);
+  border: 1px solid var(--spark-border-light);
+  border-radius: var(--spark-radius-lg);
+  box-shadow: var(--spark-shadow-xs);
+  overflow: hidden;
+}
+
+.spark-info-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spark-space-4);
+  padding: var(--spark-space-4);
+}
+
+.spark-info-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--spark-radius-md);
+  font-size: var(--spark-text-lg);
+  flex-shrink: 0;
+  background-color: var(--spark-primary-subtle);
+  color: var(--spark-primary);
+}
+
+.spark-info-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.spark-info-card-title {
+  font-size: var(--spark-text-md);
+  font-weight: var(--spark-weight-semibold);
+  color: var(--spark-text);
+  margin-block-end: var(--spark-space-1);
+}
+
+.spark-info-card-text {
+  font-size: var(--spark-text-sm);
+  color: var(--spark-text-secondary);
+  line-height: var(--spark-leading-relaxed);
+}
+
+/* Info card semantic variants */
+.spark-info-card.is-success .spark-info-card-icon {
+  background-color: var(--spark-success-subtle);
+  color: var(--spark-success);
+}
+
+.spark-info-card.is-warning .spark-info-card-icon {
+  background-color: var(--spark-warning-subtle);
+  color: var(--spark-warning);
+}
+
+.spark-info-card.is-danger .spark-info-card-icon {
+  background-color: var(--spark-danger-subtle);
+  color: var(--spark-danger);
+}
+
+.spark-info-card.is-info .spark-info-card-icon {
+  background-color: var(--spark-info-subtle);
+  color: var(--spark-info);
+}
+
+
+/* ==========================================================================
+   CARD GRID LAYOUT UTILITY
+   For arranging stat cards in a responsive row.
+   ========================================================================== */
+
+.spark-card-grid {
+  display: grid;
+  gap: var(--spark-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* 2-column override */
+.spark-card-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 3-column override */
+.spark-card-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 4-column override */
+.spark-card-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+  .spark-card-grid,
+  .spark-card-grid-2,
+  .spark-card-grid-3,
+  .spark-card-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .spark-card-grid-3,
+  .spark-card-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

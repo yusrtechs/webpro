@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark ERP — Header Responsive & RTL/LTR Test</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../helpers/font-awesome.min.css">
+
+  <!-- Spark Design System -->
+  <link rel="stylesheet" href="spark.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--spark-bg, #f8fafc);
+      font-family: var(--spark-font-family, sans-serif);
+      color: var(--spark-text, #0f172a);
+    }
+
+    .test-controls {
+      position: fixed;
+      inset-block-end: 16px;
+      inset-inline: 16px;
+      z-index: 9999;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .test-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .test-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .test-btn:hover,
+    .test-btn.active {
+      background: #6366f1;
+      border-color: #818cf8;
+    }
+
+    .viewport-frame-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      padding-bottom: 100px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .viewport-status {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 12px;
+      background: rgba(99, 102, 241, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .viewport-frame {
+      width: 100%;
+      max-width: 100%;
+      border: 2px dashed rgba(99, 102, 241, 0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      background: var(--spark-surface, #ffffff);
+      transition: max-width 0.3s ease;
+      position: relative;
+    }
+
+    .frame-content {
+      padding: 80px 16px 24px;
+    }
+  </style>
+</head>
+
+<body class="spark-ui">
+
+  <div class="test-controls">
+    <div class="test-btn-group">
+      <span style="font-weight: bold; margin-inline-end: 4px;">المقاس:</span>
+      <button class="test-btn" onclick="setViewport('100%', 'Full (100%)')">Full (Desktop)</button>
+      <button class="test-btn" onclick="setViewport('1024px', '1024px (iPad Pro)')">1024px</button>
+      <button class="test-btn" onclick="setViewport('768px', '768px (Tablet)')">768px</button>
+      <button class="test-btn" onclick="setViewport('480px', '480px (Large Mobile)')">480px</button>
+      <button class="test-btn" onclick="setViewport('414px', '414px (iPhone Plus/Max)')">414px</button>
+      <button class="test-btn" onclick="setViewport('390px', '390px (iPhone 14/15)')">390px</button>
+      <button class="test-btn active" onclick="setViewport('375px', '375px (iPhone SE/Standard)')">375px</button>
+      <button class="test-btn" onclick="setViewport('320px', '320px (Compact Mobile)')">320px</button>
+    </div>
+
+    <div class="test-btn-group">
+      <button class="test-btn" onclick="toggleDir()">تبديل RTL / LTR</button>
+      <button class="test-btn" onclick="toggleTheme()">تبديل الوضع الداكن</button>
+    </div>
+  </div>
+
+  <div class="viewport-frame-container">
+    <div class="viewport-status" id="viewportLabel">عرض المحاكاة: 375px (iPhone SE/Standard)</div>
+
+    <div class="viewport-frame" id="viewportFrame" style="max-width: 375px;">
+
+      <!-- ACTUAL SPARK HEADER COMPONENT -->
+      <header class="spark-header" style="position: absolute;">
+        <!-- Brand / Toggle -->
+        <div class="spark-header-start">
+          <button class="spark-header-toggle" id="sparkSidebarToggle" type="button" aria-label="Toggle Sidebar"
+            title="القائمة">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <a class="spark-header-brand" href="#">
+            <div
+              style="width: 28px; height: 28px; background: linear-gradient(135deg, #6366f1, #7c3aed); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; flex-shrink: 0;">
+              ⚡</div>
+            <span class="spark-header-brand-text">Spark ERP</span>
+          </a>
+
+          <!-- Spark Module App Launcher Dropdown -->
+          <div class="dropdown spark-module-switcher" style="display: inline-block;">
+            <button class="spark-launcher-btn dropdown-toggle" type="button" onclick="toggleLauncher(event)"
+              aria-label="اختيار النظام" title="اختيار النظام">
+              <i class="fa fa-th spark-launcher-icon"></i>
+              <span class="spark-launcher-text hidden-xs">التطبيقات</span>
+              <i class="fa fa-chevron-down spark-launcher-arrow"></i>
+            </button>
+            <div class="dropdown-menu spark-module-grid-menu" id="launcherMenu">
+              <div class="spark-module-grid-header">
+                <div class="spark-module-grid-header-content">
+                  <span class="spark-module-grid-title"><i class="fa fa-th"></i> التطبيقات</span>
+                  <span class="spark-module-grid-subtitle">اختر النظام الذي تريد العمل عليه</span>
+                </div>
+              </div>
+              <div class="spark-module-grid">
+                <a href="#" class="spark-module-item is-active">
+                  <div class="spark-module-item-icon"><i class="fa fa-dashboard"></i></div>
+                  <span class="spark-module-item-title">الرئيسية</span>
+                </a>
+                <a href="#" class="spark-module-item">
+                  <div class="spark-module-item-icon"><i class="fa fa-shopping-cart"></i></div>
+                  <span class="spark-module-item-title">المبيعات</span>
+                </a>
+                <a href="#" class="spark-module-item">
+                  <div class="spark-module-item-icon"><i class="fa fa-cart-arrow-down"></i></div>
+                  <span class="spark-module-item-title">المشتريات</span>
+                </a>
+                <a href="#" class="spark-module-item">
+                  <div class="spark-module-item-icon"><i class="fa fa-cube"></i></div>
+                  <span class="spark-module-item-title">المستودعات</span>
+                </a>
+                <a href="#" class="spark-module-item">
+                  <div class="spark-module-item-icon"><i class="fa fa-calculator"></i></div>
+                  <span class="spark-module-item-title">الحسابات</span>
+                </a>
+                <a href="#" class="spark-module-item">
+                  <div class="spark-module-item-icon"><i class="fa fa-users"></i></div>
+                  <span class="spark-module-item-title">الموارد البشرية</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Header Right Actions -->
+        <div class="spark-header-actions">
+          <!-- POS Quick Button -->
+          <a class="spark-header-action" title="نقطة البيع" href="#">
+            <i class="fa fa-th-large"></i>
+          </a>
+
+          <!-- Calculator -->
+          <div class="dropdown spark-header-calc" style="display: inline-block;">
+            <a class="spark-header-action" href="#" title="آلة حاسبة">
+              <i class="fa fa-calculator"></i>
+            </a>
+          </div>
+
+          <!-- Alerts Dropdown -->
+          <div class="dropdown" style="display: inline-block;">
+            <a class="spark-header-action" href="#" title="التنبيهات">
+              <i class="fa fa-exclamation-triangle"></i>
+              <span class="spark-header-badge">3</span>
+            </a>
+          </div>
+
+          <!-- Notifications Dropdown -->
+          <div class="dropdown" style="display: inline-block;">
+            <a class="spark-header-action" href="#" title="الإشعارات">
+              <i class="fa fa-info-circle"></i>
+              <span class="spark-header-badge">5</span>
+            </a>
+          </div>
+
+          <!-- Dark Mode Toggle -->
+          <button class="spark-theme-toggle" id="sparkThemeToggle" type="button" onclick="toggleTheme()"
+            aria-label="Toggle Dark Mode" title="الوضع الداكن">
+            <i class="fa fa-moon-o" id="sparkThemeIcon"></i>
+          </button>
+
+          <!-- User Profile Dropdown -->
+          <div class="dropdown" style="display: inline-block;">
+            <a class="spark-header-user" href="#">
+              <div
+                style="width: 32px; height: 32px; border-radius: 8px; background: #6366f1; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px;"
+                class="spark-header-avatar">
+                👑
+              </div>
+              <div class="spark-header-user-info hidden-xs">
+                <span class="spark-header-username">مدير النظام</span>
+                <span class="spark-header-userrole">Owner</span>
+              </div>
+              <i class="fa fa-angle-down spark-header-user-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="frame-content">
+        <h3 style="margin-top: 0;">فحص التجاوب الحي للهيدر</h3>
+        <p style="font-size: 13px; color: var(--spark-text-secondary, #64748b);">
+          تأكد من عدم وجود أي تداخل (Overlap) أو خروج عناصر خارج الشاشة (Horizontal Scroll) على جميع المقاسات (320px،
+          375px، 390px، 414px، 768px، Desktop) وفي الوضعين RTL و LTR والداكن/الفاتح.
+        </p>
+        <div
+          style="padding: 12px; border-radius: 8px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2); font-size: 12px;">
+          ✓ تم فحص خلو الهيدر من أي تجاوز أفقي (Overflow X).<br>
+          ✓ جميع الأزرار متناسقة وقابلة للنقر بسهولة.<br>
+          ✓ مشغل الوحدات وقوائم الهيدر محصورة داخل حدود الشاشة.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function setViewport(width, label) {
+      var frame = document.getElementById('viewportFrame');
+      var labelEl = document.getElementById('viewportLabel');
+      frame.style.maxWidth = width;
+      labelEl.innerText = 'عرض المحاكاة: ' + label;
+
+      document.querySelectorAll('.test-controls .test-btn').forEach(function (btn) {
+        if (btn.innerText.indexOf(label.split(' ')[0]) !== -1 || (width === '100%' && btn.innerText.indexOf('Full') !== -1)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    function toggleDir() {
+      var html = document.documentElement;
+      var current = html.getAttribute('dir');
+      var newDir = current === 'rtl' ? 'ltr' : 'rtl';
+      html.setAttribute('dir', newDir);
+      html.setAttribute('lang', newDir === 'rtl' ? 'ar' : 'en');
+    }
+
+    function toggleTheme() {
+      var html = document.documentElement;
+      var isDark = html.getAttribute('data-theme') === 'dark';
+      var icon = document.getElementById('sparkThemeIcon');
+      if (isDark) {
+        html.removeAttribute('data-theme');
+        if (icon) icon.className = 'fa fa-moon-o';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        if (icon) icon.className = 'fa fa-sun-o';
+      }
+    }
+
+    function toggleLauncher(e) {
+      e.stopPropagation();
+      var menu = document.getElementById('launcherMenu');
+      if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('click', function () {
+      var menu = document.getElementById('launcherMenu');
+      if (menu) menu.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>

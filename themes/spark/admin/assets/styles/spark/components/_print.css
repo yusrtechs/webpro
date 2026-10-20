@@ -1,0 +1,1040 @@
+/* ============================================================================
+   Spark ERP Design System — Central Print System Component
+   Version: 1.0.0
+   
+   Centralized, production-grade print styles for Spark ERP.
+   Activated automatically upon window.print() or Ctrl+P.
+   
+   Key Architecture Principles:
+   - Scoped & non-destructive: does NOT touch POS raw/thermal/QZ Tray commands.
+   - Strips UI Chrome (Header, Sidebar, Navigation, Drawers, Floating widgets).
+   - Transforms Dark Mode into ink-efficient, ultra-readable Light document layout.
+   - Resets layout offsets (0 margins, 100% width, no sidebar/header gap).
+   - DataTables: hides controls (length, search, pagination, info), repeats table header.
+   - Preserves TreeViews (Accounts tree, Cost centers) with proper indentation.
+   - Document Modals: cleanly prints open document modals (#myModal, invoice views)
+     while hiding background page and dialog chrome.
+   - Uses CSS Logical Properties for seamless Arabic (RTL) & English (LTR) printing.
+   ============================================================================ */
+
+/* ==========================================================================
+   1. UTILITY CLASSES (Screen & Print States)
+   ========================================================================== */
+
+/* Hidden on Screen, Visible on Print */
+.print-only,
+.spark-print-only,
+.d-print-block {
+  display: none !important;
+}
+
+.print-only-inline {
+  display: none !important;
+}
+
+.print-only-flex {
+  display: none !important;
+}
+
+/* ==========================================================================
+   2. PRINT MEDIA RULES
+   ========================================================================== */
+
+@media print {
+
+  /* ─── Page Setup & Color Fidelity ─── */
+  @page {
+    size: auto;
+    margin: 10mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* ─── Global Reset for Paper ─── */
+  html,
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-family: var(--spark-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif) !important;
+    font-size: 10.5pt !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* ─── Utility Class Activations ─── */
+  .no-print,
+  .spark-no-print,
+  .d-print-none,
+  .spark-ui .no-print,
+  body.spark-ui .no-print,
+  .box-header.no-print,
+  .spark-ui .box-header.no-print,
+  body.spark-ui .box-header.no-print,
+  .well.no-print,
+  .spark-ui .well.no-print,
+  body.spark-ui .well.no-print,
+  [class*="no-print"] {
+    display: none !important;
+  }
+
+  .print-only,
+  .spark-print-only,
+  .d-print-block {
+    display: block !important;
+  }
+
+  .print-only-inline {
+    display: inline !important;
+  }
+
+  .print-only-flex {
+    display: flex !important;
+  }
+
+  /* ─── Spark UI Chrome Concealment (Header, Sidebar, Navigation) ─── */
+  .spark-header,
+  #header,
+  .spark-sidebar,
+  #sparkSidebar,
+  .spark-backdrop,
+  #sparkBackdrop,
+  .spark-header-actions,
+  .spark-module-switcher,
+  .spark-header-calc,
+  .spark-theme-toggle,
+  .spark-user-menu,
+  .spark-header-toggle,
+  .spark-launcher-btn,
+  .spark-notifications,
+  .spark-header-user,
+  .spark-footer,
+  footer.spark-footer,
+  footer:not(.print-include),
+  #toTop,
+  .alerts-con,
+  #loading,
+  #modal-loading,
+  #ajaxCall,
+  .global-site-notice,
+  .noscript,
+  .breadcrumb,
+  .spark-breadcrumb,
+  .tooltip,
+  .popover {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  /* ─── UI Buttons & Action Toolbars (Non-destructive) ─── */
+  .spark-page-actions,
+  .spark-actions,
+  .box-header .box-icon,
+  .btn-tasks,
+  .spark-table-filter,
+  .spark-filter-panel,
+  .spark-filter-drawer,
+  .toggle_up,
+  .toggle_down,
+  #input-search,
+  .close[data-dismiss="alert"],
+  .close[data-dismiss="modal"] {
+    display: none !important;
+  }
+
+  /* ─── DataTables Controls ─── */
+  .dataTables_length,
+  .dataTables_filter,
+  .dataTables_paginate,
+  .dataTables_info,
+  .dataTables_processing,
+  .dt-buttons,
+  .DTTT_container,
+  .tabletools-container,
+  .dataTables_wrapper > .row:first-child,
+  .dataTables_wrapper > .row:last-child {
+    display: none !important;
+  }
+
+  /* ─── Layout Shell Reset (Zero Margins, Full Width) ─── */
+  .spark-app {
+    display: block !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+  }
+
+  .spark-main {
+    margin-inline-start: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-block-start: 0 !important;
+    padding-top: 0 !important;
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    display: block !important;
+    position: static !important;
+  }
+
+  .spark-content,
+  #content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    display: block !important;
+    position: static !important;
+  }
+
+  .box:not(.no-print) {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 0 16px 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  .box-header:not(.no-print) {
+    border-bottom: 2px solid #cbd5e1 !important;
+    padding: 6px 0 !important;
+    margin-bottom: 12px !important;
+    background: transparent !important;
+    min-height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .box-header:not(.no-print) h2 {
+    font-size: 13pt !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .box-header h2 i {
+    color: #475569 !important;
+    font-size: 12pt !important;
+  }
+
+  .box-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .container,
+  .container-fluid,
+  .row {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* ─── Dark Mode Override (Light Paper Transformation) ─── */
+  [data-theme="dark"],
+  [data-theme="dark"] body,
+  [data-theme="dark"] .spark-app,
+  [data-theme="dark"] .spark-main,
+  [data-theme="dark"] .spark-content,
+  [data-theme="dark"] #content,
+  [data-theme="dark"] .box,
+  [data-theme="dark"] .spark-card,
+  [data-theme="dark"] .panel,
+  [data-theme="dark"] .panel-default,
+  [data-theme="dark"] .panel-heading,
+  [data-theme="dark"] .panel-body,
+  [data-theme="dark"] .modal-content {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  [data-theme="dark"] h1,
+  [data-theme="dark"] h2,
+  [data-theme="dark"] h3,
+  [data-theme="dark"] h4,
+  [data-theme="dark"] h5,
+  [data-theme="dark"] h6,
+  [data-theme="dark"] p,
+  [data-theme="dark"] span,
+  [data-theme="dark"] label,
+  [data-theme="dark"] td,
+  [data-theme="dark"] th,
+  [data-theme="dark"] strong,
+  [data-theme="dark"] b {
+    color: #0f172a !important;
+    text-shadow: none !important;
+  }
+
+  :root,
+  [data-theme="dark"] {
+    --spark-bg: #ffffff !important;
+    --spark-surface: #ffffff !important;
+    --spark-surface-card: #ffffff !important;
+    --spark-surface-subtle: #f8fafc !important;
+    --spark-surface-hover: #ffffff !important;
+    --spark-border: #cbd5e1 !important;
+    --spark-border-default: #cbd5e1 !important;
+    --spark-border-subtle: #e2e8f0 !important;
+    --spark-border-strong: #94a3b8 !important;
+    --spark-text: #0f172a !important;
+    --spark-text-primary: #0f172a !important;
+    --spark-text-secondary: #334155 !important;
+    --spark-text-muted: #64748b !important;
+    --spark-shadow-xs: none !important;
+    --spark-shadow-sm: none !important;
+    --spark-shadow-md: none !important;
+    --spark-shadow-lg: none !important;
+    --spark-shadow-xl: none !important;
+    --spark-shadow-soft: none !important;
+    --spark-shadow-medium: none !important;
+    --spark-shadow-strong: none !important;
+  }
+
+  /* ─── Tables & DataTables ─── */
+  .table-responsive {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    border: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+  }
+
+  table.table,
+  table.dataTable,
+  .spark-table,
+  table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    margin-bottom: 12px !important;
+    background-color: transparent !important;
+    font-size: 8.5pt !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  table.table > thead > tr > th,
+  table.dataTable > thead > tr > th,
+  .spark-table > thead > tr > th,
+  table > thead > tr > th {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 5px 7px !important;
+    vertical-align: middle !important;
+    font-size: 8.5pt !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+  }
+
+  table.table > tbody > tr > td,
+  table.dataTable > tbody > tr > td,
+  .spark-table > tbody > tr > td,
+  table > tbody > tr > td {
+    border: 1px solid #e2e8f0 !important;
+    padding: 5px 7px !important;
+    color: #0f172a !important;
+    background-color: transparent !important;
+    font-size: 8.5pt !important;
+    vertical-align: middle !important;
+  }
+
+  table.table > tfoot > tr > th,
+  table.dataTable > tfoot > tr > th,
+  table > tfoot > tr > th {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 5px 7px !important;
+  }
+
+  td.text-right,
+  th.text-right,
+  td.text-end,
+  th.text-end {
+    text-align: end !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ─── Status Badges (Clean Print Presentation) ─── */
+  .badge,
+  .label,
+  .spark-badge {
+    border: 1px solid #cbd5e1 !important;
+    font-weight: 600 !important;
+    padding: 2px 6px !important;
+    font-size: 8pt !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .badge-success, .label-success, .spark-badge-success {
+    background-color: #ecfdf5 !important;
+    color: #065f46 !important;
+    border-color: #a7f3d0 !important;
+  }
+
+  .badge-warning, .label-warning, .spark-badge-warning {
+    background-color: #fffbeb !important;
+    color: #92400e !important;
+    border-color: #fde68a !important;
+  }
+
+  .badge-danger, .label-danger, .spark-badge-danger {
+    background-color: #fef2f2 !important;
+    color: #991b1b !important;
+    border-color: #fecaca !important;
+  }
+
+  .badge-primary, .label-primary, .spark-badge-primary {
+    background-color: #eef2ff !important;
+    color: #3730a3 !important;
+    border-color: #c7d2fe !important;
+  }
+
+  .badge-info, .label-info, .spark-badge-info {
+    background-color: #ecfeff !important;
+    color: #155e75 !important;
+    border-color: #a5f3fc !important;
+  }
+
+  /* ─── Accounts Tree & Cost Centers Tree ─── */
+  .treeview,
+  .spark-treeview,
+  #treeview_json,
+  #treeview_json_cc {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .treeview .list-group,
+  #treeview_json .list-group,
+  #treeview_json_cc .list-group {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .treeview .list-group-item,
+  #treeview_json .list-group-item,
+  #treeview_json_cc .list-group-item {
+    background-color: transparent !important;
+    color: #0f172a !important;
+    border: none !important;
+    border-bottom: 1px dashed #e2e8f0 !important;
+    padding: 5px 4px !important;
+    break-inside: avoid !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .treeview .list-group-item .badge,
+  #treeview_json .list-group-item .badge,
+  #treeview_json_cc .list-group-item .badge {
+    background-color: #f1f5f9 !important;
+    color: #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+    margin-inline-start: auto !important;
+  }
+
+  /* ─── Document Modals vs Non-Document Modals ─── */
+  .modal:not(.in) {
+    display: none !important;
+  }
+
+  /* When printing with an open Document Modal (e.g. Sales Invoice, Delivery, Quote, Payment) */
+  body.modal-open .spark-app > *:not(.modal),
+  body.modal-open .spark-main,
+  body.modal-open .spark-header,
+  body.modal-open .spark-sidebar {
+    display: none !important;
+  }
+
+  body.modal-open .modal-backdrop {
+    display: none !important;
+  }
+
+  body.modal-open .modal.in {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.modal-open .modal.in .modal-dialog {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  body.modal-open .modal.in .modal-content {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.modal-open .modal.in .modal-body {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.modal-open .modal.in .modal-header .close,
+  body.modal-open .modal.in .close,
+  body.modal-open .modal.in .modal-footer:not(.print-include) {
+    display: none !important;
+  }
+
+  /* Non-document confirmation modals are suppressed during print */
+  .bootbox.modal:not(.print-document-modal) {
+    display: none !important;
+  }
+
+  /* ─── Select2 & Form Elements Clean State ─── */
+  .select2-drop,
+  .select2-drop-mask,
+  .select2-drop-active,
+  .select2-container--open,
+  .select2-hidden-accessible {
+    display: none !important;
+  }
+
+  .select2-container {
+    border: none !important;
+    background: transparent !important;
+  }
+
+  .select2-choice {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .select2-arrow,
+  .select2-search-choice-close {
+    display: none !important;
+  }
+
+  .select2-chosen {
+    margin: 0 !important;
+    color: #0f172a !important;
+  }
+
+  /* ─── Links & Page Breaks ─── */
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  a::after {
+    content: none !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+    color: #0f172a !important;
+  }
+
+  .break-before,
+  .page-break-before {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .break-after,
+  .page-break-after {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  .break-inside-avoid,
+  .avoid-break,
+  .no-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ─── ULTIMATE TERMINAL NO-PRINT OVERRIDES ─── */
+  .no-print,
+  .spark-no-print,
+  .d-print-none,
+  .box-header.no-print,
+  .box.no-print,
+  .well.no-print,
+  .row.no-print,
+  .col-xs-12.no-print,
+  .col-sm-12.no-print,
+  div.no-print,
+  p.no-print,
+  span.no-print,
+  button.no-print,
+  a.no-print,
+  input.no-print,
+  ul.no-print,
+  li.no-print,
+  section.no-print,
+  header.no-print,
+  nav.no-print,
+  aside.no-print,
+  footer.no-print,
+  [class*="no-print"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* ─── Gift Card Print Preservation (Theme Independent) ─── */
+  .spark-giftcard-print-target,
+  [data-theme="dark"] .spark-giftcard-print-target {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 24px !important;
+    padding: 20px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    visibility: visible !important;
+    position: static !important;
+    background: transparent !important;
+  }
+
+  .spark-giftcard-print-card,
+  [data-theme="dark"] .spark-giftcard-print-card {
+    width: 380px !important;
+    height: 235px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card,
+  .spark-giftcard-print-card *,
+  .spark-card-face,
+  .spark-card-front,
+  .spark-card-back {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-face,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-face {
+    position: relative !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    height: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 18px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Explicit Card Theme Gradients for Print */
+  .theme-classic .spark-card-front,
+  .spark-giftcard-print-card.theme-classic .spark-card-front,
+  .spark-giftcard-print-card .spark-card-front,
+  [data-theme="dark"] .theme-classic .spark-card-front,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-classic .spark-card-front,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-front {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+    background-color: #1a1a2e !important;
+    --accent-color: #e2b04a !important;
+  }
+
+  .theme-classic .spark-card-back,
+  .spark-giftcard-print-card.theme-classic .spark-card-back,
+  .spark-giftcard-print-card .spark-card-back,
+  [data-theme="dark"] .theme-classic .spark-card-back,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-classic .spark-card-back,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-back {
+    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #c0392b 100%) !important;
+    background-color: #c0392b !important;
+    --accent-color: #f1c40f !important;
+  }
+
+  .theme-gold .spark-card-front,
+  .theme-gold .spark-card-back,
+  .spark-giftcard-print-card.theme-gold .spark-card-front,
+  .spark-giftcard-print-card.theme-gold .spark-card-back,
+  [data-theme="dark"] .theme-gold .spark-card-front,
+  [data-theme="dark"] .theme-gold .spark-card-back,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-gold .spark-card-front,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-gold .spark-card-back {
+    background: linear-gradient(135deg, #2c1810 0%, #3d2317 50%, #1a0f09 100%) !important;
+    background-color: #2c1810 !important;
+    --accent-color: #d4a853 !important;
+  }
+
+  .theme-emerald .spark-card-front,
+  .spark-giftcard-print-card.theme-emerald .spark-card-front,
+  [data-theme="dark"] .theme-emerald .spark-card-front,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-emerald .spark-card-front {
+    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 50%, #1b4332 100%) !important;
+    background-color: #1b4332 !important;
+    --accent-color: #a7c4a0 !important;
+  }
+
+  .theme-emerald .spark-card-back,
+  .spark-giftcard-print-card.theme-emerald .spark-card-back,
+  [data-theme="dark"] .theme-emerald .spark-card-back,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-emerald .spark-card-back {
+    background: linear-gradient(135deg, #6b2737 0%, #8b3a4a 50%, #6b2737 100%) !important;
+    background-color: #6b2737 !important;
+    --accent-color: #e2b04a !important;
+  }
+
+  .theme-modern .spark-card-front,
+  .theme-modern .spark-card-back,
+  .spark-giftcard-print-card.theme-modern .spark-card-front,
+  .spark-giftcard-print-card.theme-modern .spark-card-back,
+  [data-theme="dark"] .theme-modern .spark-card-front,
+  [data-theme="dark"] .theme-modern .spark-card-back,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-modern .spark-card-front,
+  [data-theme="dark"] .spark-giftcard-print-card.theme-modern .spark-card-back {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 50%, #1a1a1a 100%) !important;
+    background-color: #2d2d2d !important;
+    --accent-color: #f0c040 !important;
+  }
+
+  /* Force card text colors to remain white/accent in Dark Mode print */
+  .spark-giftcard-print-card .spark-card-store-name,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-store-name,
+  .spark-giftcard-print-card .spark-card-number,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-number,
+  .spark-giftcard-print-card .spark-card-balance-val,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-balance-val,
+  .spark-giftcard-print-card .spark-card-expiry-val,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-expiry-val,
+  .spark-giftcard-print-card p,
+  [data-theme="dark"] .spark-giftcard-print-card p,
+  .spark-giftcard-print-card span,
+  [data-theme="dark"] .spark-giftcard-print-card span,
+  .spark-giftcard-print-card [id^="preview_card_"],
+  [data-theme="dark"] .spark-giftcard-print-card [id^="preview_card_"] {
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-title-tag,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-title-tag,
+  .spark-giftcard-print-card .spark-card-balance-lbl,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-balance-lbl,
+  .spark-giftcard-print-card .spark-card-expiry-lbl,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-expiry-lbl,
+  .spark-giftcard-print-card .spark-card-currency,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-currency,
+  .spark-giftcard-print-card .spark-card-icon-badge,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-icon-badge,
+  .spark-giftcard-print-card .spark-card-back-footer,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-back-footer {
+    color: var(--accent-color, #e2b04a) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-chip,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-chip {
+    background: linear-gradient(135deg, #fce38a 0%, #e2b04a 50%, #b8860b 100%) !important;
+    background-color: #e2b04a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-magstripe,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-magstripe {
+    background: #111111 !important;
+    background-color: #111111 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-signature,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-signature {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #64748b !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-cvv,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-cvv {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #334155 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-barcode-box,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-barcode-box {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .spark-giftcard-print-card .spark-card-barcode-num,
+  [data-theme="dark"] .spark-giftcard-print-card .spark-card-barcode-num {
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ─── Barcode & Physical Label Printing Engine Isolation ─── */
+  .spark-barcode-print-page,
+  body:has(.spark-barcode-print-page),
+  body:has(#barcode-con) {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  body:has(#barcode-con) .spark-app,
+  body:has(#barcode-con) .spark-main,
+  body:has(#barcode-con) .spark-content,
+  body:has(#barcode-con) .box,
+  body:has(#barcode-con) .box-content,
+  body:has(#barcode-con) .row,
+  body:has(#barcode-con) .col-lg-12,
+  .spark-barcode-print-page .spark-main,
+  .spark-barcode-print-page .spark-content,
+  .spark-barcode-print-page .box,
+  .spark-barcode-print-page .box-content,
+  .spark-barcode-print-page .row,
+  .spark-barcode-print-page .col-lg-12 {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    text-align: center !important;
+  }
+
+  .spark-barcode-print-page .no-print,
+  .spark-barcode-print-page .box-header,
+  .spark-barcode-print-page .well,
+  .spark-barcode-print-page .introtext,
+  .spark-barcode-print-page .spark-barcode-actions,
+  .spark-barcode-print-page .spark-barcode-print-btn,
+  #barcode-con .spark-barcode-print-btn,
+  #barcode-con > button {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    opacity: 0 !important;
+  }
+
+  #barcode-con {
+    display: block !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+    text-align: center !important;
+  }
+
+  #barcode-con .barcode,
+  #barcode-con .barcodea4 {
+    margin: 0 auto !important;
+    border: none !important;
+    background: #ffffff !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    box-sizing: border-box !important;
+  }
+
+  #barcode-con .item {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    text-shadow: none !important;
+  }
+
+  #barcode-con .item * {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  #barcode-con .item.style50 {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    float: none !important;
+    margin: 0 auto !important;
+    border: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  #barcode-con .item.style50 .div50 {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    background: #ffffff !important;
+  }
+
+  #barcode-con .item.style50 .barcode_site,
+  #barcode-con .item.style50 .barcode_name,
+  #barcode-con .item.style50 .barcode_brand,
+  #barcode-con .item.style50 .barcode_pdate,
+  #barcode-con .item.style50 .barcode_expiry,
+  #barcode-con .item.style50 .barcode_price,
+  #barcode-con .item.style50 .barcode_unit,
+  #barcode-con .item.style50 .barcode_category,
+  #barcode-con .item.style50 .variants {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    padding: 0 1mm !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  #barcode-con .item.style50 .barcode_image {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+  }
+
+  #barcode-con img.bcimg,
+  .item img.bcimg {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 95% !important;
+    height: auto !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    image-rendering: pixelated !important;
+  }
+}
+

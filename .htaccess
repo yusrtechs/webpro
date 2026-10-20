@@ -1,0 +1,62 @@
+# ==============================
+# Prevent directory listing
+# ==============================
+Options -Indexes
+
+# Default page
+DirectoryIndex index.php index.html
+
+# ==============================
+# Security: Block malicious patterns early
+# ==============================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block SQL injection and XSS attempts
+    RewriteCond %{QUERY_STRING} (\b(and|or)\b\s*\d+\s*=\s*\d+) [NC,OR]
+    RewriteCond %{QUERY_STRING} (union\s+select) [NC,OR]
+    RewriteCond %{QUERY_STRING} (base64_decode|gzinflate|eval\(|preg_replace\() [NC,OR]
+    RewriteCond %{QUERY_STRING} (%3C|%3E|%27|%22|<|>) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\b(w|id|q|cmd)\b=.*(and|or|select|insert|drop|delete|update)) [NC]
+    RewriteRule .* - [F,L]
+
+    # ==============================
+    # CodeIgniter URL rewriting
+    # ==============================
+    RewriteCond $1 !^(index\.php|assets|install|update|upload|backup)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+</IfModule>
+
+
+# ==============================
+# Protect sensitive files
+# ==============================
+<FilesMatch "^(composer\.(json|lock)|\.env|\.htaccess|config\.php|.*\.(log|sql|ini|bak))$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ==============================
+# Disable PHP execution inside uploads / backups
+# ==============================
+<FilesMatch "^(upload|backup)/.*\.(php|php5|php7|phtml|phar)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php73” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php73 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

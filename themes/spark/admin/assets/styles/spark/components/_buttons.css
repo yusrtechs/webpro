@@ -1,0 +1,457 @@
+/* ============================================================================
+   Spark ERP Design System — Buttons
+   Version: 1.0.0
+   
+   All button components namespaced under .spark-btn.
+   Does NOT modify the existing .btn class.
+   ============================================================================ */
+
+/* ==========================================================================
+   BASE BUTTON
+   ========================================================================== */
+
+.spark-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spark-space-2);
+  height: 34px;
+  padding-block: 0;
+  padding-inline: var(--spark-space-4);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-base);
+  font-weight: var(--spark-weight-medium);
+  line-height: 1;
+  color: var(--spark-text);
+  background-color: var(--spark-surface);
+  border: 1px solid var(--spark-border);
+  border-radius: var(--spark-radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  user-select: none;
+  transition:
+    background-color var(--spark-transition-base),
+    border-color var(--spark-transition-base),
+    color var(--spark-transition-base),
+    box-shadow var(--spark-transition-base);
+  position: relative;
+  vertical-align: middle;
+}
+
+.spark-btn:hover {
+  background-color: var(--spark-surface-hover);
+  border-color: var(--spark-border-strong);
+}
+
+.spark-btn:active {
+  transform: translateY(0.5px);
+}
+
+.spark-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring);
+}
+
+.spark-btn:disabled,
+.spark-btn.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Icon inside button */
+.spark-btn > i,
+.spark-btn > svg {
+  flex-shrink: 0;
+  font-size: 1em;
+  width: 1em;
+  height: 1em;
+}
+
+
+/* ==========================================================================
+   PRIMARY BUTTON
+   ========================================================================== */
+
+.spark-btn-primary {
+  background-color: var(--spark-primary);
+  border-color: var(--spark-primary);
+  color: var(--spark-primary-text);
+}
+
+.spark-btn-primary:hover {
+  background-color: var(--spark-primary-hover);
+  border-color: var(--spark-primary-hover);
+  color: var(--spark-primary-text);
+}
+
+.spark-btn-primary:active {
+  background-color: var(--spark-primary-active);
+  border-color: var(--spark-primary-active);
+}
+
+
+/* ==========================================================================
+   SECONDARY BUTTON
+   ========================================================================== */
+
+.spark-btn-secondary {
+  background-color: var(--spark-secondary);
+  border-color: var(--spark-secondary);
+  color: var(--spark-text-inverse);
+}
+
+.spark-btn-secondary:hover {
+  background-color: var(--spark-secondary-hover);
+  border-color: var(--spark-secondary-hover);
+  color: var(--spark-text-inverse);
+}
+
+.spark-btn-secondary:active {
+  background-color: var(--spark-secondary-active);
+  border-color: var(--spark-secondary-active);
+}
+
+
+/* ==========================================================================
+   SUCCESS BUTTON
+   ========================================================================== */
+
+.spark-btn-success {
+  background-color: var(--spark-success);
+  border-color: var(--spark-success);
+  color: var(--spark-text-inverse);
+}
+
+.spark-btn-success:hover {
+  background-color: var(--spark-success-hover);
+  border-color: var(--spark-success-hover);
+  color: var(--spark-text-inverse);
+}
+
+
+/* ==========================================================================
+   DANGER BUTTON
+   ========================================================================== */
+
+.spark-btn-danger {
+  background-color: var(--spark-danger);
+  border-color: var(--spark-danger);
+  color: var(--spark-text-inverse);
+}
+
+.spark-btn-danger:hover {
+  background-color: var(--spark-danger-hover);
+  border-color: var(--spark-danger-hover);
+  color: var(--spark-text-inverse);
+}
+
+
+/* ==========================================================================
+   WARNING BUTTON
+   ========================================================================== */
+
+.spark-btn-warning {
+  background-color: var(--spark-warning);
+  border-color: var(--spark-warning);
+  color: var(--spark-text-inverse);
+}
+
+.spark-btn-warning:hover {
+  background-color: var(--spark-warning-hover);
+  border-color: var(--spark-warning-hover);
+  color: var(--spark-text-inverse);
+}
+
+
+/* ==========================================================================
+   GHOST BUTTON
+   Transparent background, colored text only.
+   ========================================================================== */
+
+.spark-btn-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--spark-text-secondary);
+}
+
+.spark-btn-ghost:hover {
+  background-color: var(--spark-surface-hover);
+  border-color: transparent;
+  color: var(--spark-text);
+}
+
+.spark-btn-ghost:active {
+  background-color: var(--spark-border-light);
+}
+
+/* Ghost with primary color */
+.spark-btn-ghost.spark-btn-primary {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--spark-primary);
+}
+
+.spark-btn-ghost.spark-btn-primary:hover {
+  background-color: var(--spark-primary-subtle);
+  color: var(--spark-primary-hover);
+}
+
+/* Ghost with danger color */
+.spark-btn-ghost.spark-btn-danger {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--spark-danger);
+}
+
+.spark-btn-ghost.spark-btn-danger:hover {
+  background-color: var(--spark-danger-subtle);
+  color: var(--spark-danger-hover);
+}
+
+
+/* ==========================================================================
+   OUTLINE BUTTON
+   Border only, no background fill.
+   ========================================================================== */
+
+.spark-btn-outline {
+  background-color: transparent;
+  border-color: var(--spark-border);
+  color: var(--spark-text);
+}
+
+.spark-btn-outline:hover {
+  background-color: var(--spark-surface-hover);
+  border-color: var(--spark-border-strong);
+}
+
+/* Outline with primary color */
+.spark-btn-outline.spark-btn-primary {
+  background-color: transparent;
+  border-color: var(--spark-primary);
+  color: var(--spark-primary);
+}
+
+.spark-btn-outline.spark-btn-primary:hover {
+  background-color: var(--spark-primary-subtle);
+  border-color: var(--spark-primary-hover);
+  color: var(--spark-primary-hover);
+}
+
+/* Outline with success color */
+.spark-btn-outline.spark-btn-success {
+  background-color: transparent;
+  border-color: var(--spark-success);
+  color: var(--spark-success);
+}
+
+.spark-btn-outline.spark-btn-success:hover {
+  background-color: var(--spark-success-subtle);
+  border-color: var(--spark-success-hover);
+  color: var(--spark-success-hover);
+}
+
+/* Outline with danger color */
+.spark-btn-outline.spark-btn-danger {
+  background-color: transparent;
+  border-color: var(--spark-danger);
+  color: var(--spark-danger);
+}
+
+.spark-btn-outline.spark-btn-danger:hover {
+  background-color: var(--spark-danger-subtle);
+  border-color: var(--spark-danger-hover);
+  color: var(--spark-danger-hover);
+}
+
+
+/* ==========================================================================
+   ICON BUTTON
+   Square button, typically for a single icon.
+   ========================================================================== */
+
+.spark-btn-icon {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.spark-btn-icon.spark-btn-sm {
+  width: 28px;
+  height: 28px;
+}
+
+.spark-btn-icon.spark-btn-lg {
+  width: 40px;
+  height: 40px;
+}
+
+
+/* ==========================================================================
+   SIZE MODIFIERS
+   ========================================================================== */
+
+.spark-btn-xs {
+  height: 28px;
+  min-height: 28px;
+  padding-inline: var(--spark-space-2, 8px);
+  font-size: var(--spark-text-sm, 12px);
+  border-radius: var(--spark-radius-md, 8px);
+  gap: var(--spark-space-1, 4px);
+}
+
+.spark-btn-sm {
+  height: 28px;
+  min-height: 28px;
+  padding-inline: var(--spark-space-3, 10px);
+  font-size: var(--spark-text-sm, 12px);
+  border-radius: var(--spark-radius-md, 8px);
+  gap: var(--spark-space-1, 4px);
+}
+
+/* Default .spark-btn is already md (34px) */
+.spark-btn-md {
+  height: 34px;
+  padding-inline: var(--spark-space-4);
+  font-size: var(--spark-text-base);
+}
+
+.spark-btn-lg {
+  height: 40px;
+  padding-inline: var(--spark-space-5);
+  font-size: var(--spark-text-md);
+  border-radius: var(--spark-radius-lg);
+  gap: var(--spark-space-2);
+}
+
+
+/* ==========================================================================
+   BUTTON GROUP
+   Adjacent buttons with connected borders.
+   ========================================================================== */
+
+.spark-btn-group {
+  display: inline-flex;
+}
+
+.spark-btn-group > .spark-btn {
+  border-radius: 0;
+}
+
+.spark-btn-group > .spark-btn:first-child {
+  border-start-start-radius: var(--spark-radius-md);
+  border-end-start-radius: var(--spark-radius-md);
+}
+
+.spark-btn-group > .spark-btn:last-child {
+  border-start-end-radius: var(--spark-radius-md);
+  border-end-end-radius: var(--spark-radius-md);
+}
+
+.spark-btn-group > .spark-btn + .spark-btn {
+  margin-inline-start: -1px;
+}
+
+
+/* ==========================================================================
+   LOADING STATE
+   ========================================================================== */
+
+.spark-btn.is-loading {
+  color: transparent;
+  pointer-events: none;
+  position: relative;
+}
+
+.spark-btn.is-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  margin-block-start: -8px;
+  margin-inline-start: -8px;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: var(--spark-radius-full);
+  animation: spark-btn-spin 600ms linear infinite;
+  /* Restore the color that was made transparent */
+  color: var(--spark-primary-text);
+}
+
+/* For non-filled buttons, spinner should use text color */
+.spark-btn-ghost.is-loading::after,
+.spark-btn-outline.is-loading::after {
+  color: var(--spark-text-secondary);
+}
+
+@keyframes spark-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   DARK MODE BUTTON OVERRIDES ([data-theme="dark"])
+   ========================================================================== */
+
+[data-theme="dark"] .spark-btn {
+  background-color: var(--spark-surface-card, #111827);
+  border-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-primary, #f1f5f9);
+}
+
+[data-theme="dark"] .spark-btn:hover {
+  background-color: var(--spark-surface-hover, #1f2937);
+  border-color: var(--spark-border-strong, #374151);
+  color: var(--spark-text-primary, #ffffff);
+}
+
+[data-theme="dark"] .spark-btn-primary {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed));
+  border-color: transparent;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .spark-btn-primary:hover {
+  background: var(--spark-gradient-primary-hover, linear-gradient(135deg, #818cf8, #a78bfa));
+  color: #ffffff;
+}
+
+[data-theme="dark"] .spark-btn-secondary {
+  background-color: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .spark-btn-secondary:hover {
+  background-color: #475569;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .spark-btn-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .spark-btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--spark-text-primary, #f1f5f9);
+}
+
+[data-theme="dark"] .spark-btn-outline {
+  background-color: transparent;
+  border-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-primary, #f1f5f9);
+}
+
+[data-theme="dark"] .spark-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--spark-border-strong, #374151);
+}
+

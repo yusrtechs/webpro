@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark ERP — Design System Test Page</title>
+  <link rel="stylesheet" href="spark.css">
+  <style>
+    /* ── Test page layout (not part of the design system) ── */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0f1f3;
+      font-family: 'Cairo', sans-serif;
+    }
+    .test-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    .test-section {
+      margin-bottom: 48px;
+    }
+    .test-section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #ccc;
+    }
+    .test-section-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .test-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .test-label {
+      font-size: 12px;
+      color: #888;
+      min-width: 100%;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .test-divider {
+      border: none;
+      border-top: 1px dashed #ddd;
+      margin: 32px 0;
+    }
+    .test-dark-region {
+      background: hsl(222, 22%, 10%);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 16px;
+    }
+    .test-banner {
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(135deg, hsl(215,65%,48%), hsl(215,65%,36%));
+      color: white;
+      margin-bottom: 40px;
+      border-radius: 12px;
+    }
+    .test-banner h1 {
+      font-size: 28px;
+      margin: 0 0 8px;
+    }
+    .test-banner p {
+      font-size: 14px;
+      margin: 0;
+      opacity: 0.85;
+    }
+    .test-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .test-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="test-page">
+
+  <!-- ============================================================
+       BANNER
+       ============================================================ -->
+  <div class="test-banner">
+    <h1>🔷 Spark ERP — نظام التصميم</h1>
+    <p>Design System v1.0 — Phase 1 Test Page</p>
+  </div>
+
+
+  <!-- ============================================================
+       SECTION A: TYPOGRAPHY — ARABIC (RTL)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">A. الطباعة — عربي (RTL)</div>
+    <div class="test-section-desc">Arabic-first typography using Cairo font, rendered in RTL direction.</div>
+
+    <div class="spark-ui" dir="rtl" lang="ar">
+      <div class="spark-h1">عنوان المستوى الأول — 34px</div>
+      <div class="spark-h2" style="margin-top:12px;">عنوان المستوى الثاني — 28px</div>
+      <div class="spark-h3" style="margin-top:12px;">عنوان المستوى الثالث — 22px</div>
+      <div class="spark-h4" style="margin-top:12px;">عنوان المستوى الرابع — 18px</div>
+      <div class="spark-h5" style="margin-top:12px;">عنوان المستوى الخامس — 16px</div>
+      <div class="spark-h6" style="margin-top:12px;">عنوان المستوى السادس — 14px</div>
+
+      <p class="spark-text-base" style="margin-top:16px;">
+        هذا نص أساسي بحجم 13 بكسل. يستخدم خط Cairo ويعرض بشكل صحيح في اتجاه من اليمين إلى اليسار.
+        نظام Spark ERP للتصميم مصمم ليكون عربياً أولاً مع دعم كامل للغة الإنجليزية.
+      </p>
+
+      <p class="spark-caption" style="margin-top:8px;">
+        هذا نص توضيحي صغير — 11px — يُستخدم للملاحظات والوصف أسفل الحقول.
+      </p>
+
+      <p class="spark-label-text" style="margin-top:8px;">
+        تسمية الحقل — 12px متوسط الوزن
+      </p>
+
+      <div style="margin-top:12px;">
+        <span class="spark-metric">SAR 12,450.00</span>
+        <span class="spark-text-muted spark-text-sm" style="margin-inline-start:8px;">قيمة مالية</span>
+      </div>
+
+      <div style="margin-top:8px;">
+        <span class="spark-mono" style="font-size:14px;">INV-2026-001847</span>
+        <span class="spark-text-muted spark-text-sm" style="margin-inline-start:8px;">رقم مرجعي (monospace)</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       SECTION A2: TYPOGRAPHY — ENGLISH (LTR)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">A2. Typography — English (LTR)</div>
+    <div class="test-section-desc">English typography using Inter font, rendered in LTR direction.</div>
+
+    <div class="spark-ui" dir="ltr" lang="en">
+      <div class="spark-h1">Heading Level 1 — 34px</div>
+      <div class="spark-h2" style="margin-top:12px;">Heading Level 2 — 28px</div>
+      <div class="spark-h3" style="margin-top:12px;">Heading Level 3 — 22px</div>
+      <div class="spark-h4" style="margin-top:12px;">Heading Level 4 — 18px</div>
+      <div class="spark-h5" style="margin-top:12px;">Heading Level 5 — 16px</div>
+      <div class="spark-h6" style="margin-top:12px;">Heading Level 6 — 14px</div>
+
+      <p class="spark-text-base" style="margin-top:16px;">
+        This is base body text at 13px. It uses the Inter font family and renders left-to-right.
+        The Spark ERP Design System is built Arabic-first with full English language support.
+      </p>
+
+      <p class="spark-caption" style="margin-top:8px;">
+        This is caption text — 11px — used for helper text and descriptions below form fields.
+      </p>
+
+      <p class="spark-label-text" style="margin-top:8px;">
+        Form Label — 12px medium weight
+      </p>
+
+      <div style="margin-top:12px;">
+        <span class="spark-metric">$84,230.50</span>
+        <span class="spark-text-muted spark-text-sm" style="margin-inline-start:8px;">Monetary Value</span>
+      </div>
+
+      <div style="margin-top:8px;">
+        <span class="spark-mono" style="font-size:14px;">PO-2026-003291</span>
+        <span class="spark-text-muted spark-text-sm" style="margin-inline-start:8px;">Reference Number (monospace)</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="test-divider">
+
+
+  <!-- ============================================================
+       SECTION B: BUTTONS — ARABIC (RTL)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">B. الأزرار — عربي (RTL)</div>
+    <div class="test-section-desc">All button variants rendered in RTL direction.</div>
+
+    <div class="spark-ui" dir="rtl" lang="ar">
+      <div class="test-label">الأزرار الأساسية</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary">أساسي</button>
+        <button class="spark-btn spark-btn-secondary">ثانوي</button>
+        <button class="spark-btn spark-btn-success">نجاح</button>
+        <button class="spark-btn spark-btn-danger">خطر</button>
+        <button class="spark-btn spark-btn-warning">تحذير</button>
+      </div>
+
+      <div class="test-label">أزرار شبحية وحدودية</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-ghost">شبحي</button>
+        <button class="spark-btn spark-btn-ghost spark-btn-primary">شبحي أساسي</button>
+        <button class="spark-btn spark-btn-ghost spark-btn-danger">شبحي خطر</button>
+        <button class="spark-btn spark-btn-outline">حدودي</button>
+        <button class="spark-btn spark-btn-outline spark-btn-primary">حدودي أساسي</button>
+        <button class="spark-btn spark-btn-outline spark-btn-danger">حدودي خطر</button>
+      </div>
+
+      <div class="test-label">أزرار مع أيقونات</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary">
+          <i>+</i> إضافة منتج
+        </button>
+        <button class="spark-btn spark-btn-success">
+          <i>✓</i> حفظ
+        </button>
+        <button class="spark-btn spark-btn-danger">
+          <i>✕</i> حذف
+        </button>
+        <button class="spark-btn spark-btn-icon spark-btn-outline">
+          <i>⚙</i>
+        </button>
+        <button class="spark-btn spark-btn-icon spark-btn-ghost">
+          <i>⋮</i>
+        </button>
+      </div>
+
+      <div class="test-label">الأحجام</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary spark-btn-sm">صغير</button>
+        <button class="spark-btn spark-btn-primary spark-btn-md">متوسط (افتراضي)</button>
+        <button class="spark-btn spark-btn-primary spark-btn-lg">كبير</button>
+      </div>
+
+      <div class="test-label">الحالات</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary" disabled>معطل</button>
+        <button class="spark-btn spark-btn-primary is-loading">جاري التحميل</button>
+        <button class="spark-btn spark-btn-success" disabled>معطل نجاح</button>
+        <button class="spark-btn spark-btn-outline is-disabled">معطل حدودي</button>
+      </div>
+
+      <div class="test-label">مجموعة أزرار</div>
+      <div class="test-row">
+        <div class="spark-btn-group">
+          <button class="spark-btn spark-btn-outline">يوم</button>
+          <button class="spark-btn spark-btn-outline spark-btn-primary">أسبوع</button>
+          <button class="spark-btn spark-btn-outline">شهر</button>
+          <button class="spark-btn spark-btn-outline">سنة</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       SECTION B2: BUTTONS — ENGLISH (LTR)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">B2. Buttons — English (LTR)</div>
+    <div class="test-section-desc">All button variants rendered in LTR direction.</div>
+
+    <div class="spark-ui" dir="ltr" lang="en">
+      <div class="test-label">Primary Buttons</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary">Primary</button>
+        <button class="spark-btn spark-btn-secondary">Secondary</button>
+        <button class="spark-btn spark-btn-success">Success</button>
+        <button class="spark-btn spark-btn-danger">Danger</button>
+        <button class="spark-btn spark-btn-warning">Warning</button>
+      </div>
+
+      <div class="test-label">Ghost & Outline</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-ghost">Ghost</button>
+        <button class="spark-btn spark-btn-ghost spark-btn-primary">Ghost Primary</button>
+        <button class="spark-btn spark-btn-ghost spark-btn-danger">Ghost Danger</button>
+        <button class="spark-btn spark-btn-outline">Outline</button>
+        <button class="spark-btn spark-btn-outline spark-btn-primary">Outline Primary</button>
+        <button class="spark-btn spark-btn-outline spark-btn-success">Outline Success</button>
+        <button class="spark-btn spark-btn-outline spark-btn-danger">Outline Danger</button>
+      </div>
+
+      <div class="test-label">Buttons with Icons</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary">
+          <i>+</i> Add Product
+        </button>
+        <button class="spark-btn spark-btn-success">
+          <i>✓</i> Save
+        </button>
+        <button class="spark-btn spark-btn-danger">
+          <i>✕</i> Delete
+        </button>
+        <button class="spark-btn spark-btn-icon spark-btn-outline">
+          <i>⚙</i>
+        </button>
+        <button class="spark-btn spark-btn-icon spark-btn-ghost">
+          <i>⋮</i>
+        </button>
+      </div>
+
+      <div class="test-label">Sizes</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary spark-btn-sm">Small</button>
+        <button class="spark-btn spark-btn-primary spark-btn-md">Medium (default)</button>
+        <button class="spark-btn spark-btn-primary spark-btn-lg">Large</button>
+      </div>
+
+      <div class="test-label">States</div>
+      <div class="test-row">
+        <button class="spark-btn spark-btn-primary" disabled>Disabled</button>
+        <button class="spark-btn spark-btn-primary is-loading">Loading</button>
+        <button class="spark-btn spark-btn-success" disabled>Disabled Success</button>
+        <button class="spark-btn spark-btn-outline is-disabled">Disabled Outline</button>
+      </div>
+
+      <div class="test-label">Button Group</div>
+      <div class="test-row">
+        <div class="spark-btn-group">
+          <button class="spark-btn spark-btn-outline">Day</button>
+          <button class="spark-btn spark-btn-outline spark-btn-primary">Week</button>
+          <button class="spark-btn spark-btn-outline">Month</button>
+          <button class="spark-btn spark-btn-outline">Year</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="test-divider">
+
+
+  <!-- ============================================================
+       SECTION C: CARDS — ARABIC (RTL)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">C. البطاقات — عربي (RTL)</div>
+    <div class="test-section-desc">Card components including stat cards, chart cards, and info cards.</div>
+
+    <div class="spark-ui" dir="rtl" lang="ar">
+
+      <!-- Standard Card -->
+      <div class="test-label">بطاقة قياسية</div>
+      <div class="spark-card" style="max-width:480px; margin-bottom:24px;">
+        <div class="spark-card-header">
+          <h3 class="spark-card-header-title">تفاصيل المنتج</h3>
+          <div class="spark-card-header-actions">
+            <button class="spark-btn spark-btn-sm spark-btn-ghost">تعديل</button>
+          </div>
+        </div>
+        <div class="spark-card-body">
+          <p class="spark-text-base">هذا محتوى البطاقة القياسية. يحتوي على عنوان رأسي وجسم ومحتوى ذيلي.</p>
+          <p class="spark-text-muted spark-text-sm" style="margin-top:8px;">
+            آخر تحديث: 14 أغسطس 2026
+          </p>
+        </div>
+        <div class="spark-card-footer">
+          <button class="spark-btn spark-btn-sm spark-btn-ghost spark-btn-danger">حذف</button>
+          <button class="spark-btn spark-btn-sm spark-btn-primary">حفظ التغييرات</button>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="test-label">بطاقات الإحصائيات</div>
+      <div class="spark-card-grid spark-card-grid-4" style="margin-bottom:24px;">
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">مبيعات اليوم</span>
+              <span class="spark-stat-card-value">SAR 12,450</span>
+              <span class="spark-stat-card-change is-positive">↑ 8.2%</span>
+            </div>
+            <div class="spark-stat-card-icon is-primary">
+              <i>📦</i>
+            </div>
+          </div>
+          <div class="spark-stat-card-footer">مقارنة بالأمس</div>
+        </div>
+
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">مشتريات اليوم</span>
+              <span class="spark-stat-card-value">SAR 5,680</span>
+              <span class="spark-stat-card-change is-negative">↓ 3.1%</span>
+            </div>
+            <div class="spark-stat-card-icon is-warning">
+              <i>🛒</i>
+            </div>
+          </div>
+          <div class="spark-stat-card-footer">مقارنة بالأمس</div>
+        </div>
+
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">الأرباح</span>
+              <span class="spark-stat-card-value">SAR 6,770</span>
+              <span class="spark-stat-card-change is-positive">↑ 12.5%</span>
+            </div>
+            <div class="spark-stat-card-icon is-success">
+              <i>📈</i>
+            </div>
+          </div>
+          <div class="spark-stat-card-footer">مقارنة بالأمس</div>
+        </div>
+
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">مدفوعات معلقة</span>
+              <span class="spark-stat-card-value">SAR 3,200</span>
+              <span class="spark-stat-card-change is-neutral">— 0%</span>
+            </div>
+            <div class="spark-stat-card-icon is-danger">
+              <i>⏳</i>
+            </div>
+          </div>
+          <div class="spark-stat-card-footer">4 فواتير معلقة</div>
+        </div>
+      </div>
+
+      <!-- Chart Card -->
+      <div class="test-label">بطاقة الرسم البياني</div>
+      <div class="spark-chart-card" style="margin-bottom:24px;">
+        <div class="spark-chart-card-header">
+          <h3 class="spark-chart-card-title">المبيعات الشهرية</h3>
+        </div>
+        <div class="spark-chart-card-body">
+          <div class="spark-chart-placeholder">
+            📊 منطقة الرسم البياني — Chart Area (Highcharts / Chart.js)
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="test-label">بطاقات المعلومات</div>
+      <div class="test-columns" style="margin-bottom:24px;">
+        <div class="spark-info-card">
+          <div class="spark-info-card-body">
+            <div class="spark-info-card-icon">
+              <i>📋</i>
+            </div>
+            <div class="spark-info-card-content">
+              <div class="spark-info-card-title">طلبات جديدة</div>
+              <div class="spark-info-card-text">يوجد 12 طلب جديد بحاجة إلى مراجعة ومعالجة قبل نهاية اليوم.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spark-info-card is-warning">
+          <div class="spark-info-card-body">
+            <div class="spark-info-card-icon">
+              <i>⚠️</i>
+            </div>
+            <div class="spark-info-card-content">
+              <div class="spark-info-card-title">تنبيه المخزون</div>
+              <div class="spark-info-card-text">3 منتجات وصلت إلى الحد الأدنى من المخزون وتحتاج إلى إعادة طلب.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       SECTION C2: CARDS — ENGLISH (LTR)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">C2. Cards — English (LTR)</div>
+
+    <div class="spark-ui" dir="ltr" lang="en">
+
+      <!-- Standard Card -->
+      <div class="test-label">Standard Card</div>
+      <div class="spark-card" style="max-width:480px; margin-bottom:24px;">
+        <div class="spark-card-header">
+          <h3 class="spark-card-header-title">Product Details</h3>
+          <div class="spark-card-header-actions">
+            <button class="spark-btn spark-btn-sm spark-btn-ghost">Edit</button>
+          </div>
+        </div>
+        <div class="spark-card-body">
+          <p class="spark-text-base">This is a standard card body content. It includes a header, body, and footer section.</p>
+          <p class="spark-text-muted spark-text-sm" style="margin-top:8px;">
+            Last updated: August 14, 2026
+          </p>
+        </div>
+        <div class="spark-card-footer">
+          <span class="spark-card-footer-start">
+            <button class="spark-btn spark-btn-sm spark-btn-ghost spark-btn-danger">Delete</button>
+          </span>
+          <button class="spark-btn spark-btn-sm spark-btn-primary">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="test-label">Stat Cards</div>
+      <div class="spark-card-grid spark-card-grid-4" style="margin-bottom:24px;">
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Sales Today</span>
+              <span class="spark-stat-card-value">$84,230</span>
+              <span class="spark-stat-card-change is-positive">↑ 12.5%</span>
+            </div>
+            <div class="spark-stat-card-icon is-primary">
+              <i>📦</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Purchases Today</span>
+              <span class="spark-stat-card-value">$31,400</span>
+              <span class="spark-stat-card-change is-negative">↓ 4.2%</span>
+            </div>
+            <div class="spark-stat-card-icon is-warning">
+              <i>🛒</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Net Profit</span>
+              <span class="spark-stat-card-value">$52,830</span>
+              <span class="spark-stat-card-change is-positive">↑ 18.7%</span>
+            </div>
+            <div class="spark-stat-card-icon is-success">
+              <i>📈</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Outstanding</span>
+              <span class="spark-stat-card-value">$8,540</span>
+              <span class="spark-stat-card-change is-neutral">— 0%</span>
+            </div>
+            <div class="spark-stat-card-icon is-danger">
+              <i>⏳</i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="test-label">Info Cards</div>
+      <div class="test-columns" style="margin-bottom:24px;">
+        <div class="spark-info-card is-success">
+          <div class="spark-info-card-body">
+            <div class="spark-info-card-icon">
+              <i>✓</i>
+            </div>
+            <div class="spark-info-card-content">
+              <div class="spark-info-card-title">Backup Complete</div>
+              <div class="spark-info-card-text">Database backup completed successfully at 2:30 PM. Next backup scheduled for 8:30 PM.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spark-info-card is-danger">
+          <div class="spark-info-card-body">
+            <div class="spark-info-card-icon">
+              <i>!</i>
+            </div>
+            <div class="spark-info-card-content">
+              <div class="spark-info-card-title">Payment Overdue</div>
+              <div class="spark-info-card-text">Invoice #INV-2026-001847 from Al-Rayyan Trading is 15 days past due.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="test-divider">
+
+
+  <!-- ============================================================
+       SECTION D: BADGES & STATUS — ARABIC (RTL)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">D. الشارات والحالة — عربي (RTL)</div>
+
+    <div class="spark-ui" dir="rtl" lang="ar">
+
+      <div class="test-label">شارات دلالية</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-primary">أساسي</span>
+        <span class="spark-badge spark-badge-secondary">ثانوي</span>
+        <span class="spark-badge spark-badge-success">ناجح</span>
+        <span class="spark-badge spark-badge-warning">تحذير</span>
+        <span class="spark-badge spark-badge-danger">خطر</span>
+        <span class="spark-badge spark-badge-info">معلومات</span>
+      </div>
+
+      <div class="test-label">شارات صلبة</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-solid spark-badge-primary">أساسي صلب</span>
+        <span class="spark-badge spark-badge-solid spark-badge-success">ناجح صلب</span>
+        <span class="spark-badge spark-badge-solid spark-badge-warning">تحذير صلب</span>
+        <span class="spark-badge spark-badge-solid spark-badge-danger">خطر صلب</span>
+        <span class="spark-badge spark-badge-solid spark-badge-info">معلومات صلب</span>
+      </div>
+
+      <div class="test-label">شارات دائرية</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-pill spark-badge-primary">مكتمل</span>
+        <span class="spark-badge spark-badge-pill spark-badge-warning">قيد الانتظار</span>
+        <span class="spark-badge spark-badge-pill spark-badge-danger">ملغي</span>
+      </div>
+
+      <div class="test-label">شارات كبيرة</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-lg spark-badge-primary">شارة كبيرة</span>
+        <span class="spark-badge spark-badge-lg spark-badge-success">ناجح كبير</span>
+      </div>
+
+      <div class="test-label">شارة العدد</div>
+      <div class="test-row">
+        <span class="spark-badge-count">3</span>
+        <span class="spark-badge-count">12</span>
+        <span class="spark-badge-count">99+</span>
+      </div>
+
+      <div class="test-label">مؤشرات الحالة</div>
+      <div class="test-row">
+        <span class="spark-status spark-status-success">
+          <span class="spark-status-dot"></span>
+          مدفوع
+        </span>
+        <span class="spark-status spark-status-warning">
+          <span class="spark-status-dot"></span>
+          معلق
+        </span>
+        <span class="spark-status spark-status-danger">
+          <span class="spark-status-dot"></span>
+          ملغي
+        </span>
+        <span class="spark-status spark-status-info">
+          <span class="spark-status-dot"></span>
+          قيد المعالجة
+        </span>
+        <span class="spark-status spark-status-secondary">
+          <span class="spark-status-dot"></span>
+          مسودة
+        </span>
+      </div>
+
+      <div class="test-label">نقطة نابضة (مباشر)</div>
+      <div class="test-row">
+        <span class="spark-status spark-status-success">
+          <span class="spark-status-dot is-pulsing"></span>
+          متصل الآن
+        </span>
+      </div>
+
+      <div class="test-label">حالة المخزون</div>
+      <div class="test-row">
+        <span class="spark-stock-badge spark-stock-badge-in-stock">متوفر</span>
+        <span class="spark-stock-badge spark-stock-badge-low-stock">مخزون منخفض</span>
+        <span class="spark-stock-badge spark-stock-badge-out-of-stock">نفد المخزون</span>
+      </div>
+
+      <div class="test-label">شارة الصلاحيات</div>
+      <div class="test-row">
+        <span class="spark-perm-badge spark-perm-badge-owner">مالك</span>
+        <span class="spark-perm-badge spark-perm-badge-admin">مدير</span>
+        <span class="spark-perm-badge spark-perm-badge-user">مستخدم</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       SECTION D2: BADGES & STATUS — ENGLISH (LTR)
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">D2. Badges & Status — English (LTR)</div>
+
+    <div class="spark-ui" dir="ltr" lang="en">
+
+      <div class="test-label">Semantic Badges</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-primary">Primary</span>
+        <span class="spark-badge spark-badge-secondary">Secondary</span>
+        <span class="spark-badge spark-badge-success">Success</span>
+        <span class="spark-badge spark-badge-warning">Warning</span>
+        <span class="spark-badge spark-badge-danger">Danger</span>
+        <span class="spark-badge spark-badge-info">Info</span>
+      </div>
+
+      <div class="test-label">Solid Badges</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-solid spark-badge-primary">Solid Primary</span>
+        <span class="spark-badge spark-badge-solid spark-badge-success">Solid Success</span>
+        <span class="spark-badge spark-badge-solid spark-badge-warning">Solid Warning</span>
+        <span class="spark-badge spark-badge-solid spark-badge-danger">Solid Danger</span>
+        <span class="spark-badge spark-badge-solid spark-badge-info">Solid Info</span>
+      </div>
+
+      <div class="test-label">Pill Badges</div>
+      <div class="test-row">
+        <span class="spark-badge spark-badge-pill spark-badge-primary">Completed</span>
+        <span class="spark-badge spark-badge-pill spark-badge-warning">Pending</span>
+        <span class="spark-badge spark-badge-pill spark-badge-danger">Cancelled</span>
+      </div>
+
+      <div class="test-label">Status Indicators</div>
+      <div class="test-row">
+        <span class="spark-status spark-status-success">
+          <span class="spark-status-dot"></span>
+          Paid
+        </span>
+        <span class="spark-status spark-status-warning">
+          <span class="spark-status-dot"></span>
+          Pending
+        </span>
+        <span class="spark-status spark-status-danger">
+          <span class="spark-status-dot"></span>
+          Cancelled
+        </span>
+        <span class="spark-status spark-status-info">
+          <span class="spark-status-dot"></span>
+          Processing
+        </span>
+        <span class="spark-status spark-status-secondary">
+          <span class="spark-status-dot"></span>
+          Draft
+        </span>
+      </div>
+
+      <div class="test-label">Stock Status</div>
+      <div class="test-row">
+        <span class="spark-stock-badge spark-stock-badge-in-stock">In Stock</span>
+        <span class="spark-stock-badge spark-stock-badge-low-stock">Low Stock</span>
+        <span class="spark-stock-badge spark-stock-badge-out-of-stock">Out of Stock</span>
+      </div>
+
+      <div class="test-label">Permission Badges</div>
+      <div class="test-row">
+        <span class="spark-perm-badge spark-perm-badge-owner">Owner</span>
+        <span class="spark-perm-badge spark-perm-badge-admin">Admin</span>
+        <span class="spark-perm-badge spark-perm-badge-user">User</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="test-divider">
+
+
+  <!-- ============================================================
+       SECTION E: DARK MODE
+       Applied via data-theme="dark" on the container.
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">E. الوضع الداكن — Dark Mode</div>
+    <div class="test-section-desc">All components rendered with <code>data-theme="dark"</code> applied to the container.</div>
+
+    <div class="test-dark-region" data-theme="dark">
+
+      <!-- Dark Mode: Arabic RTL -->
+      <div class="spark-ui" dir="rtl" lang="ar" data-theme="dark">
+
+        <div class="spark-h3" style="margin-bottom:16px; color: var(--spark-text);">المكونات في الوضع الداكن — عربي</div>
+
+        <!-- Buttons -->
+        <div class="test-row" style="margin-bottom:16px;">
+          <button class="spark-btn spark-btn-primary">أساسي</button>
+          <button class="spark-btn spark-btn-secondary">ثانوي</button>
+          <button class="spark-btn spark-btn-success">نجاح</button>
+          <button class="spark-btn spark-btn-danger">خطر</button>
+          <button class="spark-btn spark-btn-warning">تحذير</button>
+          <button class="spark-btn spark-btn-ghost">شبحي</button>
+          <button class="spark-btn spark-btn-outline">حدودي</button>
+        </div>
+
+        <!-- Badges -->
+        <div class="test-row" style="margin-bottom:16px;">
+          <span class="spark-badge spark-badge-primary">أساسي</span>
+          <span class="spark-badge spark-badge-success">ناجح</span>
+          <span class="spark-badge spark-badge-warning">تحذير</span>
+          <span class="spark-badge spark-badge-danger">خطر</span>
+          <span class="spark-badge spark-badge-info">معلومات</span>
+          <span class="spark-stock-badge spark-stock-badge-in-stock">متوفر</span>
+          <span class="spark-stock-badge spark-stock-badge-low-stock">منخفض</span>
+          <span class="spark-stock-badge spark-stock-badge-out-of-stock">نفد</span>
+        </div>
+
+        <!-- Status -->
+        <div class="test-row" style="margin-bottom:16px;">
+          <span class="spark-status spark-status-success">
+            <span class="spark-status-dot"></span>
+            مدفوع
+          </span>
+          <span class="spark-status spark-status-warning">
+            <span class="spark-status-dot"></span>
+            معلق
+          </span>
+          <span class="spark-status spark-status-danger">
+            <span class="spark-status-dot"></span>
+            ملغي
+          </span>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="spark-card-grid spark-card-grid-2" style="margin-bottom:16px;">
+          <div class="spark-stat-card">
+            <div class="spark-stat-card-body">
+              <div class="spark-stat-card-info">
+                <span class="spark-stat-card-label">مبيعات اليوم</span>
+                <span class="spark-stat-card-value">SAR 12,450</span>
+                <span class="spark-stat-card-change is-positive">↑ 8.2%</span>
+              </div>
+              <div class="spark-stat-card-icon is-primary">
+                <i>📦</i>
+              </div>
+            </div>
+          </div>
+
+          <div class="spark-stat-card">
+            <div class="spark-stat-card-body">
+              <div class="spark-stat-card-info">
+                <span class="spark-stat-card-label">الأرباح</span>
+                <span class="spark-stat-card-value">SAR 6,770</span>
+                <span class="spark-stat-card-change is-negative">↓ 3.1%</span>
+              </div>
+              <div class="spark-stat-card-icon is-success">
+                <i>📈</i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard Card -->
+        <div class="spark-card" style="max-width:480px;">
+          <div class="spark-card-header">
+            <h3 class="spark-card-header-title">بطاقة في الوضع الداكن</h3>
+          </div>
+          <div class="spark-card-body">
+            <p class="spark-text-base">محتوى البطاقة في الوضع الداكن. لاحظ كيف تتكيف الألوان والحدود تلقائياً.</p>
+          </div>
+          <div class="spark-card-footer">
+            <button class="spark-btn spark-btn-sm spark-btn-primary">حفظ</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Mode: English LTR -->
+      <div class="spark-ui" dir="ltr" lang="en" data-theme="dark" style="margin-top:32px;">
+
+        <div class="spark-h3" style="margin-bottom:16px; color: var(--spark-text);">Dark Mode Components — English</div>
+
+        <div class="test-row" style="margin-bottom:16px;">
+          <button class="spark-btn spark-btn-primary">Primary</button>
+          <button class="spark-btn spark-btn-secondary">Secondary</button>
+          <button class="spark-btn spark-btn-success">Success</button>
+          <button class="spark-btn spark-btn-danger">Danger</button>
+          <button class="spark-btn spark-btn-outline">Outline</button>
+          <button class="spark-btn spark-btn-ghost">Ghost</button>
+        </div>
+
+        <div class="test-row" style="margin-bottom:16px;">
+          <span class="spark-badge spark-badge-primary">Primary</span>
+          <span class="spark-badge spark-badge-success">Success</span>
+          <span class="spark-badge spark-badge-danger">Danger</span>
+          <span class="spark-perm-badge spark-perm-badge-owner">Owner</span>
+          <span class="spark-perm-badge spark-perm-badge-admin">Admin</span>
+        </div>
+
+        <div class="spark-info-card" style="max-width:480px;">
+          <div class="spark-info-card-body">
+            <div class="spark-info-card-icon">
+              <i>💡</i>
+            </div>
+            <div class="spark-info-card-content">
+              <div class="spark-info-card-title">Dark Mode Ready</div>
+              <div class="spark-info-card-text">All components automatically adapt to dark mode via CSS custom property overrides. No JavaScript required.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="test-divider">
+
+
+  <!-- ============================================================
+       SECTION F: RESPONSIVE PREVIEW NOTE
+       ============================================================ -->
+  <div class="test-section">
+    <div class="test-section-title">F. Responsive Behavior</div>
+    <div class="test-section-desc">
+      Resize your browser window to test responsive behavior.
+      Stat card grids collapse from 4 columns → 2 columns → 1 column.
+      Test columns collapse from 2 → 1 at 768px.
+    </div>
+
+    <div class="spark-ui" dir="ltr" lang="en">
+      <div class="spark-card-grid spark-card-grid-4">
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Column 1</span>
+              <span class="spark-stat-card-value">A</span>
+            </div>
+          </div>
+        </div>
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Column 2</span>
+              <span class="spark-stat-card-value">B</span>
+            </div>
+          </div>
+        </div>
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Column 3</span>
+              <span class="spark-stat-card-value">C</span>
+            </div>
+          </div>
+        </div>
+        <div class="spark-stat-card">
+          <div class="spark-stat-card-body">
+            <div class="spark-stat-card-info">
+              <span class="spark-stat-card-label">Column 4</span>
+              <span class="spark-stat-card-value">D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <div style="text-align:center; padding:32px; color:#888; font-size:12px;">
+    Spark ERP Design System v1.0 — Phase 1 — Test Page<br>
+    No application files were modified. This page is standalone.
+  </div>
+
+</div>
+
+</body>
+</html>

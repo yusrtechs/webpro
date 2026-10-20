@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark ERP — Barcode Printing Page Test Harness</title>
+  
+  <!-- FontAwesome 4.7 for standard Spark icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Spark Design System Entry Point -->
+  <link rel="stylesheet" href="spark.css">
+  
+  <style>
+    /* Demo Controls Floating Toolbar */
+    .test-toolbar {
+      position: fixed;
+      inset-block-end: 20px;
+      inset-inline-start: 20px;
+      z-index: 99999;
+      background: hsl(220, 24%, 14%);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .test-toolbar button {
+      background: #6366f1;
+      color: #ffffff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+    .test-toolbar button:hover {
+      background: #4f46e5;
+      transform: translateY(-1px);
+    }
+    .test-toolbar button.btn-secondary {
+      background: #334155;
+    }
+    .test-toolbar button.btn-secondary:hover {
+      background: #475569;
+    }
+    .test-toolbar button.btn-success {
+      background: #10b981;
+    }
+    .test-toolbar button.btn-success:hover {
+      background: #059669;
+    }
+
+    /* Barcode Print Simulation Styles (Matching legacy print.css for labels) */
+    .barcode { width: 8.45in; height: 10.3in; display: block; border: 1px solid #CCC; margin: 10px auto; padding-top: 0.1in; }
+    .barcode .item { display: block; overflow: hidden; text-align: center; border: 1px dotted #CCC; font-size: 12px; line-height: 14px; text-transform: uppercase; float: left; }
+    .barcode .style24 { width: 2.48in; height: 1.335in; margin: 0.05in; padding-top: 0.05in; }
+    .barcode .barcode_site, .barcode .barcode_name, .barcode .barcode_image, .barcode .variants { display: block; }
+    .barcode .barcode_price, .barcode .barcode_unit, .barcode .barcode_category { display: inline-block; }
+    .barcode .barcode_site { font-weight: bold; font-size: 13px; }
+    .barcode .barcode_name { font-size: 12px; }
+    .barcode .barcode_price { font-size: 13px; font-weight: bold; color: #000; }
+    .barcode .barcode_image img { max-width: 90%; height: 35px; }
+
+    @media print {
+      .test-toolbar { display: none !important; }
+    }
+  </style>
+</head>
+<body class="spark-app spark-ui">
+
+  <!-- Interactive Demo Controls Floating Bar -->
+  <div class="test-toolbar no-print">
+    <button onclick="toggleTheme()" id="themeBtn"><i class="fa fa-moon-o"></i> Dark Mode</button>
+    <button onclick="toggleDir()" class="btn-secondary" id="dirBtn"><i class="fa fa-globe"></i> Switch to LTR (EN)</button>
+    <button onclick="window.print()" class="btn-success"><i class="fa fa-print"></i> Test Print (Ctrl+P)</button>
+  </div>
+
+  <main class="spark-main" style="padding: 24px; max-width: 1200px; margin: 0 auto;">
+    <div class="spark-content" id="content">
+
+      <!-- ==========================================================================
+           BARCODE PRINTING PAGE COMPONENT
+           ========================================================================== -->
+      <div class="box spark-barcode-print-page">
+        <div class="box-header no-print">
+          <h2 class="blue"><i class="fa-fw fa fa-barcode"></i>طباعة ملصقات الباركود</h2>
+        </div>
+        <div class="box-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="introtext">يرجى تحديد المنتجات والخيارات المطلوبة لإنشاء ملصقات الباركود الجاهزة للطباعة، يمكنك أيضاً الوصول إلى <a href="#">الأصناف</a> أو <a href="#">المشتريات</a>.</p>
+
+              <div class="well well-sm no-print">
+                <!-- إضافة المنتج -->
+                <div class="form-group">
+                  <label for="add_item">إضافة منتج</label>
+                  <input type="text" name="add_item" value="" class="form-control" id="add_item" placeholder="يرجى كتابة اسم المنتج أو كود الباركود...">
+                </div>
+
+                <!-- نموذج طباعة الباركود -->
+                <form id="barcode-print-form">
+                  <div class="controls table-controls">
+                    <table id="bcTable" class="table items table-striped table-condensed table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 45%;">اسم المنتج (كود المنتج)</th>
+                          <th style="width: 15%; text-align: center;">الكمية</th>
+                          <th style="width: 20%;">الوحدة</th>
+                          <th style="width: 15%;">تاريخ الإنتاج</th>
+                          <th style="width: 5%; text-align: center;">
+                            <i class="fa fa-trash-o" style="opacity:0.5;"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr id="row_1" data-item-id="1">
+                          <td>
+                            <strong>عصير برتقال طبيعي 1 لتر</strong> <span style="color: var(--spark-text-muted);">(PRD-00124)</span>
+                          </td>
+                          <td>
+                            <input class="form-control quantity text-center" name="quantity[]" type="text" value="24" data-id="1">
+                          </td>
+                          <td>
+                            <select name="prunit[]" class="form-control select rprunit">
+                              <option value="1">حبة (Piece)</option>
+                              <option value="2" selected>كرتون (Box 1x12)</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input class="form-control prdate tip date" name="prdate[]" type="text" value="2026-08-20" data-id="1">
+                          </td>
+                          <td style="text-align: center;">
+                            <i class="fa fa-times tip del" id="1" title="حذف" onclick="this.closest('tr').remove()"></i>
+                          </td>
+                        </tr>
+                        <tr id="row_2" data-item-id="2">
+                          <td>
+                            <strong>شاي أسود فاخر 100 كيس</strong> <span style="color: var(--spark-text-muted);">(PRD-00892)</span>
+                          </td>
+                          <td>
+                            <input class="form-control quantity text-center" name="quantity[]" type="text" value="12" data-id="2">
+                          </td>
+                          <td>
+                            <select name="prunit[]" class="form-control select rprunit">
+                              <option value="1" selected>علبة (Pack)</option>
+                              <option value="2">كرتون (Carton 1x24)</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input class="form-control prdate tip date" name="prdate[]" type="text" value="2026-08-15" data-id="2">
+                          </td>
+                          <td style="text-align: center;">
+                            <i class="fa fa-times tip del" id="2" title="حذف" onclick="this.closest('tr').remove()"></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- خيارات الطباعة -->
+                  <div class="form-group">
+                    <label for="style">نمط الملصق وحجم الورقة</label>
+                    <select name="style" class="form-control tip" id="style" onchange="toggleContinuousFeed(this.value)">
+                      <option value="40">40 ملصق لكل ورقة (A4)</option>
+                      <option value="30">30 ملصق لكل ورقة</option>
+                      <option value="24" selected>24 ملصق لكل ورقة (A4)</option>
+                      <option value="20">20 ملصق لكل ورقة</option>
+                      <option value="18">18 ملصق لكل ورقة</option>
+                      <option value="14">14 ملصق لكل ورقة</option>
+                      <option value="12">12 ملصق لكل ورقة</option>
+                      <option value="10">10 ملصقات لكل ورقة</option>
+                      <option value="50">تغذية مستمرة (Continuous Feed / رول حراري)</option>
+                    </select>
+
+                    <!-- إعدادات continuous feed -->
+                    <div class="row cf-con" id="cfCon" style="display:none; margin-top: 12px;">
+                      <div class="col-xs-4" style="width: 33.333%; float: right; padding: 0 8px;">
+                        <div class="form-group">
+                          <label>العرض</label>
+                          <div class="input-group">
+                            <input type="text" name="cf_width" class="form-control" id="cf_width" placeholder="العرض">
+                            <span class="input-group-addon">بوصة</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-4" style="width: 33.333%; float: right; padding: 0 8px;">
+                        <div class="form-group">
+                          <label>الارتفاع</label>
+                          <div class="input-group">
+                            <input type="text" name="cf_height" class="form-control" id="cf_height" placeholder="الارتفاع">
+                            <span class="input-group-addon">بوصة</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-4" style="width: 33.333%; float: right; padding: 0 8px;">
+                        <div class="form-group">
+                          <label>الاتجاه</label>
+                          <select name="cf_orientation" class="form-control" id="cf_orientation">
+                            <option value="0">عمودي (Portrait)</option>
+                            <option value="1">أفقي (Landscape)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div style="clear: both;"></div>
+                    </div>
+
+                    <span class="help-block">تلميح: اختر النمط المتوافق مع طابعتك ونوع الورق المستخدم لضمان دقة المحاذاة والأبعاد.</span>
+                  </div>
+
+                  <!-- خيارات الحقول للطباعة (بطاقات مع iCheck Simulated Wrapper) -->
+                  <label style="margin-bottom: 8px;">الحقول المطلوب ظهورها على الملصق</label>
+                  <div class="form-group check-options">
+                    
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue checked">
+                        <input type="checkbox" name="site_name" id="site_name" value="1" checked style="display:none;">
+                      </div>
+                      <span class="checkbox-label">اسم المؤسسة / المتجر</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue checked">
+                        <input type="checkbox" name="product_name" id="product_name" value="1" checked style="display:none;">
+                      </div>
+                      <span class="checkbox-label">اسم المنتج</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue checked">
+                        <input type="checkbox" name="price" id="price" value="1" checked style="display:none;">
+                      </div>
+                      <span class="checkbox-label">السعر</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue checked">
+                        <input type="checkbox" name="with_tax" id="with_tax" value="1" checked style="display:none;">
+                      </div>
+                      <span class="checkbox-label">السعر شامل الضريبة</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue checked">
+                        <input type="checkbox" name="currencies" id="currencies" value="1" checked style="display:none;">
+                      </div>
+                      <span class="checkbox-label">العملة (ر.س)</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue checked">
+                        <input type="checkbox" name="unit" id="unit" value="1" checked style="display:none;">
+                      </div>
+                      <span class="checkbox-label">الوحدة</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="category" id="category" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">الفئة</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="brand" id="brand" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">العلامة التجارية</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="Production_Date" id="Production_Date" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">تاريخ الإنتاج</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="expiry" id="expiry" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">تاريخ الانتهاء</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="variants" id="variants" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">المتغيرات</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="product_image" id="product_image" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">صورة المنتج</span>
+                    </label>
+
+                    <label class="checkbox-card" onclick="toggleCheckbox(this)">
+                      <div class="icheckbox_square-blue">
+                        <input type="checkbox" name="check_promo" id="check_promo" value="1" style="display:none;">
+                      </div>
+                      <span class="checkbox-label">سعر العرض الترويجي</span>
+                    </label>
+
+                  </div>
+
+                  <!-- أزرار التحكم -->
+                  <div class="form-group spark-barcode-actions">
+                    <input type="submit" name="print" value="تحديث الملصقات" id="print" class="btn btn-primary" onclick="event.preventDefault(); alert('تم تحديث إعدادات الملصقات بنجاح');">
+                    <button type="button" id="reset" class="btn btn-danger" onclick="if(confirm('هل أنت متأكد من إعادة تعيين كافة الخيارات؟')) location.reload();">إعادة تعيين</button>
+                  </div>
+                </form>
+                <div class="clearfix"></div>
+              </div>
+
+              <!-- Barcode Output Container (PRINT-CRITICAL) -->
+              <div id="barcode-con">
+                <!-- Top Print Button (Screen Only) -->
+                <button type="button" onclick="window.print();return false;" class="btn btn-primary btn-block tip no-print spark-barcode-print-btn" title="طباعة">
+                  <i class="icon fa fa-print"></i> طباعة الملصقات الآن
+                </button>
+
+                <!-- Barcode Labels Sheet (Unmodified Pure Layout) -->
+                <div class="barcode">
+                  <div class="item style24">
+                    <span class="barcode_site">مؤسسة سبارك التجارية</span>
+                    <span class="barcode_name">عصير برتقال طبيعي 1 لتر</span>
+                    <span class="barcode_price">24.50 ر.س</span>
+                    <span class="barcode_unit">الوحدة: كرتون</span>
+                    <span class="barcode_image">
+                      <svg style="height: 35px; width: 160px; margin: 4px auto;" viewBox="0 0 160 35">
+                        <rect x="10" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="14" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="22" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="28" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="38" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="44" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="52" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="62" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="68" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="76" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="86" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="92" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="100" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="106" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="116" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="124" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="130" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="138" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="144" y="0" width="4" height="35" fill="#000"/>
+                      </svg>
+                    </span>
+                  </div>
+
+                  <div class="item style24">
+                    <span class="barcode_site">مؤسسة سبارك التجارية</span>
+                    <span class="barcode_name">عصير برتقال طبيعي 1 لتر</span>
+                    <span class="barcode_price">24.50 ر.س</span>
+                    <span class="barcode_unit">الوحدة: كرتون</span>
+                    <span class="barcode_image">
+                      <svg style="height: 35px; width: 160px; margin: 4px auto;" viewBox="0 0 160 35">
+                        <rect x="10" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="14" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="22" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="28" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="38" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="44" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="52" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="62" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="68" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="76" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="86" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="92" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="100" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="106" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="116" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="124" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="130" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="138" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="144" y="0" width="4" height="35" fill="#000"/>
+                      </svg>
+                    </span>
+                  </div>
+
+                  <div class="item style24">
+                    <span class="barcode_site">مؤسسة سبارك التجارية</span>
+                    <span class="barcode_name">شاي أسود فاخر 100 كيس</span>
+                    <span class="barcode_price">16.00 ر.س</span>
+                    <span class="barcode_unit">الوحدة: علبة</span>
+                    <span class="barcode_image">
+                      <svg style="height: 35px; width: 160px; margin: 4px auto;" viewBox="0 0 160 35">
+                        <rect x="10" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="16" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="22" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="28" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="36" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="46" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="52" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="60" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="70" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="76" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="84" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="90" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="100" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="106" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="114" y="0" width="6" height="35" fill="#000"/>
+                        <rect x="124" y="0" width="2" height="35" fill="#000"/>
+                        <rect x="130" y="0" width="4" height="35" fill="#000"/>
+                        <rect x="138" y="0" width="4" height="35" fill="#000"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Bottom Print Button (Screen Only) -->
+                <button type="button" onclick="window.print();return false;" class="btn btn-primary btn-block tip no-print spark-barcode-print-btn" title="طباعة">
+                  <i class="icon fa fa-print"></i> طباعة الملصقات الآن
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      document.body.setAttribute('data-theme', next);
+      const btn = document.getElementById('themeBtn');
+      btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i> Light Mode' : '<i class="fa fa-moon-o"></i> Dark Mode';
+    }
+
+    function toggleDir() {
+      const html = document.documentElement;
+      const current = html.getAttribute('dir') || 'rtl';
+      const next = current === 'rtl' ? 'ltr' : 'rtl';
+      html.setAttribute('dir', next);
+      html.setAttribute('lang', next === 'rtl' ? 'ar' : 'en');
+      const btn = document.getElementById('dirBtn');
+      btn.innerHTML = next === 'rtl' ? '<i class="fa fa-globe"></i> Switch to LTR (EN)' : '<i class="fa fa-globe"></i> Switch to RTL (AR)';
+    }
+
+    function toggleContinuousFeed(val) {
+      const cfCon = document.getElementById('cfCon');
+      if (val === '50') {
+        cfCon.style.display = 'block';
+      } else {
+        cfCon.style.display = 'none';
+      }
+    }
+
+    function toggleCheckbox(labelEl) {
+      const box = labelEl.querySelector('.icheckbox_square-blue');
+      const input = labelEl.querySelector('input[type="checkbox"]');
+      if (box.classList.contains('checked')) {
+        box.classList.remove('checked');
+        input.checked = false;
+      } else {
+        box.classList.add('checked');
+        input.checked = true;
+      }
+    }
+  </script>
+</body>
+</html>

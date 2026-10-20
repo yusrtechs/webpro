@@ -1,0 +1,337 @@
+/* ============================================================================
+   Spark ERP Design System — Typography
+   Version: 2.0.0 (Phase 5A Modernized)
+   
+   Arabic-first typography system using Cairo + Inter.
+   Scoped to .spark-ui containers only.
+   
+   DO NOT globally change the application's font.
+   ============================================================================ */
+
+/* ==========================================================================
+   FONT LOADING (Local Assets)
+   Local Fonts: Cairo (Arabic) + Inter (Latin) — Full Modern Weight Scale (300-800)
+   ========================================================================== */
+
+/* ─── Cairo (Arabic Primary) ─── */
+@font-face {
+  font-family: 'Cairo';
+  src: url('../../fonts/cairo/Cairo-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../../fonts/cairo/Cairo-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../../fonts/cairo/Cairo-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../../fonts/cairo/Cairo-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../../fonts/cairo/Cairo-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../../fonts/cairo/Cairo-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Inter (Latin / English Primary) ─── */
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/inter/Inter-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/inter/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/inter/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/inter/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/inter/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/inter/Inter-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ==========================================================================
+   BASE TYPOGRAPHY (Arabic-first)
+   Applied only inside .spark-ui containers.
+   ========================================================================== */
+
+.spark-ui {
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-base);
+  font-weight: var(--spark-weight-regular);
+  line-height: var(--spark-leading-normal);
+  color: var(--spark-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ==========================================================================
+   LANGUAGE-SPECIFIC FONT SWITCHING
+   When lang="en" is on or above .spark-ui, switch to Inter.
+   ========================================================================== */
+
+[lang="en"] .spark-ui,
+.spark-ui[lang="en"] {
+  --spark-font-family: var(--spark-font-en);
+}
+
+[lang="ar"] .spark-ui,
+.spark-ui[lang="ar"] {
+  --spark-font-family: var(--spark-font-ar);
+}
+
+
+/* ==========================================================================
+   HEADING CLASSES
+   ========================================================================== */
+
+.spark-h1 {
+  font-size: var(--spark-text-4xl);
+  font-weight: var(--spark-weight-bold);
+  line-height: var(--spark-leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.spark-h2 {
+  font-size: var(--spark-text-3xl);
+  font-weight: var(--spark-weight-bold);
+  line-height: var(--spark-leading-tight);
+  letter-spacing: -0.01em;
+}
+
+.spark-h3 {
+  font-size: var(--spark-text-2xl);
+  font-weight: var(--spark-weight-semibold);
+  line-height: var(--spark-leading-tight);
+}
+
+.spark-h4 {
+  font-size: var(--spark-text-xl);
+  font-weight: var(--spark-weight-semibold);
+  line-height: var(--spark-leading-tight);
+}
+
+.spark-h5 {
+  font-size: var(--spark-text-lg);
+  font-weight: var(--spark-weight-medium);
+  line-height: var(--spark-leading-normal);
+}
+
+.spark-h6 {
+  font-size: var(--spark-text-md);
+  font-weight: var(--spark-weight-medium);
+  line-height: var(--spark-leading-normal);
+}
+
+
+/* ==========================================================================
+   TEXT SIZE UTILITIES
+   ========================================================================== */
+
+.spark-text-xs   { font-size: var(--spark-text-xs); }
+.spark-text-sm   { font-size: var(--spark-text-sm); }
+.spark-text-base { font-size: var(--spark-text-base); }
+.spark-text-md   { font-size: var(--spark-text-md); }
+.spark-text-lg   { font-size: var(--spark-text-lg); }
+.spark-text-xl   { font-size: var(--spark-text-xl); }
+.spark-text-2xl  { font-size: var(--spark-text-2xl); }
+.spark-text-3xl  { font-size: var(--spark-text-3xl); }
+.spark-text-4xl  { font-size: var(--spark-text-4xl); }
+
+
+/* ==========================================================================
+   FONT WEIGHT UTILITIES
+   ========================================================================== */
+
+.spark-font-light      { font-weight: var(--spark-weight-light, 300); }
+.spark-font-regular    { font-weight: var(--spark-weight-regular, 400); }
+.spark-font-medium     { font-weight: var(--spark-weight-medium, 500); }
+.spark-font-semibold   { font-weight: var(--spark-weight-semibold, 600); }
+.spark-font-bold       { font-weight: var(--spark-weight-bold, 700); }
+.spark-font-extrabold  { font-weight: var(--spark-weight-extrabold, 800); }
+
+
+/* ==========================================================================
+   TEXT COLOR & GRADIENT UTILITIES
+   ========================================================================== */
+
+.spark-text-primary     { color: var(--spark-primary); }
+.spark-text-purple      { color: var(--spark-purple); }
+.spark-text-secondary   { color: var(--spark-text-secondary); }
+.spark-text-muted       { color: var(--spark-text-muted); }
+.spark-text-success     { color: var(--spark-success); }
+.spark-text-warning     { color: var(--spark-warning); }
+.spark-text-danger      { color: var(--spark-danger); }
+.spark-text-info        { color: var(--spark-info); }
+.spark-text-inverse     { color: var(--spark-text-inverse); }
+
+/* Text Gradient Utility (Inspired by React Reference) */
+.spark-text-gradient-primary {
+  background: var(--spark-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+
+/* ==========================================================================
+   LINE HEIGHT UTILITIES
+   ========================================================================== */
+
+.spark-leading-tight    { line-height: var(--spark-leading-tight); }
+.spark-leading-normal   { line-height: var(--spark-leading-normal); }
+.spark-leading-relaxed  { line-height: var(--spark-leading-relaxed); }
+
+
+/* ==========================================================================
+   SPECIAL TEXT STYLES
+   ========================================================================== */
+
+/* Monospace — for codes, reference numbers, monetary values */
+.spark-mono {
+  font-family: var(--spark-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tabular numbers — for table columns with aligned numbers */
+.spark-tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Label style — form labels, table headers */
+.spark-label-text {
+  font-size: var(--spark-text-sm);
+  font-weight: var(--spark-weight-medium);
+  color: var(--spark-text-secondary);
+  line-height: var(--spark-leading-normal);
+}
+
+/* Caption — helper text, descriptions below inputs */
+.spark-caption {
+  font-size: var(--spark-text-xs);
+  color: var(--spark-text-muted);
+  line-height: var(--spark-leading-relaxed);
+}
+
+/* Metric value — large numbers on stat cards */
+.spark-metric {
+  font-size: var(--spark-text-3xl);
+  font-weight: var(--spark-weight-bold);
+  line-height: var(--spark-leading-tight);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Page title */
+.spark-page-title {
+  font-size: var(--spark-text-2xl);
+  font-weight: var(--spark-weight-semibold);
+  line-height: var(--spark-leading-tight);
+  color: var(--spark-text);
+}
+
+/* Section title */
+.spark-section-title {
+  font-size: var(--spark-text-lg);
+  font-weight: var(--spark-weight-semibold);
+  line-height: var(--spark-leading-normal);
+  color: var(--spark-text);
+}
+
+
+/* ==========================================================================
+   TEXT ALIGNMENT (using logical properties)
+   ========================================================================== */
+
+.spark-text-start   { text-align: start; }
+.spark-text-end     { text-align: end; }
+.spark-text-center  { text-align: center; }
+
+
+/* ==========================================================================
+   TRUNCATION
+   ========================================================================== */
+
+.spark-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spark-line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.spark-line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

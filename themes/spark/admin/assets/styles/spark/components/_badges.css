@@ -1,0 +1,512 @@
+/* ============================================================================
+   Spark ERP Design System — Badges & Status
+   Version: 1.0.0
+   
+   Badge, status, and stock status components.
+   Namespaced under .spark-badge, .spark-status, .spark-stock-badge.
+   Does NOT modify existing application badge classes.
+   ============================================================================ */
+
+/* ==========================================================================
+   BADGE
+   Inline label/tag for categorization, counts, or metadata.
+   ========================================================================== */
+
+.spark-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-1);
+  height: 20px;
+  padding-inline: var(--spark-space-2);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-xs);
+  font-weight: var(--spark-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  border-radius: var(--spark-radius-sm);
+  vertical-align: middle;
+  /* Default: neutral/secondary style */
+  color: var(--spark-text-secondary);
+  background-color: var(--spark-disabled-bg);
+}
+
+/* ─── Semantic Variants ─── */
+
+.spark-badge-primary {
+  color: var(--spark-primary);
+  background-color: var(--spark-primary-subtle);
+}
+
+.spark-badge-secondary {
+  color: var(--spark-text-secondary);
+  background-color: var(--spark-secondary-subtle);
+}
+
+.spark-badge-success {
+  color: var(--spark-success);
+  background-color: var(--spark-success-subtle);
+}
+
+.spark-badge-warning {
+  color: var(--spark-warning);
+  background-color: var(--spark-warning-subtle);
+}
+
+.spark-badge-danger {
+  color: var(--spark-danger);
+  background-color: var(--spark-danger-subtle);
+}
+
+.spark-badge-info {
+  color: var(--spark-info);
+  background-color: var(--spark-info-subtle);
+}
+
+/* ─── Solid Variants (filled background) ─── */
+
+.spark-badge-solid.spark-badge-primary {
+  color: var(--spark-primary-text);
+  background-color: var(--spark-primary);
+}
+
+.spark-badge-solid.spark-badge-success {
+  color: var(--spark-text-inverse);
+  background-color: var(--spark-success);
+}
+
+.spark-badge-solid.spark-badge-warning {
+  color: var(--spark-text-inverse);
+  background-color: var(--spark-warning);
+}
+
+.spark-badge-solid.spark-badge-danger {
+  color: var(--spark-text-inverse);
+  background-color: var(--spark-danger);
+}
+
+.spark-badge-solid.spark-badge-info {
+  color: var(--spark-text-inverse);
+  background-color: var(--spark-info);
+}
+
+/* ─── Pill Shape ─── */
+
+.spark-badge-pill {
+  border-radius: var(--spark-radius-full);
+  padding-inline: var(--spark-space-3);
+}
+
+/* ─── Size: Large ─── */
+
+.spark-badge-lg {
+  height: 24px;
+  padding-inline: var(--spark-space-3);
+  font-size: var(--spark-text-sm);
+}
+
+/* ─── Count Badge (for notification counts) ─── */
+
+.spark-badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: var(--spark-space-1);
+  font-size: var(--spark-text-xs);
+  font-weight: var(--spark-weight-bold);
+  line-height: 1;
+  border-radius: var(--spark-radius-full);
+  color: var(--spark-text-inverse);
+  background-color: var(--spark-danger);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================================================
+   STATUS INDICATOR
+   Dot + text for showing state (Paid, Pending, Active, etc.)
+   ========================================================================== */
+
+.spark-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-2);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-sm);
+  font-weight: var(--spark-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.spark-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--spark-radius-full);
+  flex-shrink: 0;
+  /* Default: neutral */
+  background-color: var(--spark-text-muted);
+}
+
+/* ─── Status Semantic Variants ─── */
+
+.spark-status-success {
+  color: var(--spark-success);
+}
+
+.spark-status-success .spark-status-dot {
+  background-color: var(--spark-success);
+}
+
+.spark-status-warning {
+  color: var(--spark-warning);
+}
+
+.spark-status-warning .spark-status-dot {
+  background-color: var(--spark-warning);
+}
+
+.spark-status-danger {
+  color: var(--spark-danger);
+}
+
+.spark-status-danger .spark-status-dot {
+  background-color: var(--spark-danger);
+}
+
+.spark-status-info {
+  color: var(--spark-info);
+}
+
+.spark-status-info .spark-status-dot {
+  background-color: var(--spark-info);
+}
+
+.spark-status-secondary {
+  color: var(--spark-text-secondary);
+}
+
+.spark-status-secondary .spark-status-dot {
+  background-color: var(--spark-text-muted);
+}
+
+/* ─── Pulsing Dot (for live/active states) ─── */
+
+.spark-status-dot.is-pulsing {
+  position: relative;
+}
+
+.spark-status-dot.is-pulsing::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--spark-radius-full);
+  border: 2px solid currentColor;
+  opacity: 0;
+  animation: spark-status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes spark-status-pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+
+/* ==========================================================================
+   STOCK STATUS BADGE
+   ERP-specific badge for inventory levels.
+   ========================================================================== */
+
+.spark-stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-1);
+  height: 22px;
+  padding-inline: var(--spark-space-2);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-xs);
+  font-weight: var(--spark-weight-semibold);
+  line-height: 1;
+  border-radius: var(--spark-radius-sm);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.spark-stock-badge-in-stock {
+  color: var(--spark-success);
+  background-color: var(--spark-success-subtle);
+}
+
+.spark-stock-badge-low-stock {
+  color: var(--spark-warning);
+  background-color: var(--spark-warning-subtle);
+}
+
+.spark-stock-badge-out-of-stock {
+  color: var(--spark-danger);
+  background-color: var(--spark-danger-subtle);
+}
+
+/* Stock dot (small indicator before text) */
+.spark-stock-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--spark-radius-full);
+  flex-shrink: 0;
+}
+
+.spark-stock-badge-in-stock::before {
+  background-color: var(--spark-success);
+}
+
+.spark-stock-badge-low-stock::before {
+  background-color: var(--spark-warning);
+}
+
+.spark-stock-badge-out-of-stock::before {
+  background-color: var(--spark-danger);
+}
+
+
+/* ==========================================================================
+   PERMISSION BADGE
+   ERP-specific badge for user roles.
+   ========================================================================== */
+
+.spark-perm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-1);
+  height: 22px;
+  padding-inline: var(--spark-space-3);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-xs);
+  font-weight: var(--spark-weight-semibold);
+  line-height: 1;
+  border-radius: var(--spark-radius-full);
+  white-space: nowrap;
+}
+
+.spark-perm-badge-owner {
+  color: var(--spark-primary-text);
+  background-color: var(--spark-primary);
+}
+
+.spark-perm-badge-admin {
+  color: var(--spark-text-inverse);
+  background-color: var(--spark-secondary);
+}
+
+.spark-perm-badge-user {
+  color: var(--spark-text-secondary);
+  background-color: var(--spark-disabled-bg);
+  border: 1px solid var(--spark-border);
+}
+
+
+/* ==========================================================================
+   SCOPED ERP BOOTSTRAP LABELS (.spark-ui .label)
+   Maps legacy .label-success, .label-warning, .label-danger to modern pills.
+   ========================================================================== */
+
+.spark-ui .label {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 3px 10px !important;
+  font-size: var(--spark-text-xs) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  border-radius: var(--spark-radius-full, 9999px) !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.01em !important;
+  vertical-align: middle !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.spark-ui .label-success {
+  background-color: var(--spark-success-subtle, #ecfdf5) !important;
+  color: var(--spark-success, #10b981) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+}
+
+.spark-ui .label-warning {
+  background-color: var(--spark-warning-subtle, #fffbeb) !important;
+  color: var(--spark-warning, #f59e0b) !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+
+.spark-ui .label-danger {
+  background-color: var(--spark-danger-subtle, #fef2f2) !important;
+  color: var(--spark-danger, #ef4444) !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+
+.spark-ui .label-primary,
+.spark-ui .label-info {
+  background-color: var(--spark-primary-subtle, #eef2ff) !important;
+  color: var(--spark-primary, #6366f1) !important;
+  border: 1px solid rgba(99, 102, 241, 0.25) !important;
+}
+
+.spark-ui .label-default {
+  background-color: var(--spark-surface-subtle, #f1f5f9) !important;
+  color: var(--spark-text-secondary, #64748b) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+}
+
+
+/* ==========================================================================
+   DARK THEME OVERRIDES FOR BADGES & LABELS ([data-theme="dark"])
+   ========================================================================== */
+
+[data-theme="dark"] .spark-badge,
+[data-theme="dark"] .spark-ui .label-default {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--spark-text-secondary, #94a3b8) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .spark-badge-success,
+[data-theme="dark"] .spark-ui .label-success {
+  background-color: rgba(16, 185, 129, 0.18) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+[data-theme="dark"] .spark-badge-warning,
+[data-theme="dark"] .spark-ui .label-warning {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+
+[data-theme="dark"] .spark-badge-danger,
+[data-theme="dark"] .spark-ui .label-danger {
+  background-color: rgba(239, 68, 68, 0.18) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+[data-theme="dark"] .spark-badge-primary,
+[data-theme="dark"] .spark-badge-info,
+[data-theme="dark"] .spark-ui .label-primary,
+[data-theme="dark"] .spark-ui .label-info {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  color: #818cf8 !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+}
+
+/* ─── Dark Theme Overrides for KPI Badges & Semantic Color Badges ─── */
+[data-theme="dark"] .badge-emerald,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-emerald,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-emerald,
+[data-theme="dark"] .spark-products-kpi-badge.badge-emerald,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-emerald,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-emerald {
+  background-color: rgba(16, 185, 129, 0.18) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-amber,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-amber,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-amber,
+[data-theme="dark"] .spark-products-kpi-badge.badge-amber,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-amber,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-amber {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-rose,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-rose,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-rose,
+[data-theme="dark"] .spark-products-kpi-badge.badge-rose,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-rose,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-rose {
+  background-color: rgba(239, 68, 68, 0.18) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-blue,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-blue,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-blue,
+[data-theme="dark"] .spark-products-kpi-badge.badge-blue,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-blue,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-blue {
+  background-color: rgba(59, 130, 246, 0.18) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-indigo,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-indigo,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-indigo,
+[data-theme="dark"] .spark-products-kpi-badge.badge-indigo,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-indigo,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-indigo {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  color: #818cf8 !important;
+  border: 1px solid rgba(99, 102, 241, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-purple,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-purple,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-purple,
+[data-theme="dark"] .spark-products-kpi-badge.badge-purple,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-purple,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-purple {
+  background-color: rgba(139, 92, 246, 0.18) !important;
+  color: #a78bfa !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-cyan,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-cyan,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-cyan,
+[data-theme="dark"] .spark-products-kpi-badge.badge-cyan,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-cyan,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-cyan {
+  background-color: rgba(6, 182, 212, 0.18) !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(6, 182, 212, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-teal,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-teal,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-teal,
+[data-theme="dark"] .spark-products-kpi-badge.badge-teal,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-teal,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-teal {
+  background-color: rgba(13, 148, 136, 0.18) !important;
+  color: #2dd4bf !important;
+  border: 1px solid rgba(13, 148, 136, 0.35) !important;
+}
+
+[data-theme="dark"] .badge-slate,
+[data-theme="dark"] .spark-sales-kpi-badge.badge-slate,
+[data-theme="dark"] .spark-purchases-kpi-badge.badge-slate,
+[data-theme="dark"] .spark-products-kpi-badge.badge-slate,
+[data-theme="dark"] .spark-accounting-kpi-badge.badge-slate,
+[data-theme="dark"] .spark-manufacturing-kpi-badge.badge-slate {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+

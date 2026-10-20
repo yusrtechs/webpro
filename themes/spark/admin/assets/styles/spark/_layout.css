@@ -1,0 +1,261 @@
+/* ============================================================================
+   Spark ERP Design System — Layout Shell
+   Version: 1.0.0
+   
+   Application shell layout: Header, Sidebar, Main Content, Backdrop.
+   Uses CSS Logical Properties exclusively for automatic RTL/LTR compatibility.
+   Scoped to .spark-app and .spark-ui.
+   ============================================================================ */
+
+/* ==========================================================================
+   APP SHELL CONTAINER
+   ========================================================================== */
+
+.spark-app {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--spark-bg);
+  color: var(--spark-text);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-base);
+  line-height: var(--spark-leading-normal);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   MAIN CONTENT WRAPPER
+   ========================================================================== */
+
+.spark-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-inline-start: var(--spark-sidebar-width);
+  padding-block-start: var(--spark-header-height);
+  transition: margin-inline-start var(--spark-transition-slow);
+}
+
+/* When sidebar is collapsed on desktop/tablet */
+.spark-app.is-sidebar-collapsed .spark-main,
+.spark-sidebar.is-collapsed~.spark-main {
+  margin-inline-start: var(--spark-sidebar-collapsed);
+}
+
+/* Content container */
+.spark-content {
+  flex: 1;
+  padding: var(--spark-content-padding);
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   MOBILE BACKDROP OVERLAY
+   ========================================================================== */
+
+.spark-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: hsla(220, 28%, 10%, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: calc(var(--spark-z-sidebar) - 10);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--spark-transition-base),
+    visibility var(--spark-transition-base);
+}
+
+.spark-backdrop.is-active,
+.spark-app.is-mobile-open .spark-backdrop {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .spark-main {
+    margin-inline-start: var(--spark-sidebar-collapsed);
+  }
+
+  .spark-content {
+    padding: var(--spark-space-4);
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  :root {
+    --spark-header-height: 52px;
+  }
+
+  .spark-main {
+    margin-inline-start: 0 !important;
+    padding-block-start: 52px;
+  }
+
+  .spark-content {
+    padding: var(--spark-space-3);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .spark-main,
+  .spark-sidebar,
+  .spark-backdrop,
+  .spark-sidebar-chevron,
+  .spark-sidebar-submenu {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   DARK THEME LAYOUT OVERRIDES ([data-theme="dark"])
+   ========================================================================== */
+
+[data-theme="dark"] .spark-app,
+[data-theme="dark"].spark-app,
+[data-theme="dark"] body {
+  background-color: var(--spark-bg, #0b0f19) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-main,
+[data-theme="dark"] #content,
+[data-theme="dark"] .spark-content {
+  background-color: var(--spark-bg, #0b0f19) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+/* ==========================================================================
+   GLOBAL FOOTER STYLING & DARK MODE (MATCHING REACT SAAS)
+   ========================================================================== */
+
+.spark-footer,
+.spark-app footer,
+footer.spark-footer {
+  background: var(--spark-gradient-primary) !important;
+  background-color: var(--spark-primary) !important;
+  color: #ffffff !important;
+  border-top: none !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.10) !important;
+  padding: 12px 24px !important;
+  min-height: 46px !important;
+  margin-top: auto !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+.spark-footer-copyright,
+.spark-footer a,
+.spark-footer p,
+.spark-app footer a,
+.spark-app footer p {
+  color: #ffffff !important;
+  margin: 0 !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+.spark-footer a:hover,
+.spark-app footer a:hover {
+  text-decoration: underline !important;
+  opacity: 0.9 !important;
+}
+
+.spark-footer-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* Mobile full-width adjustments */
+@media (max-width: 767px) {
+  .spark-footer {
+    padding: 10px 16px !important;
+    min-height: 40px !important;
+  }
+
+  .spark-footer-inner {
+    flex-direction: column !important;
+    gap: 4px !important;
+    text-align: center !important;
+  }
+}
+
+/* Print Isolation — Never Print Header, Sidebar, Backdrop or Footer */
+@media print {
+
+  .spark-sidebar,
+  .spark-header,
+  .spark-backdrop,
+  .spark-footer,
+  .spark-app footer,
+  footer.spark-footer,
+  aside.spark-sidebar,
+  header.spark-header {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .spark-main {
+    margin-inline-start: 0 !important;
+    padding-block-start: 0 !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .spark-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* System Alerts Container */
+.alerts-con {
+  padding: 16px 20px !important;
+  font-size: var(--spark-text-base) !important;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .spark-footer,
+[data-theme="dark"] .spark-app footer,
+[data-theme="dark"] footer.spark-footer {
+  background: var(--spark-gradient-primary) !important;
+  background-color: var(--spark-primary) !important;
+  color: #ffffff !important;
+  border-top: none !important;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme="dark"] .spark-footer-copyright,
+[data-theme="dark"] .spark-footer a,
+[data-theme="dark"] .spark-footer p,
+[data-theme="dark"] .spark-app footer a,
+[data-theme="dark"] .spark-app footer p {
+  color: #ffffff !important;
+}

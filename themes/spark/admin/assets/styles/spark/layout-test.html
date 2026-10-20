@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark ERP — Layout Shell Test Page</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Spark Design System -->
+  <link rel="stylesheet" href="spark.css">
+  
+  <style>
+    /* Demo controls toolbar fixed at bottom */
+    .demo-toolbar {
+      position: fixed;
+      inset-block-end: 20px;
+      inset-inline-end: 20px;
+      z-index: 9999;
+      background: hsl(220, 20%, 16%);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-family: sans-serif;
+    }
+    .demo-toolbar button {
+      background: hsl(215, 65%, 48%);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 150ms;
+    }
+    .demo-toolbar button:hover {
+      background: hsl(215, 65%, 42%);
+    }
+  </style>
+</head>
+<body class="spark-ui">
+
+  <div class="spark-app" id="sparkApp">
+
+    <!-- ============================================================
+         HEADER (.spark-header)
+         ============================================================ -->
+    <header class="spark-header">
+      <div class="spark-header-start">
+        <!-- Hamburger toggle button -->
+        <button class="spark-header-toggle" id="sparkToggleBtn" aria-label="Toggle Sidebar" title="تبديل القائمة">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="#" class="spark-header-brand">
+          <div class="spark-header-logo-container">
+            <img src="../../../../assets/uploads/logos/cpe_ar.png" alt="Spark ERP" class="spark-header-logo spark-header-logo-img spark-header-logo-light" />
+            <img src="../../../../assets/uploads/logos/cpe_ar_white.png" alt="Spark ERP" class="spark-header-logo spark-header-logo-img spark-header-logo-dark" />
+          </div>
+          <span class="spark-header-brand-text">Spark ERP</span>
+        </a>
+      </div>
+
+      <!-- Header Right Actions -->
+      <div class="spark-header-actions">
+        <!-- POS Quick Button -->
+        <a class="spark-header-action" title="نقطة البيع" aria-label="نقطة البيع" href="#">
+          <i class="fa fa-th-large"></i>
+        </a>
+
+        <!-- Calculator -->
+        <a class="spark-header-action" title="الآلة الحاسبة" aria-label="الآلة الحاسبة" href="#">
+          <i class="fa fa-calculator"></i>
+        </a>
+
+        <!-- Alerts with badge -->
+        <a class="spark-header-action" title="التنبيهات" aria-label="التنبيهات" href="#">
+          <i class="fa fa-exclamation-circle"></i>
+          <span class="spark-header-badge">3</span>
+        </a>
+
+        <!-- Notifications with badge -->
+        <a class="spark-header-action" title="الإشعارات" aria-label="الإشعارات" href="#">
+          <i class="fa fa-bell-o"></i>
+          <span class="spark-header-badge">5</span>
+        </a>
+
+        <!-- Calendar -->
+        <a class="spark-header-action" title="التقويم" aria-label="التقويم" href="#">
+          <i class="fa fa-calendar-o"></i>
+        </a>
+
+        <!-- Dark Mode Toggle -->
+        <button class="spark-theme-toggle spark-header-action" title="الوضع الليلي" aria-label="الوضع الليلي" onclick="toggleDarkMode()">
+          <i class="fa fa-moon-o" id="sparkThemeIcon"></i>
+        </button>
+
+        <!-- User Profile Dropdown -->
+        <div class="spark-header-user">
+          <div style="width:32px; height:32px; border-radius:10px; background:var(--spark-primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:13px;">
+            A
+          </div>
+          <span class="spark-header-username">Admin User</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="spark-backdrop" id="sparkBackdrop"></div>
+
+    <!-- ============================================================
+         SIDEBAR (.spark-sidebar)
+         ============================================================ -->
+    <aside class="spark-sidebar" id="sparkSidebar">
+      <!-- Sidebar Brand -->
+      <div class="spark-sidebar-brand">
+        <span style="display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; background:var(--spark-primary); color:white; border-radius:6px; font-size:16px; font-weight:bold; flex-shrink:0;">⚡</span>
+        <span class="spark-sidebar-brand-text">Spark ERP</span>
+      </div>
+
+      <!-- Sidebar Navigation Menu -->
+      <nav class="spark-sidebar-nav">
+        <ul class="spark-sidebar-menu">
+
+          <!-- 1. Home / Dashboard -->
+          <li class="spark-sidebar-item is-active">
+            <a href="#" class="spark-sidebar-link">
+              <span class="spark-sidebar-icon">🏠</span>
+              <span class="spark-sidebar-text">الرئيسية</span>
+            </a>
+          </li>
+
+          <!-- 2. Warehouses / Products (Expandable) -->
+          <li class="spark-sidebar-item spark-sidebar-item-expandable is-expanded">
+            <a class="spark-sidebar-link" href="javascript:void(0);">
+              <span class="spark-sidebar-icon">📦</span>
+              <span class="spark-sidebar-text">المستودعات والمنتجات</span>
+              <span class="spark-sidebar-chevron">▼</span>
+            </a>
+            <ul class="spark-sidebar-submenu">
+              <li class="spark-sidebar-submenu-item is-active">
+                <a href="#" class="spark-sidebar-submenu-link">لوحة المنتجات</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">قائمة المنتجات</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">إضافة منتج</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">طباعة الباركود</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 3. Sales (Expandable) -->
+          <li class="spark-sidebar-item spark-sidebar-item-expandable">
+            <a class="spark-sidebar-link" href="javascript:void(0);">
+              <span class="spark-sidebar-icon">💼</span>
+              <span class="spark-sidebar-text">المبيعات</span>
+              <span class="spark-sidebar-chevron">▼</span>
+            </a>
+            <ul class="spark-sidebar-submenu">
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">قائمة المبيعات</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">إضافة فاتورة بيع</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">عروض الأسعار</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">العملاء</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 4. Purchases (Expandable) -->
+          <li class="spark-sidebar-item spark-sidebar-item-expandable">
+            <a class="spark-sidebar-link" href="javascript:void(0);">
+              <span class="spark-sidebar-icon">🛒</span>
+              <span class="spark-sidebar-text">المشتريات</span>
+              <span class="spark-sidebar-chevron">▼</span>
+            </a>
+            <ul class="spark-sidebar-submenu">
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">قائمة المشتريات</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">إضافة أمر شراء</a>
+              </li>
+              <li class="spark-sidebar-submenu-item">
+                <a href="#" class="spark-sidebar-submenu-link">الموردين</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 5. Accounts -->
+          <li class="spark-sidebar-item">
+            <a href="#" class="spark-sidebar-link">
+              <span class="spark-sidebar-icon">📊</span>
+              <span class="spark-sidebar-text">الحسابات والمالية</span>
+            </a>
+          </li>
+
+          <!-- 6. Reports -->
+          <li class="spark-sidebar-item">
+            <a href="#" class="spark-sidebar-link">
+              <span class="spark-sidebar-icon">📈</span>
+              <span class="spark-sidebar-text">التقارير</span>
+            </a>
+          </li>
+
+          <!-- 7. Settings -->
+          <li class="spark-sidebar-item">
+            <a href="#" class="spark-sidebar-link">
+              <span class="spark-sidebar-icon">⚙️</span>
+              <span class="spark-sidebar-text">الإعدادات العامة</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="spark-sidebar-footer">
+        <div class="spark-sidebar-user">
+          <div style="width:32px; height:32px; border-radius:50%; background:var(--spark-primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:12px; flex-shrink:0;">
+            👑
+          </div>
+          <span class="spark-sidebar-username">مدير النظام (Owner)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+         MAIN CONTENT SHELL (.spark-main)
+         ============================================================ -->
+    <main class="spark-main">
+      <div class="spark-content">
+
+        <!-- Page Header Section -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <div>
+            <h1 class="spark-page-title" style="margin:0 0 4px;">تجربة هيكل لوحة التحكم — Spark Layout Shell</h1>
+            <p class="spark-caption" style="margin:0;">عرض التحقق من تفاعل القائمة الجانبية، الهيدر، الوضع الداكن، واتجاه الصفحة (RTL/LTR).</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="spark-btn spark-btn-outline" onclick="toggleCollapsed()">تبديل طي القائمة</button>
+            <button class="spark-btn spark-btn-primary">+ إضافة عملية جديدة</button>
+          </div>
+        </div>
+
+        <!-- 4 Stat Cards Row -->
+        <div class="spark-card-grid spark-card-grid-4" style="margin-bottom:24px;">
+          <div class="spark-stat-card">
+            <div class="spark-stat-card-body">
+              <div class="spark-stat-card-info">
+                <span class="spark-stat-card-label">مبيعات اليوم</span>
+                <span class="spark-stat-card-value">SAR 18,450</span>
+                <span class="spark-stat-card-change is-positive">↑ 14.2%</span>
+              </div>
+              <div class="spark-stat-card-icon is-primary">💰</div>
+            </div>
+            <div class="spark-stat-card-footer">مقارنة بالأمس</div>
+          </div>
+
+          <div class="spark-stat-card">
+            <div class="spark-stat-card-body">
+              <div class="spark-stat-card-info">
+                <span class="spark-stat-card-label">مشتريات اليوم</span>
+                <span class="spark-stat-card-value">SAR 7,200</span>
+                <span class="spark-stat-card-change is-negative">↓ 2.5%</span>
+              </div>
+              <div class="spark-stat-card-icon is-warning">🛒</div>
+            </div>
+            <div class="spark-stat-card-footer">مقارنة بالأمس</div>
+          </div>
+
+          <div class="spark-stat-card">
+            <div class="spark-stat-card-body">
+              <div class="spark-stat-card-info">
+                <span class="spark-stat-card-label">صافي الأرباح</span>
+                <span class="spark-stat-card-value">SAR 11,250</span>
+                <span class="spark-stat-card-change is-positive">↑ 22.8%</span>
+              </div>
+              <div class="spark-stat-card-icon is-success">📈</div>
+            </div>
+            <div class="spark-stat-card-footer">مقارنة بالأمس</div>
+          </div>
+
+          <div class="spark-stat-card">
+            <div class="spark-stat-card-body">
+              <div class="spark-stat-card-info">
+                <span class="spark-stat-card-label">الفواتير المعلقة</span>
+                <span class="spark-stat-card-value">6 فواتير</span>
+                <span class="spark-stat-card-change is-neutral">— 0%</span>
+              </div>
+              <div class="spark-stat-card-icon is-danger">⏳</div>
+            </div>
+            <div class="spark-stat-card-footer">تحتاج تحصيل فوري</div>
+          </div>
+        </div>
+
+        <!-- Layout Verification Information Card -->
+        <div class="spark-card" style="margin-bottom:24px;">
+          <div class="spark-card-header">
+            <h3 class="spark-card-header-title">📋 معايير فحص الهيكل (Phase 2 Verification Checklist)</h3>
+          </div>
+          <div class="spark-card-body">
+            <ul style="list-style:disc; padding-inline-start:24px; line-height:2;">
+              <li><strong>الهيدر (.spark-header):</strong> ارتفاع ثابت 60px على الشاشات الكبيرة و 52px على الجوال، يحتوي على زر التبديل والبحث والإشعارات والمستخدم.</li>
+              <li><strong>القائمة الجانبية (.spark-sidebar):</strong> عرض 260px بالوضع المفتوح، و 72px بالوضع المطوي (.is-collapsed).</li>
+              <li><strong>القوائم المنسدلة (.spark-sidebar-submenu):</strong> تفتح وتغلق بسلاسة عند الضغط على العنصر (.is-expanded).</li>
+              <li><strong>دعم RTL / LTR:</strong> الاتجاه مبني 100% بخواص CSS المنطقية بدون تكرار كود HTML.</li>
+              <li><strong>الوضع الداكن:</strong> تجربة الوضع الليلي بتبديل <code>data-theme="dark"</code>.</li>
+              <li><strong>التجاوب مع الشاشات (Responsive):</strong> على الشاشات الأصغر من 768px تتحول القائمة تلقائياً إلى درج جانبي (Off-canvas Drawer) مع خلفية مظللة (.spark-backdrop).</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Demo Controls Toolbar -->
+  <div class="demo-toolbar">
+    <span>🎛️ أدوات الاختبار:</span>
+    <button onclick="toggleDirection()">تبديل RTL / LTR</button>
+    <button onclick="toggleDarkMode()">تبديل الوضع الداكن</button>
+    <button onclick="toggleCollapsed()">طي / فتح القائمة</button>
+  </div>
+
+  <!-- Spark Layout JavaScript -->
+  <script src="../../js/spark-layout.js"></script>
+
+  <script>
+    function toggleDirection() {
+      var html = document.documentElement;
+      var currentDir = html.getAttribute('dir') || 'rtl';
+      var newDir = (currentDir === 'rtl') ? 'ltr' : 'rtl';
+      var newLang = (newDir === 'rtl') ? 'ar' : 'en';
+      html.setAttribute('dir', newDir);
+      html.setAttribute('lang', newLang);
+    }
+
+    function toggleDarkMode() {
+      var html = document.documentElement;
+      var current = html.getAttribute('data-theme');
+      if (current === 'dark') {
+        html.removeAttribute('data-theme');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+      }
+    }
+
+    function toggleCollapsed() {
+      var sidebar = document.getElementById('sparkSidebar');
+      var app = document.getElementById('sparkApp');
+      if (sidebar) {
+        var isCol = sidebar.classList.toggle('is-collapsed');
+        if (app) app.classList.toggle('is-sidebar-collapsed', isCol);
+      }
+    }
+  </script>
+
+</body>
+</html>

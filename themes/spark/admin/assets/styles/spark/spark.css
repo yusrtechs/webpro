@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* ============================================================================
+   Spark ERP Design System — Entry Point
+   Version: 1.0.0
+   
+   Single entry file that imports all design system modules.
+   Load this file to activate the Spark design system.
+   
+   IMPORTANT: This file only affects elements within .spark-ui containers.
+   It does NOT modify any existing Bootstrap 3 or legacy application styles.
+   
+   Includes: tokens, typography, reset, layout shell, buttons, cards, badges, navigation.
+   ============================================================================ */
+
+/* ─── Foundation ─── */
+@import '_tokens.css?1';
+@import '_typography.css?2';
+@import '_reset.css?1';
+@import '_layout.css?1';
+
+/* ─── Components ─── */
+@import 'components/_buttons.css?1';
+@import 'components/_cards.css?1';
+@import 'components/_badges.css?1';
+@import 'components/_tables.css?1';
+@import 'components/_forms.css?1';
+@import 'components/_navigation.css?1';
+@import 'components/_dashboard.css?1';
+@import 'components/_modals.css?1';
+@import 'components/_loader.css?1';
+@import 'components/_pages.css?1';
+@import 'components/_login.css?1';
+@import 'components/_print.css?2';
+@import 'components/_global-search.css?1';
+@import 'components/_font-size-control.css?1';

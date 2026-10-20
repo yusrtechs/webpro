@@ -1,0 +1,10 @@
+INFO - 2026-01-14 10:55:53 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7793) Status (0) Description <p>مسحوبات</p>
+INFO - 2026-01-14 10:59:21 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7793) Status (1) Description <p>مسحوبات</p>
+INFO - 2026-01-14 11:37:26 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7838) Status (1) Description <p>فواتير لم تسجل</p>
+INFO - 2026-01-14 11:38:50 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7838) Status (0) Description <p>فواتير لم تسجل</p>
+INFO - 2026-01-14 11:39:18 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7838) Status (1) Description <p>فواتير لم تسجل</p>
+INFO - 2026-01-14 11:41:00 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7838) Status (0) Description <p>فواتير لم تسجل</p>
+INFO - 2026-01-14 11:41:24 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7838) Status (1) Description <p>فواتير لم تسجل</p>
+INFO - 2026-01-14 11:45:39 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7839) Status (1) Description <p>سحب من ابو عبد العزيز</p>
+INFO - 2026-01-14 11:51:23 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7840) Status (1) Description <p>تسوية</p>
+INFO - 2026-01-14 11:53:45 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7841) Status (1) Description <p>اقفال</p>

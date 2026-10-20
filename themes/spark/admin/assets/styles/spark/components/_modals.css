@@ -1,0 +1,907 @@
+/* ============================================================================
+   Spark ERP Design System — Modals, Dropdowns & Overlays
+   Version: 1.1.0
+   
+   Modern SaaS modal dialogs, dropdown menus, tooltips, and backdrop overlays.
+   Fully supports Light Mode and Dark Mode ([data-theme="dark"]).
+   Handles static modals, AJAX modals (#myModal, #myModal2), Bootbox dialogs,
+   forms, inputs, Select2 controls, tables, tabs, and action buttons.
+   Uses CSS Logical Properties for automatic RTL/LTR compatibility.
+   Does NOT modify legacy ?spark_ui=0 interface.
+   ============================================================================ */
+
+/* ==========================================================================
+   1. MODAL DIALOG & BASE CONTAINER (Light Mode Default)
+   ========================================================================== */
+
+.modal,
+.modal-dialog,
+.bootbox.modal {
+  font-family: var(--spark-font-family);
+}
+
+.modal.fade .modal-dialog,
+.bootbox.modal.fade .modal-dialog {
+  transform: scale(0.96) translateY(-10px);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.modal.in .modal-dialog,
+.bootbox.modal.in .modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+.modal-dialog,
+.bootbox .modal-dialog {
+  margin: 30px auto;
+  max-width: 95vw;
+}
+
+@media (min-width: 768px) {
+  .modal-dialog,
+  .bootbox .modal-dialog {
+    margin: 40px auto;
+  }
+}
+
+/* ─── Modal Content Surface (Light Mode) ─── */
+.modal-content,
+.bootbox .modal-content {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border-radius: var(--spark-radius-xl, 16px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04) !important;
+  overflow: hidden !important;
+  outline: none !important;
+  width: 100% !important;
+}
+
+/* ==========================================================================
+   2. MODAL HEADER & TITLE (Light Mode)
+   ========================================================================== */
+
+.modal-header,
+.bootbox .modal-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 18px 24px !important;
+  border-bottom: 1px solid var(--spark-border-subtle, #f1f5f9) !important;
+  background-color: transparent !important;
+  position: relative !important;
+  min-height: 56px !important;
+}
+
+.modal-header::before,
+.modal-header::after,
+.bootbox .modal-header::before,
+.bootbox .modal-header::after {
+  display: none !important;
+}
+
+.modal-title,
+.modal-header h4,
+.modal-header h3,
+.bootbox .modal-header h4 {
+  font-size: var(--spark-text-base, 1rem) !important;
+  font-weight: 700 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  margin: 0 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+  text-transform: none !important;
+}
+
+/* ─── Modern Close Button (Light Mode) ─── */
+.modal-header .close,
+.modal .close,
+.bootbox .modal-header .close,
+.bootbox .close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: none !important;
+  outline: none !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  font-size: var(--spark-text-xl) !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  float: none !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.modal-header .close:hover,
+.modal-header .close:focus,
+.modal .close:hover,
+.modal .close:focus,
+.bootbox .modal-header .close:hover,
+.bootbox .close:hover {
+  background-color: #fee2e2 !important;
+  color: #ef4444 !important;
+  opacity: 1 !important;
+  transform: rotate(90deg) !important;
+}
+
+/* ==========================================================================
+   3. MODAL BODY (Light Mode)
+   ========================================================================== */
+
+.modal-body,
+.bootbox-body,
+.bootbox .modal-body {
+  padding: 24px !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  line-height: 1.5 !important;
+  background-color: transparent !important;
+  max-height: calc(85vh - 140px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.modal-body .form-group:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* ==========================================================================
+   4. MODAL FOOTER & ACTIONS (Light Mode)
+   ========================================================================== */
+
+.modal-footer,
+.bootbox .modal-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  padding: 16px 24px !important;
+  border-top: 1px solid var(--spark-border-subtle, #f1f5f9) !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  margin: 0 !important;
+  border-radius: 0 0 var(--spark-radius-xl, 16px) var(--spark-radius-xl, 16px) !important;
+}
+
+.modal-footer::before,
+.modal-footer::after,
+.bootbox .modal-footer::before,
+.bootbox .modal-footer::after {
+  display: none !important;
+}
+
+.modal-footer .btn,
+.bootbox .modal-footer .btn {
+  margin: 0 !important;
+  min-height: 38px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 600 !important;
+  padding: 8px 18px !important;
+}
+
+.modal-footer .btn-primary,
+.modal .btn-primary,
+.bootbox .modal-footer .btn-primary {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 2px 6px var(--spark-focus-ring, rgba(99, 102, 241, 0.3)) !important;
+}
+
+.modal-footer .btn-primary:hover,
+.modal .btn-primary:hover,
+.bootbox .modal-footer .btn-primary:hover {
+  filter: brightness(1.08) !important;
+  box-shadow: 0 4px 12px var(--spark-focus-ring, rgba(99, 102, 241, 0.4)) !important;
+  transform: translateY(-1px) !important;
+}
+
+.modal-footer .btn-default,
+.modal .btn-default,
+.bootbox .modal-footer .btn-default {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  color: var(--spark-text-secondary, #475569) !important;
+}
+
+.modal-footer .btn-default:hover,
+.modal .btn-default:hover,
+.bootbox .modal-footer .btn-default:hover {
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  border-color: #cbd5e1 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+/* ==========================================================================
+   5. BACKDROP & OVERLAYS
+   ========================================================================== */
+
+.modal-backdrop {
+  background-color: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+.modal-backdrop.in {
+  opacity: 1 !important;
+}
+
+/* Loading overlays */
+#modal-loading .blackbg,
+.blackbg {
+  background-color: rgba(15, 23, 42, 0.7) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* ==========================================================================
+   6. DROPDOWN MENUS (Global SaaS Popover Menus)
+   ========================================================================== */
+
+.dropdown-menu {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border-radius: var(--spark-radius-lg, 12px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+  padding: 6px !important;
+  margin-top: 6px !important;
+  z-index: 1050 !important;
+  min-width: 180px !important;
+  text-align: start !important;
+}
+
+.dropdown-menu > li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dropdown-menu > li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 14px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 500 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  text-decoration: none !important;
+  line-height: 1.4 !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+  clear: both !important;
+  white-space: nowrap !important;
+}
+
+.dropdown-menu > li > a i,
+.dropdown-menu > li > a .fa {
+  font-size: var(--spark-text-md) !important;
+  width: 16px !important;
+  text-align: center !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  transition: color var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: var(--spark-primary-subtle, #eef2ff) !important;
+  color: var(--spark-primary, #6366f1) !important;
+}
+
+.dropdown-menu > li > a:hover i,
+.dropdown-menu > li > a:hover .fa {
+  color: var(--spark-primary, #6366f1) !important;
+}
+
+.dropdown-menu > li.active > a {
+  background-color: var(--spark-primary-subtle, #eef2ff) !important;
+  color: var(--spark-primary, #6366f1) !important;
+  font-weight: 600 !important;
+}
+
+.dropdown-menu .divider {
+  height: 1px !important;
+  background-color: var(--spark-border-subtle, #f1f5f9) !important;
+  margin: 6px 0 !important;
+  overflow: hidden !important;
+  border: none !important;
+}
+
+.dropdown-header {
+  font-size: var(--spark-text-xs) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  padding: 6px 14px 4px 14px !important;
+}
+
+/* ==========================================================================
+   7. TOOLTIPS & POPOVERS
+   ========================================================================== */
+
+.tooltip-inner {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  padding: 6px 12px !important;
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.popover {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-lg, 12px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+}
+
+.popover-title {
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 600 !important;
+  padding: 10px 14px !important;
+  border-radius: 11px 11px 0 0 !important;
+}
+
+.popover-content {
+  padding: 12px 14px !important;
+  font-size: var(--spark-text-base) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+/* ==========================================================================
+   8. DARK THEME OVERRIDES ([data-theme="dark"])
+   Applied when Dark Mode is active on <html>
+   ========================================================================== */
+
+/* ─── Modal Container & Surfaces in Dark Mode ─── */
+html[data-theme="dark"] .modal-dialog .modal-content,
+html[data-theme="dark"] .modal-content,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .bootbox .modal-content {
+  background-color: var(--spark-surface, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+/* ─── Modal Header in Dark Mode ─── */
+html[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .bootbox .modal-header {
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .modal-title,
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] .modal-header h4,
+[data-theme="dark"] .modal-header h3,
+[data-theme="dark"] .bootbox .modal-header h4 {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+html[data-theme="dark"] .modal-header .close,
+[data-theme="dark"] .modal-header .close,
+[data-theme="dark"] .modal .close,
+[data-theme="dark"] .bootbox .modal-header .close,
+[data-theme="dark"] .bootbox .close {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+html[data-theme="dark"] .modal-header .close:hover,
+[data-theme="dark"] .modal-header .close:hover,
+[data-theme="dark"] .modal .close:hover,
+[data-theme="dark"] .bootbox .modal-header .close:hover,
+[data-theme="dark"] .bootbox .close:hover {
+  background-color: rgba(239, 68, 68, 0.25) !important;
+  color: #f87171 !important;
+}
+
+/* ─── Modal Body & Typography in Dark Mode ─── */
+html[data-theme="dark"] .modal-body,
+[data-theme="dark"] .modal-body,
+[data-theme="dark"] .bootbox-body,
+[data-theme="dark"] .bootbox .modal-body {
+  background-color: var(--spark-surface, #111827) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+html[data-theme="dark"] .modal-body p,
+html[data-theme="dark"] .modal-body span,
+html[data-theme="dark"] .modal-body label,
+html[data-theme="dark"] .modal-body div,
+html[data-theme="dark"] .modal-body strong,
+html[data-theme="dark"] .modal-body b,
+html[data-theme="dark"] .modal-body em,
+[data-theme="dark"] .modal-body p,
+[data-theme="dark"] .modal-body span,
+[data-theme="dark"] .modal-body label,
+[data-theme="dark"] .modal-body div,
+[data-theme="dark"] .modal-body strong,
+[data-theme="dark"] .modal-body b,
+[data-theme="dark"] .modal-body em {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+html[data-theme="dark"] .modal-body .text-muted,
+html[data-theme="dark"] .modal-body small,
+html[data-theme="dark"] .modal-body .help-block,
+[data-theme="dark"] .modal-body .text-muted,
+[data-theme="dark"] .modal-body small,
+[data-theme="dark"] .modal-body .help-block {
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+/* ─── Modal Form Controls & Inputs in Dark Mode ─── */
+html[data-theme="dark"] .modal .form-control,
+[data-theme="dark"] .modal .form-control,
+[data-theme="dark"] .modal input[type="text"],
+[data-theme="dark"] .modal input[type="password"],
+[data-theme="dark"] .modal input[type="email"],
+[data-theme="dark"] .modal input[type="number"],
+[data-theme="dark"] .modal input[type="search"],
+[data-theme="dark"] .modal input[type="tel"],
+[data-theme="dark"] .modal input[type="url"],
+[data-theme="dark"] .modal select,
+[data-theme="dark"] .modal textarea {
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  border: 1px solid var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+}
+
+html[data-theme="dark"] .modal .form-control:focus,
+[data-theme="dark"] .modal .form-control:focus,
+[data-theme="dark"] .modal input:focus,
+[data-theme="dark"] .modal select:focus,
+[data-theme="dark"] .modal textarea:focus {
+  border-color: var(--spark-primary, #818cf8) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .modal .form-control::placeholder,
+[data-theme="dark"] .modal .form-control::placeholder,
+[data-theme="dark"] .modal input::placeholder,
+[data-theme="dark"] .modal textarea::placeholder {
+  color: var(--spark-text-muted, #64748b) !important;
+}
+
+/* ─── Modal Input Groups in Dark Mode ─── */
+[data-theme="dark"] .modal .input-group-addon {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+[data-theme="dark"] .modal .input-group-addon button,
+[data-theme="dark"] .modal .input-group-addon a,
+[data-theme="dark"] .modal .input-group-btn .btn {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+/* ─── Select2 inside Modal & Global in Dark Mode ─── */
+[data-theme="dark"] .modal .select2-container .select2-choice,
+[data-theme="dark"] .select2-container .select2-choice {
+  background-color: var(--spark-surface-card, #111827) !important;
+  background-image: none !important;
+  border: 1px solid var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+}
+
+[data-theme="dark"] .modal .select2-container .select2-choice > .select2-chosen,
+[data-theme="dark"] .select2-container .select2-choice > .select2-chosen {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .modal .select2-container .select2-choice .select2-arrow,
+[data-theme="dark"] .select2-container .select2-choice .select2-arrow {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  background-image: none !important;
+  border-inline-start: 1px solid var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .modal .select2-container .select2-choice .select2-arrow b,
+[data-theme="dark"] .select2-container .select2-choice .select2-arrow b {
+  border-block-start-color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+[data-theme="dark"] .modal .select2-container-multi .select2-choices,
+[data-theme="dark"] .select2-container-multi .select2-choices {
+  background-color: var(--spark-surface-card, #111827) !important;
+  background-image: none !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+}
+
+[data-theme="dark"] .modal .select2-container-multi .select2-choices .select2-search-choice,
+[data-theme="dark"] .select2-container-multi .select2-choices .select2-search-choice {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  color: #c7d2fe !important;
+}
+
+[data-theme="dark"] .select2-drop,
+[data-theme="dark"] .select2-drop-active,
+[data-theme="dark"] .select2-drop.select2-drop-above {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  border-radius: var(--spark-radius-lg, 12px) !important;
+}
+
+[data-theme="dark"] .select2-drop .select2-search input {
+  background-color: var(--spark-bg, #0b0f19) !important;
+  border: 1px solid var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .select2-results {
+  background-color: var(--spark-surface-card, #111827) !important;
+}
+
+[data-theme="dark"] .select2-results li {
+  color: var(--spark-text-primary, #f8fafc) !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .select2-results .select2-highlighted {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .select2-results .select2-selected {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  color: #818cf8 !important;
+}
+
+[data-theme="dark"] .select2-results .select2-no-results,
+[data-theme="dark"] .select2-results .select2-searching,
+[data-theme="dark"] .select2-results .select2-selection-limit {
+  color: var(--spark-text-muted, #94a3b8) !important;
+  background-color: transparent !important;
+}
+
+/* ─── Tables inside Modal in Dark Mode ─── */
+[data-theme="dark"] .modal .table,
+[data-theme="dark"] .modal .table-responsive,
+[data-theme="dark"] .modal .table-bordered {
+  background-color: transparent !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .modal .table th {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .modal .table td {
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .modal .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+[data-theme="dark"] .modal .table-hover > tbody > tr:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ─── Panels & Wells inside Modal in Dark Mode ─── */
+[data-theme="dark"] .modal .well,
+[data-theme="dark"] .modal .well-sm,
+[data-theme="dark"] .modal .panel {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .modal .panel-heading {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .modal .nav-tabs {
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .modal .nav-tabs > li > a {
+  color: var(--spark-text-muted, #94a3b8) !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .modal .nav-tabs > li.active > a,
+[data-theme="dark"] .modal .nav-tabs > li.active > a:hover,
+[data-theme="dark"] .modal .nav-tabs > li.active > a:focus {
+  color: #818cf8 !important;
+  background-color: rgba(99, 102, 241, 0.15) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  border-bottom-color: transparent !important;
+}
+
+/* ─── Modal Footer & Buttons in Dark Mode ─── */
+[data-theme="dark"] .modal-footer,
+[data-theme="dark"] .bootbox .modal-footer {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  border-top-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .modal-footer .btn-default,
+[data-theme="dark"] .modal .btn-default,
+[data-theme="dark"] .bootbox .modal-footer .btn-default {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .modal-footer .btn-default:hover,
+[data-theme="dark"] .modal .btn-default:hover,
+[data-theme="dark"] .bootbox .modal-footer .btn-default:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+/* ─── Dividers, HR & Datepicker Widgets in Dark Mode ─── */
+[data-theme="dark"] .modal hr,
+[data-theme="dark"] .modal .divider {
+  border-top-color: var(--spark-border-default, #1f2937) !important;
+  background-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .bootstrap-datetimepicker-widget,
+[data-theme="dark"] .datetimepicker,
+[data-theme="dark"] .datepicker,
+[data-theme="dark"] .daterangepicker {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .bootstrap-datetimepicker-widget table td,
+[data-theme="dark"] .bootstrap-datetimepicker-widget table th,
+[data-theme="dark"] .datetimepicker table td,
+[data-theme="dark"] .datetimepicker table th,
+[data-theme="dark"] .datepicker table td,
+[data-theme="dark"] .datepicker table th {
+  color: var(--spark-text-primary, #f8fafc) !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .bootstrap-datetimepicker-widget table td.active,
+[data-theme="dark"] .datetimepicker table td.active,
+[data-theme="dark"] .datepicker table td.active {
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .bootstrap-datetimepicker-widget table td.day:hover,
+[data-theme="dark"] .datetimepicker table td.day:hover,
+[data-theme="dark"] .datepicker table td.day:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ─── Dropdowns in Dark Mode ─── */
+[data-theme="dark"] .dropdown-menu {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li > a {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li > a i,
+[data-theme="dark"] .dropdown-menu > li > a .fa {
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li > a:hover,
+[data-theme="dark"] .dropdown-menu > li > a:focus {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  color: #818cf8 !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li > a:hover i,
+[data-theme="dark"] .dropdown-menu > li > a:hover .fa {
+  color: #818cf8 !important;
+}
+
+[data-theme="dark"] .dropdown-menu .divider {
+  background-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .dropdown-header {
+  color: var(--spark-text-muted, #64748b) !important;
+}
+
+/* ─── Popovers in Dark Mode ─── */
+[data-theme="dark"] .popover {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .popover-title {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .popover-content {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+/* ==========================================================================
+   9. MULTI-SELECT COMPONENT (multi.js) IN DARK MODE
+   ========================================================================== */
+
+html[data-theme="dark"] .multi-wrapper,
+[data-theme="dark"] .multi-wrapper {
+  background-color: var(--spark-surface, #111827) !important;
+  border: 1px solid var(--spark-border-default, #1f2937) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  color: var(--spark-text-primary, #f1f5f9) !important;
+  box-shadow: var(--spark-shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.35)) !important;
+  overflow: hidden !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .search-input,
+[data-theme="dark"] .multi-wrapper .search-input {
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  border: none !important;
+  border-bottom: 1px solid var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f1f5f9) !important;
+  padding: 10px 16px !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .search-input::placeholder,
+[data-theme="dark"] .multi-wrapper .search-input::placeholder {
+  color: var(--spark-text-muted, #64748b) !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .search-input:focus,
+[data-theme="dark"] .multi-wrapper .search-input:focus {
+  background-color: var(--spark-surface, #111827) !important;
+  border-bottom-color: var(--spark-primary, #818cf8) !important;
+  color: #ffffff !important;
+  outline: none !important;
+}
+
+/* ─── Non-Selected Wrapper (Available Items) ─── */
+html[data-theme="dark"] .multi-wrapper .non-selected-wrapper,
+[data-theme="dark"] .multi-wrapper .non-selected-wrapper {
+  background-color: var(--spark-bg, #0b0f19) !important;
+  border-right: 1px solid var(--spark-border-default, #1f2937) !important;
+  border-inline-end: 1px solid var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f1f5f9) !important;
+}
+
+/* ─── Selected Wrapper (Chosen Items) ─── */
+html[data-theme="dark"] .multi-wrapper .selected-wrapper,
+[data-theme="dark"] .multi-wrapper .selected-wrapper {
+  background-color: var(--spark-surface, #111827) !important;
+  color: var(--spark-text-primary, #f1f5f9) !important;
+}
+
+/* ─── Headers in Multi-Select ─── */
+html[data-theme="dark"] .multi-wrapper .header,
+[data-theme="dark"] .multi-wrapper .header {
+  color: var(--spark-text-secondary, #94a3b8) !important;
+  font-weight: 700 !important;
+  font-size: var(--spark-text-sm) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 6px 12px !important;
+  margin-bottom: 6px !important;
+  border-bottom: 1px solid var(--spark-border-subtle, #161e2e) !important;
+}
+
+/* ─── Multi-Select Items ─── */
+html[data-theme="dark"] .multi-wrapper .item,
+[data-theme="dark"] .multi-wrapper .item {
+  color: var(--spark-text-primary, #f1f5f9) !important;
+  background-color: transparent !important;
+  padding: 6px 12px !important;
+  font-size: var(--spark-text-base) !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  transition: background-color var(--spark-transition-fast, 100ms ease), color var(--spark-transition-fast, 100ms ease) !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .item:hover,
+[data-theme="dark"] .multi-wrapper .item:hover {
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  color: #ffffff !important;
+}
+
+/* Selected item in non-selected list (faded out) */
+html[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.selected,
+[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.selected {
+  opacity: 0.35 !important;
+  color: var(--spark-disabled-text, #64748b) !important;
+  background-color: transparent !important;
+  cursor: default !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.selected:hover,
+[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.selected:hover {
+  background-color: transparent !important;
+  color: var(--spark-disabled-text, #64748b) !important;
+}
+
+/* Items in selected list (highlighted with primary tint) */
+html[data-theme="dark"] .multi-wrapper .selected-wrapper .item,
+[data-theme="dark"] .multi-wrapper .selected-wrapper .item {
+  color: var(--spark-primary, #818cf8) !important;
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  margin-bottom: 2px !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .selected-wrapper .item:hover,
+[data-theme="dark"] .multi-wrapper .selected-wrapper .item:hover {
+  background-color: rgba(239, 68, 68, 0.20) !important;
+  color: #fca5a5 !important;
+}
+
+/* Disabled items & Hover suppression */
+html[data-theme="dark"] .multi-wrapper .item.disabled,
+html[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.disabled,
+html[data-theme="dark"] .multi-wrapper .selected-wrapper .item.disabled,
+[data-theme="dark"] .multi-wrapper .item.disabled,
+[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.disabled,
+[data-theme="dark"] .multi-wrapper .selected-wrapper .item.disabled {
+  opacity: 0.4 !important;
+  color: var(--spark-disabled-text, #64748b) !important;
+  text-decoration: line-through !important;
+  cursor: not-allowed !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .item.disabled:hover,
+html[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.disabled:hover,
+html[data-theme="dark"] .multi-wrapper .selected-wrapper .item.disabled:hover,
+[data-theme="dark"] .multi-wrapper .item.disabled:hover,
+[data-theme="dark"] .multi-wrapper .non-selected-wrapper .item.disabled:hover,
+[data-theme="dark"] .multi-wrapper .selected-wrapper .item.disabled:hover {
+  background-color: transparent !important;
+  color: var(--spark-disabled-text, #64748b) !important;
+  cursor: not-allowed !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .item-group,
+[data-theme="dark"] .multi-wrapper .item-group {
+  padding: 4px 8px !important;
+}
+
+html[data-theme="dark"] .multi-wrapper .item-group .group-label,
+[data-theme="dark"] .multi-wrapper .item-group .group-label {
+  color: var(--spark-text-secondary, #94a3b8) !important;
+  font-weight: 700 !important;
+  font-size: var(--spark-text-sm) !important;
+  padding: 4px 0 !important;
+}
+

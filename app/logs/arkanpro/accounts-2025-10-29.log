@@ -1,0 +1,17 @@
+INFO - 2025-10-29 09:37:41 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7281) Status (1) Description مصروفات طعام وشراب 
+INFO - 2025-10-29 09:37:41 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7280) Status (1) Description 	 وقود سيارة العمل
+INFO - 2025-10-29 09:37:41 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7279) Status (1) Description مبيعات الى مكتبة روائع الهندسة للتجارة
+INFO - 2025-10-29 14:20:26 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7282) Status (1) Description <p>مصروفات طعام وشراب</p>
+INFO - 2025-10-29 14:20:41 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7281) Status (0) Description <p>مصروفات طعام وشراب</p>
+INFO - 2025-10-29 14:21:25 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7280) Status (0) Description <p>وقود سيارة العمل</p>
+INFO - 2025-10-29 14:22:15 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7280) Status (1) Description <p>وقود سيارة العمل ومصروفات طعام وشراب</p>
+INFO - 2025-10-29 14:22:22 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7281) Status (1) Description <p>غسيل سيارة</p>
+INFO - 2025-10-29 14:24:16 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7284) Status (1) Description 	 شراء نثرية المكتب من مؤسسة الاسطورة النظافة
+INFO - 2025-10-29 14:24:16 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7283) Status (1) Description 	 ادوات مكتبية من لواء العلم
+INFO - 2025-10-29 16:09:53 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7289) Status (1) Description 	 وقود سيارة العمل
+INFO - 2025-10-29 16:09:53 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7288) Status (1) Description 	 شراء قطع غيار من شركة سناء للكهرباء والهاتف
+INFO - 2025-10-29 16:09:53 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7287) Status (1) Description 	 فاتورة مؤسسة امدادات الجبرية التجارية
+INFO - 2025-10-29 16:09:53 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7286) Status (1) Description 	 شراء قطع غيار من شركة سناء للكهرباء والهاتف
+INFO - 2025-10-29 16:09:53 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7285) Status (1) Description 	 شراء ادوات امنية من شركة عكاظ
+INFO - 2025-10-29 16:10:07 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7282) Status (0) Description <p>مصروفات طعام وشراب</p>
+INFO - 2025-10-29 16:10:30 --> The status of entry has been successfully updated (UpdateaStatus:Accounts_model.php) (User : abubakar) EntryID (7282) Status (1) Description <p>مصروفات طعام وشراب</p>

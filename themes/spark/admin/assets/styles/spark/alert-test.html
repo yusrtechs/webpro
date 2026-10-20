@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>Spark Alerts Test Suite</title>
+  <link rel="stylesheet" href="../../template/vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="spark.css">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 30px;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+    .test-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .test-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      border: none;
+      background: #4f46e5;
+      color: white;
+      margin-inline-end: 8px;
+      margin-bottom: 8px;
+    }
+    .btn-secondary {
+      background: #64748b;
+    }
+    .log-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: monospace;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 12px;
+    }
+    .alert {
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      position: relative;
+    }
+    .alert-success {
+      color: #065f46;
+      background-color: #d1fae5;
+      border-color: #a7f3d0;
+    }
+    .alert-danger {
+      color: #991b1b;
+      background-color: #fee2e2;
+      border-color: #fecaca;
+    }
+    .alert-warning {
+      color: #92400e;
+      background-color: #fef3c7;
+      border-color: #fde68a;
+    }
+    .alert-info {
+      color: #1e40af;
+      background-color: #dbeafe;
+      border-color: #bfdbfe;
+    }
+    .close {
+      float: left;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1;
+      color: #000;
+      opacity: .4;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+    [dir="ltr"] .close {
+      float: right;
+    }
+    .close:hover {
+      opacity: .8;
+    }
+  </style>
+  <script src="../../js/jquery-2.0.3.min.js"></script>
+  <script src="../../js/spark-alerts.js"></script>
+</head>
+<body>
+
+  <h1>Spark ERP — Auto-Dismiss Success Alerts Test Suite</h1>
+
+  <div class="test-card">
+    <div class="test-title">1. Test Case: Static Initial Page-Load Alerts</div>
+    <div id="staticAlertsContainer">
+      <div class="alert alert-success" id="initialSuccessAlert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>نجاح!</strong> تمت إضافة عملية البيع بنجاح (سيختفي بعد 4 ثوانٍ).
+      </div>
+      <div class="alert alert-danger" id="initialDangerAlert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>خطأ!</strong> هذه رسالة خطأ (يجب ألا تختفي أبدًا تلقائيًا).
+      </div>
+      <div class="alert alert-warning" id="initialWarningAlert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>تنبيه!</strong> هذه رسالة تحذير (يجب ألا تختفي أبدًا تلقائيًا).
+      </div>
+    </div>
+  </div>
+
+  <div class="test-card">
+    <div class="test-title">2. Test Controls & Dynamic Injections</div>
+    <button class="btn" id="btnSpawnSuccess">إضافة Alert نجاح ديناميكي (AJAX Simulation)</button>
+    <button class="btn btn-secondary" id="btnSpawnDanger">إضافة Alert خطأ ديناميكي</button>
+    <button class="btn btn-secondary" id="btnShowHidden">إظهار Alert مخفي (.show())</button>
+    
+    <div id="dynamicContainer" style="margin-top: 15px;"></div>
+    <div id="hiddenAlert" class="alert alert-success" style="display: none; margin-top: 15px;">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>تم التحديث!</strong> هذا Alert كان مخفياً وتم إظهاره عبر jQuery .show().
+    </div>
+  </div>
+
+  <div class="test-card">
+    <div class="test-title">3. Live Test Status & Event Log</div>
+    <div id="logBox" class="log-box"></div>
+  </div>
+
+  <script>
+    function log(msg) {
+      var box = document.getElementById('logBox');
+      var div = document.createElement('div');
+      div.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    log('SparkAlerts initialized. Current duration: ' + window.SparkAlerts.getDuration() + 'ms');
+
+    // Monitor initial success alert
+    var initialAlert = document.getElementById('initialSuccessAlert');
+    if (initialAlert) {
+      log('Tracking #initialSuccessAlert auto-dismiss...');
+    }
+
+    $('#btnSpawnSuccess').on('click', function() {
+      var id = 'dyn_success_' + Date.now();
+      var $alert = $('<div class="alert alert-success" id="' + id + '"><button type="button" class="close" data-dismiss="alert">×</button><strong>تم الحفظ!</strong> سجل جديد تم حفظه بنجاح عبر AJAX (' + id + ')</div>');
+      $('#dynamicContainer').append($alert);
+      log('Spawned dynamic success alert: ' + id);
+    });
+
+    $('#btnSpawnDanger').on('click', function() {
+      var id = 'dyn_danger_' + Date.now();
+      var $alert = $('<div class="alert alert-danger" id="' + id + '"><button type="button" class="close" data-dismiss="alert">×</button><strong>خطأ!</strong> تعذر حفظ السجل (' + id + ')</div>');
+      $('#dynamicContainer').append($alert);
+      log('Spawned dynamic danger alert: ' + id);
+    });
+
+    $('#btnShowHidden').on('click', function() {
+      $('#hiddenAlert').show();
+      log('Triggered #hiddenAlert.show()');
+    });
+
+    // Check DOM removal after 5.5s
+    setTimeout(function() {
+      var initialStillPresent = !!document.getElementById('initialSuccessAlert');
+      var dangerStillPresent = !!document.getElementById('initialDangerAlert');
+      var warningStillPresent = !!document.getElementById('initialWarningAlert');
+
+      log('--- Verification after 5.5s ---');
+      log('Initial Success Alert removed from DOM: ' + (!initialStillPresent ? 'PASS (Removed)' : 'FAIL (Still Present)'));
+      log('Initial Danger Alert retained in DOM: ' + (dangerStillPresent ? 'PASS (Retained)' : 'FAIL (Removed)'));
+      log('Initial Warning Alert retained in DOM: ' + (warningStillPresent ? 'PASS (Retained)' : 'FAIL (Removed)'));
+    }, 5500);
+  </script>
+
+</body>
+</html>

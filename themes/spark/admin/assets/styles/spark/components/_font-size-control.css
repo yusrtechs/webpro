@@ -1,0 +1,301 @@
+/* ============================================================================
+   Spark ERP Design System — Font Size Accessibility Control
+   Version: 1.0.0
+
+   Global AAA font-size accessibility system with three levels:
+     A   = Small   (current/original sizes — scale 1.0)
+     AA  = Medium  (DEFAULT — improved readability — scale 1.125)
+     AAA = Large   (maximum readability — scale 1.25)
+
+   Architecture:
+   - Uses a --spark-font-scale CSS custom property on :root
+   - Overrides the Spark typography size tokens using calc() × scale
+   - The active level is stored as data-font-size="A|AA|AAA" on <html>
+   - Default (no attribute or AA) = medium scale
+
+   This file does NOT duplicate stylesheets or use !important hacks.
+   It scales the existing token system centrally.
+   ============================================================================ */
+
+
+/* ==========================================================================
+   ROOT DEFAULT & DYNAMIC ACCESSIBILITY TOKENS
+   Default scale is AA (Medium = 1.125).
+   Tokens recompute dynamically whenever --spark-font-scale changes.
+   ========================================================================== */
+
+:root {
+  --spark-font-scale: 1.125;
+  --spark-sidebar-font-scale: 1;
+
+  --spark-text-xs: calc(11px * var(--spark-font-scale));
+  --spark-text-sm: calc(12px * var(--spark-font-scale));
+  --spark-text-base: calc(13px * var(--spark-font-scale));
+  --spark-text-md: calc(14px * var(--spark-font-scale));
+  --spark-text-lg: calc(16px * var(--spark-font-scale));
+  --spark-text-xl: calc(18px * var(--spark-font-scale));
+  --spark-text-2xl: calc(22px * var(--spark-font-scale));
+  --spark-text-3xl: calc(28px * var(--spark-font-scale));
+  --spark-text-4xl: calc(34px * var(--spark-font-scale));
+}
+
+/* LEVEL A — Original / Pre-Accessibility Baseline (scale = 1.0) */
+html[data-font-size="A"],
+:root[data-font-size="A"],
+[data-font-size="A"] {
+  --spark-font-scale: 1;
+}
+
+/* LEVEL AA — Medium / DEFAULT (scale = 1.125) */
+html[data-font-size="AA"],
+:root[data-font-size="AA"],
+[data-font-size="AA"] {
+  --spark-font-scale: 1.125;
+}
+
+/* LEVEL AAA — Large / Maximum Readability (scale = 1.25) */
+html[data-font-size="AAA"],
+:root[data-font-size="AAA"],
+[data-font-size="AAA"] {
+  --spark-font-scale: 1.25;
+}
+
+
+/* ==========================================================================
+   FONT SIZE CONTROL UI — HEADER CONTROL
+   Three-button group: A | AA | AAA
+   Styled to match existing Spark header actions.
+   ========================================================================== */
+
+.spark-font-size-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-lg, 12px);
+  background-color: var(--spark-surface-card, #ffffff);
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.03));
+  overflow: hidden;
+  height: 36px;
+  flex-shrink: 0;
+  transition:
+    background-color var(--spark-transition-fast, 0.15s ease),
+    border-color var(--spark-transition-fast, 0.15s ease),
+    box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-font-size-control:hover {
+  border-color: var(--spark-border-hover, #cbd5e1);
+  box-shadow: var(--spark-shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+/* Individual font-size level button */
+.spark-font-size-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--spark-text-secondary, #64748b);
+  cursor: pointer;
+  padding: 0 10px;
+  height: 100%;
+  font-family: var(--spark-font-en, 'Inter', sans-serif);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  position: relative;
+  transition:
+    background-color var(--spark-transition-fast, 0.15s ease),
+    color var(--spark-transition-fast, 0.15s ease),
+    box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+/* Font sizes for the buttons themselves (fixed — NOT scaled) */
+.spark-font-size-btn[data-level="A"] {
+  font-size: 12px;
+  min-width: 30px;
+}
+
+.spark-font-size-btn[data-level="AA"] {
+  font-size: 13px;
+  min-width: 34px;
+}
+
+.spark-font-size-btn[data-level="AAA"] {
+  font-size: 14px;
+  min-width: 38px;
+}
+
+/* Dividers between buttons */
+.spark-font-size-btn+.spark-font-size-btn {
+  border-inline-start: 1px solid var(--spark-border-light, #f1f5f9);
+}
+
+/* Hover state */
+.spark-font-size-btn:hover {
+  background-color: var(--spark-surface-hover, #f8fafc);
+  color: var(--spark-text-primary, #0f172a);
+}
+
+/* Active / Selected state */
+.spark-font-size-btn.is-active,
+.spark-font-size-btn[aria-pressed="true"] {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed));
+  color: #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.spark-font-size-btn.is-active+.spark-font-size-btn,
+.spark-font-size-btn+.spark-font-size-btn.is-active {
+  border-inline-start-color: transparent;
+}
+
+/* Focus visible */
+.spark-font-size-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--spark-focus-ring, rgba(99, 102, 241, 0.35));
+  z-index: 1;
+}
+
+/* Active button click feedback */
+.spark-font-size-btn:active {
+  transform: scale(0.96);
+}
+
+
+/* ==========================================================================
+   DARK MODE — FONT SIZE CONTROL
+   ========================================================================== */
+
+[data-theme="dark"] .spark-font-size-control {
+  background-color: var(--spark-surface-elevated, #1f2937);
+  border-color: var(--spark-border-default, #1f2937);
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+[data-theme="dark"] .spark-font-size-control:hover {
+  border-color: var(--spark-border-hover, #374151);
+}
+
+[data-theme="dark"] .spark-font-size-btn {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .spark-font-size-btn:hover {
+  background-color: var(--spark-surface-hover, #1f2937);
+  color: var(--spark-text-primary, #f1f5f9);
+}
+
+[data-theme="dark"] .spark-font-size-btn+.spark-font-size-btn {
+  border-inline-start-color: var(--spark-border-light, #161e2e);
+}
+
+[data-theme="dark"] .spark-font-size-btn.is-active,
+[data-theme="dark"] .spark-font-size-btn[aria-pressed="true"] {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #8b5cf6));
+  color: #ffffff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — TABLET & MOBILE
+   ========================================================================== */
+
+/* Tablet: slightly smaller control */
+@media (max-width: 991px) {
+  .spark-font-size-control {
+    height: 32px;
+  }
+
+  .spark-font-size-btn {
+    padding: 0 8px;
+  }
+
+  .spark-font-size-btn[data-level="A"] {
+    font-size: 11px;
+    min-width: 26px;
+  }
+
+  .spark-font-size-btn[data-level="AA"] {
+    font-size: 12px;
+    min-width: 30px;
+  }
+
+  .spark-font-size-btn[data-level="AAA"] {
+    font-size: 13px;
+    min-width: 34px;
+  }
+}
+
+/* Mobile: compact but still visible */
+@media (max-width: 767px) {
+  .spark-font-size-control {
+    height: 30px;
+    border-radius: var(--spark-radius-md, 8px);
+  }
+
+  .spark-font-size-btn {
+    padding: 0 6px;
+  }
+
+  .spark-font-size-btn[data-level="A"] {
+    font-size: 10px;
+    min-width: 24px;
+  }
+
+  .spark-font-size-btn[data-level="AA"] {
+    font-size: 11px;
+    min-width: 28px;
+  }
+
+  .spark-font-size-btn[data-level="AAA"] {
+    font-size: 12px;
+    min-width: 32px;
+  }
+}
+
+
+/* ==========================================================================
+   PRINT — HIDE FONT SIZE CONTROL
+   ========================================================================== */
+
+@media print {
+  .spark-font-size-control {
+    display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   EXCLUSIONS — Elements that must NOT be scaled
+   Icons, logos, decorative elements, barcodes, QR codes, etc.
+   These use fixed dimensions and should not be affected by font scaling.
+   ========================================================================== */
+
+/* Icon-only buttons and functional fixed-size controls */
+.spark-header-action>i,
+.spark-header-action>.fa,
+.spark-header-action>.mdi,
+.spark-header-toggle>i,
+.spark-sidebar-icon,
+.spark-sidebar-chevron,
+.spark-header-logo,
+.spark-header-logo-img,
+.spark-header-avatar,
+/*.spark-header-badge,*/
+.spark-font-size-btn {
+  font-size: inherit;
+  /* Don't double-scale — keep explicit sizes */
+}
+
+/* Barcode / QR code containers */
+.spark-app .barcode,
+.spark-app .qrcode,
+.spark-app [class*="barcode"],
+.spark-app [class*="qr-code"],
+.spark-app canvas.barcode,
+.spark-app svg.barcode {
+  font-size: initial !important;
+}

@@ -1,0 +1,2170 @@
+/* ============================================================================
+   Spark ERP Design System — Forms & Form Controls
+   Version: 1.0.0
+   
+   Modern SaaS form controls, Select2, inputs, and filters scoped under .spark-ui.
+   Does NOT modify legacy ?spark_ui=0 interface.
+   Uses CSS Logical Properties for seamless RTL/LTR compatibility.
+   ============================================================================ */
+
+/* ==========================================================================
+   FORM GROUPS & LABELS
+   ========================================================================== */
+
+.spark-ui .form-group {
+  margin-bottom: var(--spark-space-4, 16px);
+}
+
+.spark-ui label,
+.spark-ui .control-label {
+  display: inline-block;
+  font-size: var(--spark-text-xs, 0.8125rem);
+  font-weight: 600;
+  color: var(--spark-text-secondary, #475569);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.spark-ui .help-block {
+  font-size: var(--spark-text-sm);
+  color: var(--spark-text-muted, #94a3b8);
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   INPUTS, SELECTS & TEXTAREAS
+   ========================================================================== */
+
+.spark-ui .form-control,
+.spark-ui input[type="text"].form-control,
+.spark-ui input[type="password"].form-control,
+.spark-ui input[type="email"].form-control,
+.spark-ui input[type="number"].form-control,
+.spark-ui input[type="search"].form-control,
+.spark-ui input[type="tel"].form-control,
+.spark-ui input[type="url"].form-control,
+.spark-ui select.form-control {
+  height: 42px;
+  padding: 8px 14px;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  background-color: var(--spark-surface-card, #ffffff);
+  color: var(--spark-text-primary, #0f172a);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-family: var(--spark-font-family);
+  box-shadow: none;
+  outline: none;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-ui textarea.form-control {
+  height: auto;
+  min-height: 90px;
+  padding: 10px 14px;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  background-color: var(--spark-surface-card, #ffffff);
+  color: var(--spark-text-primary, #0f172a);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-family: var(--spark-font-family);
+  box-shadow: none;
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-ui .form-control:focus,
+.spark-ui input[type="text"].form-control:focus,
+.spark-ui select.form-control:focus,
+.spark-ui textarea.form-control:focus {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+  outline: none;
+}
+
+.spark-ui .form-control::placeholder {
+  color: var(--spark-text-muted, #94a3b8);
+  opacity: 1;
+}
+
+.spark-ui .form-control:disabled,
+.spark-ui .form-control[readonly] {
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  color: var(--spark-text-muted, #94a3b8);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   INPUT GROUPS & ADDONS
+   ========================================================================== */
+
+.spark-ui .input-group {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.spark-ui .input-group-addon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  font-size: var(--spark-text-md);
+  font-weight: 500;
+  color: var(--spark-text-muted, #94a3b8);
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-md, 8px);
+  white-space: nowrap;
+}
+
+.spark-ui .input-group .form-control:first-child,
+.spark-ui .input-group-addon:first-child {
+  border-start-end-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+}
+
+.spark-ui .input-group .form-control:last-child,
+.spark-ui .input-group-addon:last-child {
+  border-start-start-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+}
+
+/* ==========================================================================
+   SELECT2 CUSTOM STYLING (Single Frame, Mouse Interaction Protected)
+   ========================================================================== */
+
+.spark-ui .select2-container,
+.spark-ui .select2-container.form-control {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  height: auto !important;
+  min-height: 42px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+.spark-ui .select2-container .select2-choice {
+  display: block !important;
+  height: 42px !important;
+  line-height: 40px !important;
+  padding-block: 0 !important;
+  padding-inline-start: 14px !important;
+  padding-inline-end: 38px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background: var(--spark-surface-card, #ffffff) !important;
+  background-image: none !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  font-family: var(--spark-font-family) !important;
+  box-shadow: none !important;
+  position: relative !important;
+  margin: 0 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-ui .select2-container.select2-dropdown-open .select2-choice,
+.spark-ui .select2-container-active .select2-choice {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+.spark-ui .select2-container .select2-choice>.select2-chosen {
+  line-height: 40px !important;
+  margin: 0 !important;
+  margin-inline-end: 0 !important;
+  margin-inline-start: 0 !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 500 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  float: none !important;
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  text-align: start !important;
+}
+
+/* Single clean CSS arrow */
+.spark-ui .select2-container .select2-choice .select2-arrow {
+  position: absolute !important;
+  inset-block-start: 0 !important;
+  inset-block-end: 0 !important;
+  inset-inline-end: 0 !important;
+  inset-inline-start: auto !important;
+  width: 36px !important;
+  height: 100% !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.spark-ui .select2-container .select2-choice .select2-arrow b {
+  background: none !important;
+  display: inline-block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-inline-start: 4px solid transparent !important;
+  border-inline-end: 4px solid transparent !important;
+  border-block-start: 5px solid var(--spark-text-muted, #94a3b8) !important;
+  border-block-end: none !important;
+  margin: 0 !important;
+  transition: transform var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-ui .select2-container.select2-dropdown-open .select2-choice .select2-arrow b {
+  transform: rotate(180deg);
+  border-block-start-color: var(--spark-primary, #6366f1) !important;
+}
+
+/* Multi-select */
+.spark-ui .select2-container-multi .select2-choices {
+  min-height: 42px !important;
+  padding: 4px 8px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background: var(--spark-surface-card, #ffffff) !important;
+  background-image: none !important;
+}
+
+.spark-ui .select2-container-multi .select2-choices .select2-search-choice {
+  background: var(--spark-primary-subtle, #eef2ff) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  color: var(--spark-primary, #6366f1) !important;
+  padding: 3px 8px 3px 20px !important;
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 500 !important;
+  margin: 3px !important;
+  box-shadow: none !important;
+}
+
+/* Dropdown Panel (z-index above backdrop mask, 0 margin to align with select2 choice) */
+.spark-ui .select2-drop,
+.select2-drop,
+.select2-drop-active {
+  border-radius: var(--spark-radius-lg, 12px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  box-shadow: var(--spark-shadow-strong, 0 10px 25px rgba(0, 0, 0, 0.12)) !important;
+  padding: 6px !important;
+  margin: 0 !important;
+  z-index: 99999 !important;
+  position: absolute !important;
+}
+
+.select2-drop-mask {
+  z-index: 99990 !important;
+}
+
+.spark-ui .select2-drop .select2-search,
+.select2-drop .select2-search {
+  padding: 4px 4px 8px 4px !important;
+}
+
+.spark-ui .select2-drop .select2-search input,
+.select2-drop .select2-search input {
+  height: 36px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  background-image: none !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  padding: 6px 12px !important;
+  font-size: var(--spark-text-base) !important;
+  outline: none !important;
+  cursor: text !important;
+}
+
+.spark-ui .select2-drop .select2-search input:focus,
+.select2-drop .select2-search input:focus {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+.spark-ui .select2-results,
+.select2-results {
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  max-height: 220px !important;
+}
+
+.spark-ui .select2-results li,
+.select2-results li {
+  border-radius: var(--spark-radius-md, 8px) !important;
+  margin-bottom: 2px !important;
+  font-size: var(--spark-text-base) !important;
+  padding: 8px 12px !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  line-height: 1.3 !important;
+  cursor: pointer !important;
+  display: block !important;
+}
+
+.spark-ui .select2-results .select2-result-label,
+.select2-results .select2-result-label {
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  display: block !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.spark-ui .select2-results .select2-highlighted,
+.select2-results .select2-highlighted {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  color: #ffffff !important;
+}
+
+.spark-ui .select2-results .select2-selected,
+.select2-results .select2-selected {
+  background-color: var(--spark-primary-subtle, #eef2ff) !important;
+  color: var(--spark-primary, #6366f1) !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   CHECKBOXES & RADIOS
+   ========================================================================== */
+
+.spark-ui input[type="checkbox"],
+.spark-ui input[type="radio"],
+.spark-ui .checkbox input {
+  accent-color: var(--spark-primary, #6366f1);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   FILTER / SEARCH TOOLBAR AREA (Matching Screenshot)
+   ========================================================================== */
+
+.spark-ui #form,
+.spark-ui .box-content form[name="filter-form"] {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 10px 0 16px 0 !important;
+  margin-bottom: 16px !important;
+}
+
+.spark-ui #form .row,
+.spark-ui .box-content form[name="filter-form"] .row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  margin-inline: -8px !important;
+  margin-block: 0 !important;
+}
+
+.spark-ui #form .row>[class*="col-"],
+.spark-ui .box-content form[name="filter-form"] .row>[class*="col-"] {
+  padding-inline: 8px !important;
+  float: none !important;
+}
+
+.spark-ui #form .form-group,
+.spark-ui .box-content form[name="filter-form"] .form-group {
+  margin-bottom: 16px !important;
+}
+
+.spark-ui #form label,
+.spark-ui #form .control-label,
+.spark-ui .box-content form[name="filter-form"] label {
+  display: block !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 6px !important;
+  line-height: 1.3 !important;
+}
+
+/* Submit Action Button Row in Filter Form */
+.spark-ui #form .form-group:last-child,
+.spark-ui .box-content form[name="filter-form"] .form-group:last-child {
+  /*display: flex !important;*/
+  justify-content: flex-end !important;
+  margin-bottom: 0 !important;
+  padding-top: 4px !important;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+
+.spark-ui #form .form-group:last-child .controls,
+.spark-ui .box-content form[name="filter-form"] .form-group:last-child .controls {
+  display: inline-flex !important;
+  padding-top: 4px !important;
+}
+
+.spark-ui #form .btn-primary,
+.spark-ui #salesform .btn-primary,
+.spark-ui #purchaseform .btn-primary,
+.spark-ui #pr_pdf3 .btn-primary,
+.spark-ui .box-content form[name="filter-form"] .btn-primary {
+  min-width: 100px !important;
+  height: 38px !important;
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: 0 2px 6px var(--spark-focus-ring, rgba(99, 102, 241, 0.3)) !important;
+  border: none !important;
+}
+
+.spark-ui #form .btn-primary:hover,
+.spark-ui #salesform .btn-primary:hover,
+.spark-ui #purchaseform .btn-primary:hover,
+.spark-ui #pr_pdf3 .btn-primary:hover,
+.spark-ui .box-content form[name="filter-form"] .btn-primary:hover {
+  filter: brightness(1.08) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* ==========================================================================
+   VALIDATION STATES
+   ========================================================================== */
+
+.spark-ui .has-error .form-control,
+.spark-ui .has-error .select2-choice {
+  border-color: var(--spark-danger, #ef4444) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+.spark-ui .has-error label,
+.spark-ui .has-error .help-block {
+  color: var(--spark-danger, #ef4444) !important;
+}
+
+.spark-ui .has-success .form-control {
+  border-color: var(--spark-success, #10b981) !important;
+}
+
+/* ==========================================================================
+   DARK THEME OVERRIDES FOR FORMS ([data-theme="dark"])
+   ========================================================================== */
+
+[data-theme="dark"] .spark-ui label,
+[data-theme="dark"] .spark-ui .control-label,
+[data-theme="dark"] .spark-ui #form label {
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+[data-theme="dark"] .spark-ui .form-control,
+[data-theme="dark"] .spark-ui input[type="text"].form-control,
+[data-theme="dark"] .spark-ui input[type="password"].form-control,
+[data-theme="dark"] .spark-ui input[type="email"].form-control,
+[data-theme="dark"] .spark-ui input[type="number"].form-control,
+[data-theme="dark"] .spark-ui input[type="search"].form-control,
+[data-theme="dark"] .spark-ui select.form-control,
+[data-theme="dark"] .spark-ui textarea.form-control {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .form-control:focus {
+  border-color: #818cf8 !important;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3) !important;
+}
+
+[data-theme="dark"] .spark-ui .form-control:disabled,
+[data-theme="dark"] .spark-ui .form-control[readonly] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-muted, #64748b) !important;
+}
+
+[data-theme="dark"] .spark-ui .input-group-addon {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+/* Select2 Dark Mode */
+[data-theme="dark"] .spark-ui .select2-container .select2-choice,
+[data-theme="dark"] .spark-ui .select2-container-multi .select2-choices {
+  background: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .select2-container .select2-choice>.select2-chosen {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .select2-container .select2-choice .select2-arrow b {
+  border-block-start-color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+[data-theme="dark"] .spark-ui .select2-drop,
+[data-theme="dark"] .select2-drop {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .spark-ui .select2-drop .select2-search input,
+[data-theme="dark"] .select2-drop .select2-search input {
+  background-color: var(--spark-bg, #0b0f19) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .select2-results li,
+[data-theme="dark"] .select2-results li {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .select2-results .select2-selected,
+[data-theme="dark"] .select2-results .select2-selected {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  color: #818cf8 !important;
+}
+
+/* ==========================================================================
+   PANELS & WELLS (Base & Light Mode)
+   ========================================================================== */
+
+.spark-ui .panel {
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-lg, 12px);
+  box-shadow: none;
+  margin-bottom: 20px;
+}
+
+.spark-ui .panel-heading {
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0);
+  color: var(--spark-text-primary, #0f172a);
+  font-weight: 600;
+  font-size: var(--spark-text-base);
+  padding: 12px 16px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+}
+
+.spark-ui .panel-body {
+  padding: 16px;
+  background-color: transparent;
+  color: var(--spark-text-primary, #0f172a);
+}
+
+.spark-ui .panel-warning {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.spark-ui .panel-warning>.panel-heading {
+  background-color: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.2);
+  color: #b45309;
+}
+
+.spark-ui .well,
+.spark-ui .well-sm,
+.spark-ui #bottom-total {
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-lg, 12px);
+  box-shadow: none;
+  padding: 14px 18px;
+}
+
+/* ==========================================================================
+   SPARK RICHTEXT / REDACTOR COMPONENT (Light & Dark Theme, RTL, Modals)
+   ========================================================================== */
+
+/* ─── 1. Container Box ─── */
+.redactor_box,
+.spark-ui .redactor_box {
+  position: relative;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+.redactor_box:focus-within,
+.spark-ui .redactor_box:focus-within {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+/* Fullscreen Mode */
+.redactor_box_fullscreen,
+body .redactor_box_fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 99999 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+}
+
+/* Validation states */
+.has-error .redactor_box,
+.has-error .spark-ui .redactor_box {
+  border-color: var(--spark-danger, #ef4444) !important;
+}
+.has-success .redactor_box,
+.has-success .spark-ui .redactor_box {
+  border-color: var(--spark-success, #10b981) !important;
+}
+
+/* ─── 2. Toolbar & Buttons ─── */
+.redactor_toolbar,
+.spark-ui .redactor_toolbar,
+.redactor_box .redactor_toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 2px !important;
+  background: var(--spark-surface-subtle, #f8fafc) !important;
+  border: none !important;
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  padding: 6px 8px !important;
+  margin: 0 !important;
+  list-style: none !important;
+  filter: none !important;
+}
+
+.redactor_toolbar li,
+.spark-ui .redactor_toolbar li {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.redactor_toolbar li a,
+.spark-ui .redactor_toolbar li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  background-color: transparent !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+  cursor: pointer !important;
+}
+
+.redactor_toolbar li a:hover,
+.spark-ui .redactor_toolbar li a:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  border-color: var(--spark-border-default, #e2e8f0) !important;
+}
+
+.redactor_toolbar li a:active,
+.redactor_toolbar li a.redactor_act,
+.spark-ui .redactor_toolbar li a:active,
+.spark-ui .redactor_toolbar li a.redactor_act {
+  background-color: var(--spark-primary-subtle, #eef2ff) !important;
+  border-color: var(--spark-primary, #6366f1) !important;
+}
+
+.redactor_toolbar li.redactor_separator,
+.spark-ui .redactor_toolbar li.redactor_separator {
+  float: none !important;
+  display: inline-block !important;
+  width: 1px !important;
+  height: 18px !important;
+  margin: 0 4px !important;
+  padding: 0 !important;
+  background-color: var(--spark-border-default, #e2e8f0) !important;
+  border: none !important;
+}
+
+.redactor_button_disabled,
+.redactor_toolbar li a.redactor_button_disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+.redactor_button_disabled:hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+/* ─── 3. Editable Area Content & Typography ─── */
+.redactor_editor,
+.redactor_editor:focus,
+.spark-ui .redactor_editor,
+.spark-ui .redactor_editor:focus {
+  position: relative !important;
+  background: var(--spark-surface-card, #ffffff) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-family: var(--spark-font-family) !important;
+  font-size: var(--spark-text-base) !important;
+  line-height: var(--spark-leading-normal, 1.5) !important;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.redactor_editor p,
+.redactor_editor div,
+.redactor_editor ul,
+.redactor_editor ol,
+.redactor_editor dl,
+.redactor_editor table,
+.redactor_editor blockquote,
+.redactor_editor pre {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  background: transparent !important;
+}
+
+.redactor_editor p,
+.redactor_editor div {
+  margin: 0 0 10px 0 !important;
+}
+
+.redactor_editor h1,
+.redactor_editor h2,
+.redactor_editor h3,
+.redactor_editor h4,
+.redactor_editor h5,
+.redactor_editor h6 {
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-family: var(--spark-font-family) !important;
+  font-weight: 700 !important;
+  background: none !important;
+  margin-top: 14px !important;
+  margin-bottom: 8px !important;
+  padding: 0 !important;
+}
+
+.redactor_editor h1 { font-size: var(--spark-text-2xl) !important; line-height: 1.3 !important; }
+.redactor_editor h2 { font-size: var(--spark-text-2xl) !important; line-height: 1.35 !important; }
+.redactor_editor h3 { font-size: var(--spark-text-xl) !important; line-height: 1.4 !important; }
+.redactor_editor h4 { font-size: var(--spark-text-md) !important; line-height: 1.4 !important; }
+.redactor_editor h5 { font-size: var(--spark-text-md) !important; line-height: 1.45 !important; }
+.redactor_editor h6 { font-size: var(--spark-text-base) !important; line-height: 1.45 !important; }
+
+.redactor_editor a {
+  color: var(--spark-primary, #6366f1) !important;
+  text-decoration: underline !important;
+}
+.redactor_editor a:hover {
+  color: var(--spark-primary-hover, #4f46e5) !important;
+}
+
+.redactor_editor .redactor_placeholder,
+.redactor_placeholder {
+  color: var(--spark-text-muted, #94a3b8) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+}
+
+.redactor_editor blockquote {
+  margin: 10px 0 !important;
+  padding: 8px 16px !important;
+  border-left: 3px solid var(--spark-primary, #6366f1) !important;
+  color: var(--spark-text-secondary, #475569) !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  border-radius: 0 var(--spark-radius-sm, 6px) var(--spark-radius-sm, 6px) 0 !important;
+  font-style: italic !important;
+}
+
+.redactor_editor ul,
+.redactor_editor ol {
+  padding-left: 24px !important;
+  margin: 0 0 10px 0 !important;
+}
+.redactor_editor li {
+  margin-bottom: 4px !important;
+}
+
+.redactor_editor code {
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-family: var(--spark-font-mono, monospace) !important;
+  font-size: var(--spark-text-sm) !important;
+  background-color: var(--spark-surface-subtle, #f1f5f9) !important;
+  color: var(--spark-purple, #8b5cf6) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+}
+
+.redactor_editor pre {
+  padding: 12px 16px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  font-family: var(--spark-font-mono, monospace) !important;
+  font-size: var(--spark-text-sm) !important;
+  line-height: 1.5 !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  white-space: pre-wrap !important;
+  overflow-x: auto !important;
+}
+
+.redactor_editor table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 12px 0 !important;
+  font-size: var(--spark-text-base) !important;
+}
+.redactor_editor table td,
+.redactor_editor table th {
+  padding: 8px 12px !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  vertical-align: top !important;
+  color: inherit !important;
+}
+.redactor_editor table thead th,
+.redactor_editor table thead td {
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  border-bottom: 2px solid var(--spark-border-strong, #cbd5e1) !important;
+  font-weight: 600 !important;
+}
+
+.redactor_editor hr {
+  height: 1px !important;
+  border: none !important;
+  background-color: var(--spark-border-default, #e2e8f0) !important;
+  margin: 16px 0 !important;
+}
+
+.redactor_editor.redactor_editor_wym {
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+}
+.redactor_editor_wym div,
+.redactor_editor_wym p,
+.redactor_editor_wym blockquote {
+  border: 1px dashed var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  padding: 8px !important;
+  margin-bottom: 6px !important;
+}
+
+/* ─── 4. Source / HTML Textarea View ─── */
+.redactor_box textarea,
+.redactor_box textarea:focus {
+  position: relative !important;
+  z-index: 1004 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 120px !important;
+  margin: 0 !important;
+  padding: 12px 16px !important;
+  outline: none !important;
+  border: none !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-family: var(--spark-font-mono, Consolas, Monaco, monospace) !important;
+  font-size: var(--spark-text-base) !important;
+  line-height: 1.5 !important;
+  resize: vertical !important;
+}
+
+/* ─── 5. Dropdown Menus ─── */
+.redactor_dropdown,
+div.redactor_dropdown {
+  position: absolute !important;
+  z-index: 99999 !important;
+  padding: 6px !important;
+  min-width: 180px !important;
+  background-color: var(--spark-surface-elevated, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  box-shadow: var(--spark-shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)) !important;
+  font-family: var(--spark-font-family) !important;
+  font-size: var(--spark-text-base) !important;
+  line-height: 1.4 !important;
+}
+
+.redactor_dropdown a,
+div.redactor_dropdown a {
+  display: block !important;
+  padding: 6px 12px !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  text-decoration: none !important;
+  font-size: var(--spark-text-base) !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.redactor_dropdown a:hover,
+div.redactor_dropdown a:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  color: var(--spark-primary, #6366f1) !important;
+  text-decoration: none !important;
+}
+
+.redactor_separator_drop,
+div.redactor_separator_drop {
+  margin: 4px 0 !important;
+  padding: 0 !important;
+  height: 1px !important;
+  border: none !important;
+  background-color: var(--spark-border-default, #e2e8f0) !important;
+}
+
+.redactor_dropdown .redactor_format_blockquote {
+  font-style: italic !important;
+  color: var(--spark-text-secondary, #475569) !important;
+}
+.redactor_dropdown .redactor_format_pre {
+  font-family: var(--spark-font-mono, monospace) !important;
+}
+.redactor_dropdown .redactor_format_h1 { font-size: var(--spark-text-xl) !important; font-weight: 700 !important; }
+.redactor_dropdown .redactor_format_h2 { font-size: var(--spark-text-lg) !important; font-weight: 700 !important; }
+.redactor_dropdown .redactor_format_h3 { font-size: var(--spark-text-md) !important; font-weight: 700 !important; }
+.redactor_dropdown .redactor_format_h4 { font-size: var(--spark-text-md) !important; font-weight: 600 !important; }
+.redactor_dropdown .redactor_format_h5 { font-size: var(--spark-text-base) !important; font-weight: 600 !important; }
+
+/* ─── 6. Redactor Dialogs / Modals ─── */
+#redactor_modal_overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 100050 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(4px) !important;
+  opacity: 1 !important;
+}
+
+#redactor_modal {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 100051 !important;
+  padding: 0 !important;
+  border-radius: var(--spark-radius-lg, 12px) !important;
+  background: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  box-shadow: var(--spark-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.2)) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-family: var(--spark-font-family) !important;
+  text-shadow: none !important;
+  overflow: hidden !important;
+  max-width: 95vw !important;
+}
+
+#redactor_modal header {
+  padding: 16px 20px !important;
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  font-weight: 700 !important;
+  font-size: var(--spark-text-md) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+#redactor_modal_close {
+  top: 14px !important;
+  right: 16px !important;
+  width: 24px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+  text-align: center !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  border-radius: 4px !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+#redactor_modal_close:hover {
+  color: var(--spark-text-primary, #0f172a) !important;
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+}
+
+#redactor_modal section {
+  padding: 20px !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+#redactor_modal footer {
+  padding: 14px 20px !important;
+  border-top: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+}
+
+#redactor_modal label {
+  color: var(--spark-text-secondary, #475569) !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 600 !important;
+  margin-bottom: 6px !important;
+}
+
+#redactor_modal .redactor_input,
+#redactor_modal input[type="text"],
+#redactor_modal textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  background-color: var(--spark-surface, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-family: inherit !important;
+  font-size: var(--spark-text-base) !important;
+  outline: none !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+#redactor_modal .redactor_input:focus,
+#redactor_modal input[type="text"]:focus,
+#redactor_modal textarea:focus {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+#redactor_modal .redactor_modal_btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 7px 16px !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  font-weight: 600 !important;
+  font-size: var(--spark-text-base) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface, #ffffff) !important;
+  color: var(--spark-text-secondary, #475569) !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+#redactor_modal .redactor_modal_btn:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+#redactor_modal #redactor_insert_link_btn,
+#redactor_modal #redactor_insert_table_btn,
+#redactor_modal .redactor_modal_action_btn {
+  background: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  border-color: var(--spark-primary, #6366f1) !important;
+}
+#redactor_modal #redactor_insert_link_btn:hover,
+#redactor_modal #redactor_insert_table_btn:hover,
+#redactor_modal .redactor_modal_action_btn:hover {
+  background: var(--spark-primary-hover, #4f46e5) !important;
+}
+
+#redactor_tabs a {
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface, #ffffff) !important;
+  color: var(--spark-text-secondary, #475569) !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  padding: 6px 14px !important;
+  font-size: var(--spark-text-sm) !important;
+}
+#redactor_tabs a:hover,
+#redactor_tabs a.redactor_tabs_act {
+  background-color: var(--spark-primary-subtle, #eef2ff) !important;
+  color: var(--spark-primary, #6366f1) !important;
+  border-color: var(--spark-primary, #6366f1) !important;
+}
+
+/* ─── 7. Dark Mode Architecture (Global via [data-theme="dark"]) ─── */
+
+[data-theme="dark"] .redactor_box,
+[data-theme="dark"] .spark-ui .redactor_box {
+  border-color: var(--spark-border-default, #1f2937) !important;
+  background-color: var(--spark-surface-card, #111827) !important;
+}
+
+[data-theme="dark"] .redactor_box_fullscreen,
+[data-theme="dark"] body .redactor_box_fullscreen {
+  background-color: var(--spark-surface-card, #111827) !important;
+}
+
+[data-theme="dark"] .redactor_toolbar,
+[data-theme="dark"] .spark-ui .redactor_toolbar,
+[data-theme="dark"] .redactor_box .redactor_toolbar {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .redactor_toolbar li.redactor_separator,
+[data-theme="dark"] .spark-ui .redactor_toolbar li.redactor_separator {
+  background-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .redactor_toolbar li a,
+[data-theme="dark"] .spark-ui .redactor_toolbar li a {
+  filter: invert(0.85) brightness(1.3) contrast(1.1);
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .redactor_toolbar li a:hover,
+[data-theme="dark"] .spark-ui .redactor_toolbar li a:hover {
+  filter: invert(0.95) brightness(1.4) contrast(1.2);
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .redactor_toolbar li a:active,
+[data-theme="dark"] .redactor_toolbar li a.redactor_act,
+[data-theme="dark"] .spark-ui .redactor_toolbar li a:active,
+[data-theme="dark"] .spark-ui .redactor_toolbar li a.redactor_act {
+  filter: invert(1) brightness(1.5);
+  background-color: rgba(99, 102, 241, 0.35) !important;
+  border-color: var(--spark-primary, #818cf8) !important;
+}
+
+[data-theme="dark"] .redactor_editor,
+[data-theme="dark"] .redactor_editor:focus,
+[data-theme="dark"] .spark-ui .redactor_editor,
+[data-theme="dark"] .spark-ui .redactor_editor:focus {
+  background: var(--spark-surface-card, #111827) !important;
+  background-color: var(--spark-surface-card, #111827) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .redactor_editor h1,
+[data-theme="dark"] .redactor_editor h2,
+[data-theme="dark"] .redactor_editor h3,
+[data-theme="dark"] .redactor_editor h4,
+[data-theme="dark"] .redactor_editor h5,
+[data-theme="dark"] .redactor_editor h6 {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .redactor_editor a {
+  color: var(--spark-primary, #818cf8) !important;
+}
+[data-theme="dark"] .redactor_editor a:hover {
+  color: var(--spark-primary-hover, #a5b4fc) !important;
+}
+
+[data-theme="dark"] .redactor_editor .redactor_placeholder,
+[data-theme="dark"] .redactor_placeholder {
+  color: var(--spark-text-muted, #64748b) !important;
+}
+
+[data-theme="dark"] .redactor_editor blockquote {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-left-color: var(--spark-primary, #818cf8) !important;
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+[data-theme="dark"] .redactor_editor code {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-purple, #a78bfa) !important;
+}
+
+[data-theme="dark"] .redactor_editor pre {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .redactor_editor table td,
+[data-theme="dark"] .redactor_editor table th {
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+[data-theme="dark"] .redactor_editor table thead th,
+[data-theme="dark"] .redactor_editor table thead td {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-bottom-color: var(--spark-border-strong, #374151) !important;
+}
+
+[data-theme="dark"] .redactor_editor hr {
+  background-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .redactor_editor.redactor_editor_wym {
+  background-color: #0b0f19 !important;
+}
+[data-theme="dark"] .redactor_editor_wym div,
+[data-theme="dark"] .redactor_editor_wym p,
+[data-theme="dark"] .redactor_editor_wym blockquote {
+  border-color: var(--spark-border-default, #1f2937) !important;
+  background-color: var(--spark-surface-card, #111827) !important;
+}
+
+[data-theme="dark"] .redactor_box textarea,
+[data-theme="dark"] .redactor_box textarea:focus {
+  background-color: var(--spark-surface-card, #111827) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .redactor_dropdown,
+[data-theme="dark"] div.redactor_dropdown {
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  border-color: var(--spark-border-default, #374151) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .redactor_dropdown a,
+[data-theme="dark"] div.redactor_dropdown a {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .redactor_dropdown a:hover,
+[data-theme="dark"] div.redactor_dropdown a:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--spark-primary, #818cf8) !important;
+}
+
+[data-theme="dark"] .redactor_separator_drop,
+[data-theme="dark"] div.redactor_separator_drop {
+  background-color: var(--spark-border-default, #374151) !important;
+}
+
+[data-theme="dark"] #redactor_modal {
+  background: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+[data-theme="dark"] #redactor_modal header {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] #redactor_modal section {
+  background-color: var(--spark-surface-card, #111827) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] #redactor_modal footer {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-top-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] #redactor_modal_close {
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+[data-theme="dark"] #redactor_modal_close:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] #redactor_modal label {
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+[data-theme="dark"] #redactor_modal .redactor_input,
+[data-theme="dark"] #redactor_modal input[type="text"],
+[data-theme="dark"] #redactor_modal textarea {
+  background-color: #0b0f19 !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] #redactor_modal .redactor_input:focus,
+[data-theme="dark"] #redactor_modal input[type="text"]:focus,
+[data-theme="dark"] #redactor_modal textarea:focus {
+  border-color: var(--spark-primary, #818cf8) !important;
+}
+
+[data-theme="dark"] #redactor_modal .redactor_modal_btn {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-secondary, #cbd5e1) !important;
+}
+
+[data-theme="dark"] #redactor_modal .redactor_modal_btn:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] #redactor_tabs a {
+  border-color: var(--spark-border-default, #1f2937) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+[data-theme="dark"] #redactor_tabs a:hover,
+[data-theme="dark"] #redactor_tabs a.redactor_tabs_act {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+  color: var(--spark-primary, #818cf8) !important;
+  border-color: var(--spark-primary, #818cf8) !important;
+}
+
+/* ─── 8. RTL Support ─── */
+html[dir="rtl"] .redactor_toolbar,
+body.rtl .redactor_toolbar,
+[dir="rtl"] .redactor_toolbar {
+  direction: rtl !important;
+}
+
+html[dir="rtl"] .redactor_editor blockquote,
+body.rtl .redactor_editor blockquote,
+[dir="rtl"] .redactor_editor blockquote {
+  border-left: none !important;
+  border-right: 3px solid var(--spark-primary, #6366f1) !important;
+  border-radius: var(--spark-radius-sm, 6px) 0 0 var(--spark-radius-sm, 6px) !important;
+}
+
+html[dir="rtl"] .redactor_editor ul,
+html[dir="rtl"] .redactor_editor ol,
+body.rtl .redactor_editor ul,
+body.rtl .redactor_editor ol,
+[dir="rtl"] .redactor_editor ul,
+[dir="rtl"] .redactor_editor ol {
+  padding-left: 0 !important;
+  padding-right: 24px !important;
+}
+
+html[dir="rtl"] #redactor_modal_close,
+body.rtl #redactor_modal_close,
+[dir="rtl"] #redactor_modal_close {
+  right: auto !important;
+  left: 16px !important;
+}
+
+html[dir="rtl"] #redactor_modal footer,
+body.rtl #redactor_modal footer,
+[dir="rtl"] #redactor_modal footer {
+  justify-content: flex-start !important;
+}
+
+/* ==========================================================================
+   SPARK JQUERY RICHTEXT COMPONENT (.richText / .content)
+   ========================================================================== */
+
+/* ─── 1. jQuery RichText Container & Light Mode ─── */
+.richText,
+.spark-ui .richText {
+  position: relative !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease);
+}
+
+.richText:focus-within,
+.spark-ui .richText:focus-within {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+.richText .richText-toolbar {
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  padding: 4px 6px !important;
+}
+
+.richText .richText-toolbar ul li a {
+  border-right: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  color: var(--spark-text-secondary, #475569) !important;
+  padding: 8px 12px !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.richText .richText-toolbar ul li a:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  color: var(--spark-primary, #6366f1) !important;
+}
+
+.richText .richText-undo,
+.richText .richText-redo,
+.richText .richText-help {
+  color: var(--spark-text-secondary, #475569) !important;
+  border-color: var(--spark-border-default, #e2e8f0) !important;
+  padding: 8px 12px !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.richText .richText-undo:hover,
+.richText .richText-redo:hover,
+.richText .richText-help:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  color: var(--spark-primary, #6366f1) !important;
+}
+
+.richText .richText-editor {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-family: var(--spark-font-family) !important;
+  font-size: var(--spark-text-base) !important;
+  line-height: var(--spark-leading-normal, 1.5) !important;
+  padding: 12px 16px !important;
+  border-left: none !important;
+}
+
+.richText .richText-editor:focus {
+  border-left: none !important;
+}
+
+.richText .richText-editor[placeholder]:before {
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+.richText .richText-toolbar ul li a .richText-dropdown-outer .richText-dropdown {
+  background-color: var(--spark-surface-elevated, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  box-shadow: var(--spark-shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1)) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+.richText .richText-toolbar ul li a .richText-dropdown-outer .richText-dropdown .richText-dropdown-close {
+  background: var(--spark-surface-subtle, #f8fafc) !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  border-radius: 4px !important;
+}
+
+.richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a {
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+.richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  color: var(--spark-primary, #6366f1) !important;
+}
+
+.richText .richText-form label {
+  color: var(--spark-text-secondary, #475569) !important;
+}
+
+.richText .richText-form input[type=file],
+.richText .richText-form input[type=number],
+.richText .richText-form input[type=text],
+.richText .richText-form select {
+  background-color: var(--spark-surface, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+.richText .richText-form button {
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+}
+.richText .richText-form button:hover {
+  background-color: var(--spark-primary-hover, #4f46e5) !important;
+}
+
+.richText .richText-initial {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  font-family: var(--spark-font-mono, monospace) !important;
+}
+
+/* ─── 2. jQuery RichText Dark Mode ─── */
+[data-theme="dark"] .richText,
+[data-theme="dark"] .spark-ui .richText {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar ul li a {
+  border-right-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--spark-primary, #818cf8) !important;
+}
+
+[data-theme="dark"] .richText .richText-undo,
+[data-theme="dark"] .richText .richText-redo,
+[data-theme="dark"] .richText .richText-help {
+  color: var(--spark-text-secondary, #94a3b8) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .richText .richText-undo:hover,
+[data-theme="dark"] .richText .richText-redo:hover,
+[data-theme="dark"] .richText .richText-help:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--spark-primary, #818cf8) !important;
+}
+
+[data-theme="dark"] .richText .richText-editor {
+  background-color: var(--spark-surface-card, #111827) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .richText .richText-editor[placeholder]:before {
+  color: var(--spark-text-muted, #64748b) !important;
+}
+
+[data-theme="dark"] .richText .richText-editor table td,
+[data-theme="dark"] .richText .richText-editor table th {
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar ul li a .richText-dropdown-outer .richText-dropdown {
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  border-color: var(--spark-border-default, #374151) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar ul li a .richText-dropdown-outer .richText-dropdown .richText-dropdown-close {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a {
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--spark-primary, #818cf8) !important;
+}
+
+[data-theme="dark"] .richText .richText-form label {
+  color: var(--spark-text-secondary, #94a3b8) !important;
+}
+
+[data-theme="dark"] .richText .richText-form input[type=file],
+[data-theme="dark"] .richText .richText-form input[type=number],
+[data-theme="dark"] .richText .richText-form input[type=text],
+[data-theme="dark"] .richText .richText-form select {
+  background-color: #0b0f19 !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .richText .richText-form button {
+  background-color: var(--spark-primary, #818cf8) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .richText .richText-initial {
+  background-color: #0b0f19 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .richText .richText-list.list-rightclick {
+  background-color: var(--spark-surface-elevated, #1f2937) !important;
+  border-color: var(--spark-border-default, #374151) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+/* ─── 3. RTL for jQuery RichText ─── */
+html[dir="rtl"] .richText .richText-toolbar ul li,
+body.rtl .richText .richText-toolbar ul li,
+[dir="rtl"] .richText .richText-toolbar ul li {
+  float: right !important;
+}
+
+html[dir="rtl"] .richText .richText-toolbar ul li a,
+body.rtl .richText .richText-toolbar ul li a,
+[dir="rtl"] .richText .richText-toolbar ul li a {
+  border-right: none !important;
+  border-left: 1px solid var(--spark-border-default, #e2e8f0) !important;
+}
+
+html[dir="rtl"] .richText .richText-undo,
+html[dir="rtl"] .richText .richText-redo,
+body.rtl .richText .richText-undo,
+body.rtl .richText .richText-redo,
+[dir="rtl"] .richText .richText-undo,
+[dir="rtl"] .richText .richText-redo {
+  float: right !important;
+  border-right: none !important;
+  border-left: 1px solid var(--spark-border-default, #e2e8f0) !important;
+}
+
+html[dir="rtl"] .richText .richText-help,
+body.rtl .richText .richText-help,
+[dir="rtl"] .richText .richText-help {
+  float: left !important;
+}
+
+[data-theme="dark"] html[dir="rtl"] .richText .richText-toolbar ul li a,
+[data-theme="dark"] body.rtl .richText .richText-toolbar ul li a,
+[data-theme="dark"] [dir="rtl"] .richText .richText-toolbar ul li a,
+[data-theme="dark"] html[dir="rtl"] .richText .richText-undo,
+[data-theme="dark"] html[dir="rtl"] .richText .richText-redo,
+[data-theme="dark"] body.rtl .richText .richText-undo,
+[data-theme="dark"] body.rtl .richText .richText-redo,
+[data-theme="dark"] [dir="rtl"] .richText .richText-undo,
+[data-theme="dark"] [dir="rtl"] .richText .richText-redo {
+  border-left-color: var(--spark-border-default, #1f2937) !important;
+}
+
+/* ==========================================================================
+   CUSTOM ACTION BUTTONS (#reset, #addCostCenter, Input Group Buttons)
+   ========================================================================== */
+
+.spark-ui #reset,
+.spark-ui .btn-danger#reset {
+  background-color: #dc2626 !important;
+  border: none !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  padding: 8px 18px !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 700 !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.spark-ui #reset:hover,
+.spark-ui .btn-danger#reset:hover {
+  background-color: #b91c1c !important;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35) !important;
+}
+
+.spark-ui #addCostCenter,
+.spark-ui button#addCostCenter {
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: var(--spark-text-base) !important;
+  padding: 8px 16px !important;
+  min-height: 38px !important;
+}
+
+.spark-ui .input-group-addon button,
+.spark-ui .input-group-addon a,
+.spark-ui .input-group-btn .btn {
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  font-size: var(--spark-text-base) !important;
+}
+
+/* ==========================================================================
+   DARK THEME OVERRIDES (Panels, Wells & Buttons)
+   ========================================================================== */
+
+/* ─── Panels in Dark Mode ─── */
+[data-theme="dark"] .spark-ui .panel,
+[data-theme="dark"] .panel {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .panel-heading,
+[data-theme="dark"] .panel-heading {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .panel-body,
+[data-theme="dark"] .panel-body {
+  background-color: transparent !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .panel-warning,
+[data-theme="dark"] .panel-warning {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+[data-theme="dark"] .spark-ui .panel-warning>.panel-heading,
+[data-theme="dark"] .panel-warning>.panel-heading {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-bottom-color: rgba(245, 158, 11, 0.25) !important;
+  color: #fbbf24 !important;
+}
+
+/* ─── Wells in Dark Mode ─── */
+[data-theme="dark"] .spark-ui .well,
+[data-theme="dark"] .spark-ui .well-sm,
+[data-theme="dark"] .spark-ui #bottom-total,
+[data-theme="dark"] .well,
+[data-theme="dark"] .well-sm,
+[data-theme="dark"] #bottom-total {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] #bottom-total .totals tr td,
+[data-theme="dark"] #bottom-total .totals tr.warning td,
+[data-theme="dark"] .spark-ui .totals tr td {
+  background-color: transparent !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+/* ─── Action Buttons in Dark Mode ─── */
+[data-theme="dark"] .spark-ui #reset,
+[data-theme="dark"] .spark-ui .btn-danger#reset {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .spark-ui #addCostCenter,
+[data-theme="dark"] .spark-ui button#addCostCenter {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .spark-ui .input-group-addon button,
+[data-theme="dark"] .spark-ui .input-group-addon a,
+[data-theme="dark"] .spark-ui .input-group-btn .btn {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  color: #f8fafc !important;
+}
+
+/* ==========================================================================
+   FILE INPUT COMPONENT (Bootstrap FileInput & Native HTML5)
+   ========================================================================== */
+
+/* 1. Base Container & Bootstrap FileInput (.file-input) */
+.spark-ui .file-input,
+.modal .file-input,
+.bootbox .file-input,
+.file-input {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.spark-ui .file-input .input-group,
+.modal .file-input .input-group,
+.file-input .input-group {
+  display: flex !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+/* 2. File Caption (Text display area) */
+.spark-ui .file-input .form-control.file-caption,
+.modal .file-input .form-control.file-caption,
+.file-input .form-control.file-caption {
+  height: 42px !important;
+  min-height: 42px !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  font-family: var(--spark-font-family) !important;
+  padding: 8px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-radius: var(--spark-radius-md, 8px) 0 0 var(--spark-radius-md, 8px) !important;
+  box-shadow: none !important;
+  cursor: text !important;
+  outline: none !important;
+  flex: 1 1 auto !important;
+  width: 1% !important;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+[dir="rtl"] .spark-ui .file-input .form-control.file-caption,
+[dir="rtl"] .modal .file-input .form-control.file-caption,
+[dir="rtl"] .file-input .form-control.file-caption,
+body.rtl .file-input .form-control.file-caption {
+  border-radius: 0 var(--spark-radius-md, 8px) var(--spark-radius-md, 8px) 0 !important;
+  text-align: right !important;
+}
+
+.spark-ui .file-input .form-control.file-caption:focus,
+.modal .file-input .form-control.file-caption:focus,
+.file-input .form-control.file-caption:focus {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+.spark-ui .file-caption-name,
+.modal .file-caption-name,
+.file-caption-name {
+  display: inline-block !important;
+  float: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  line-height: normal !important;
+}
+
+.spark-ui .file-caption .glyphicon,
+.modal .file-caption .glyphicon,
+.file-caption .glyphicon {
+  float: none !important;
+  margin-inline-end: 8px !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+/* 3. Input Group Buttons Wrapper */
+.spark-ui .file-input .input-group-btn,
+.modal .file-input .input-group-btn,
+.file-input .input-group-btn {
+  display: flex !important;
+  align-items: stretch !important;
+  position: relative !important;
+  white-space: nowrap !important;
+  width: auto !important;
+}
+
+/* 4. Browse Button (.btn-file) */
+.spark-ui .file-input .btn-file,
+.modal .file-input .btn-file,
+.file-input .btn-file,
+.btn-file {
+  position: relative !important;
+  overflow: hidden !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 8px 18px !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 600 !important;
+  font-family: var(--spark-font-family) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border-radius: 0 var(--spark-radius-md, 8px) var(--spark-radius-md, 8px) 0 !important;
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 2px 6px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+  cursor: pointer !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+[dir="rtl"] .spark-ui .file-input .btn-file,
+[dir="rtl"] .modal .file-input .btn-file,
+[dir="rtl"] .file-input .btn-file,
+[dir="rtl"] .btn-file,
+body.rtl .file-input .btn-file,
+body.rtl .btn-file {
+  border-radius: var(--spark-radius-md, 8px) 0 0 var(--spark-radius-md, 8px) !important;
+}
+
+.spark-ui .file-input .btn-file:hover,
+.modal .file-input .btn-file:hover,
+.file-input .btn-file:hover,
+.btn-file:hover {
+  filter: brightness(1.08) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px var(--spark-focus-ring, rgba(99, 102, 241, 0.38)) !important;
+  color: #ffffff !important;
+}
+
+.spark-ui .file-input .btn-file:active,
+.modal .file-input .btn-file:active,
+.file-input .btn-file:active,
+.btn-file:active {
+  transform: translateY(0) !important;
+  filter: brightness(0.95) !important;
+}
+
+/* Hidden native file input inside .btn-file */
+.btn-file input[type="file"] {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  font-size: 100px !important;
+  text-align: right !important;
+  filter: alpha(opacity=0) !important;
+  opacity: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 5. Remove & Upload Buttons inside .input-group-btn */
+.spark-ui .file-input .fileinput-remove,
+.modal .file-input .fileinput-remove,
+.file-input .fileinput-remove {
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 8px 14px !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  border: 1px solid #ef4444 !important;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25) !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.spark-ui .file-input .fileinput-remove:hover,
+.modal .file-input .fileinput-remove:hover,
+.file-input .fileinput-remove:hover {
+  filter: brightness(1.08) !important;
+  color: #ffffff !important;
+}
+
+.spark-ui .file-input .kv-fileinput-upload,
+.modal .file-input .kv-fileinput-upload,
+.file-input .kv-fileinput-upload {
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 8px 14px !important;
+  font-size: var(--spark-text-base) !important;
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+  background: var(--spark-surface-subtle, #f8fafc) !important;
+  color: var(--spark-text-secondary, #334155) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+/* 6. Native HTML5 File Input Styling (When not transformed into .file-input) */
+.spark-ui input[type="file"]:not(.spark-hidden-file-input):not(.btn-file input[type="file"]),
+.modal input[type="file"]:not(.spark-hidden-file-input):not(.btn-file input[type="file"]),
+input[type="file"].form-control {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 4px 6px !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  font-family: var(--spark-font-family) !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  transition: border-color var(--spark-transition-fast, 0.15s ease), box-shadow var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.spark-ui input[type="file"]::file-selector-button,
+.modal input[type="file"]::file-selector-button,
+input[type="file"].form-control::file-selector-button {
+  height: 34px !important;
+  padding: 6px 16px !important;
+  margin-inline-end: 12px !important;
+  border: none !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 600 !important;
+  font-family: var(--spark-font-family) !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 4px var(--spark-focus-ring, rgba(99, 102, 241, 0.2)) !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.spark-ui input[type="file"]::-webkit-file-upload-button,
+.modal input[type="file"]::-webkit-file-upload-button,
+input[type="file"].form-control::-webkit-file-upload-button {
+  height: 34px !important;
+  padding: 6px 16px !important;
+  margin-inline-end: 12px !important;
+  border: none !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #6366f1, #7c3aed)) !important;
+  background-color: var(--spark-primary, #6366f1) !important;
+  color: #ffffff !important;
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 600 !important;
+  font-family: var(--spark-font-family) !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 4px var(--spark-focus-ring, rgba(99, 102, 241, 0.2)) !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.spark-ui input[type="file"]:hover::file-selector-button,
+.spark-ui input[type="file"]:hover::-webkit-file-upload-button,
+input[type="file"].form-control:hover::file-selector-button,
+input[type="file"].form-control:hover::-webkit-file-upload-button {
+  filter: brightness(1.08) !important;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.35) !important;
+}
+
+.spark-ui input[type="file"]:focus,
+input[type="file"].form-control:focus {
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(99, 102, 241, 0.25)) !important;
+}
+
+/* 7. Disabled & Readonly States */
+.file-caption-disabled,
+.spark-ui .file-input.disabled,
+.file-input input[type="file"]:disabled + .form-control.file-caption,
+.spark-ui input[type="file"]:disabled,
+.modal input[type="file"]:disabled {
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  cursor: not-allowed !important;
+  opacity: 0.65 !important;
+}
+
+.file-input .btn[disabled],
+.file-input .btn.disabled,
+.btn-file.disabled {
+  opacity: 0.65 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+/* 8. File Previews & Frames */
+.file-preview {
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-lg, 12px) !important;
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  padding: 12px !important;
+  width: 100% !important;
+  margin-bottom: 12px !important;
+}
+
+.file-preview-frame {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 6px !important;
+  height: 160px !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  background-color: var(--spark-surface-subtle, #f8fafc) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+  padding: 8px !important;
+  float: none !important;
+  text-align: center !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+}
+
+.file-preview-frame:hover {
+  background-color: var(--spark-surface-hover, #f1f5f9) !important;
+  border-color: var(--spark-border-hover, #cbd5e1) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+.file-preview-image {
+  max-height: 130px !important;
+  width: auto !important;
+  border-radius: var(--spark-radius-sm, 6px) !important;
+  object-fit: cover !important;
+}
+
+.file-preview-text,
+.file-preview-other {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 140px !important;
+  height: 130px !important;
+  color: var(--spark-primary, #6366f1) !important;
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+}
+
+.file-error-message {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  border-radius: var(--spark-radius-md, 8px) !important;
+  text-align: center !important;
+  padding: 8px 12px !important;
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 500 !important;
+  margin-top: 8px !important;
+}
+
+/* 9. Dark Mode Theme ([data-theme="dark"]) */
+[data-theme="dark"] .spark-ui .file-input .form-control.file-caption,
+[data-theme="dark"] .modal .file-input .form-control.file-caption,
+[data-theme="dark"] .file-input .form-control.file-caption,
+[data-theme="dark"] .spark-ui input[type="file"]:not(.spark-hidden-file-input):not(.btn-file input[type="file"]),
+[data-theme="dark"] .modal input[type="file"]:not(.spark-hidden-file-input):not(.btn-file input[type="file"]),
+[data-theme="dark"] input[type="file"].form-control {
+  background-color: var(--spark-surface-card, #1e293b) !important;
+  border-color: var(--spark-border-default, #334155) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .file-caption-name,
+[data-theme="dark"] .modal .file-caption-name,
+[data-theme="dark"] .file-caption-name {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .file-preview {
+  background-color: var(--spark-surface-card, #1e293b) !important;
+  border-color: var(--spark-border-default, #334155) !important;
+}
+
+[data-theme="dark"] .file-preview-frame {
+  background-color: var(--spark-surface-subtle, #0f172a) !important;
+  border-color: var(--spark-border-default, #334155) !important;
+}
+
+[data-theme="dark"] .file-preview-frame:hover {
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+}
+
+[data-theme="dark"] .file-preview-text,
+[data-theme="dark"] .file-preview-other {
+  color: #818cf8 !important;
+}
+
+[data-theme="dark"] .file-caption-disabled,
+[data-theme="dark"] .spark-ui .file-input.disabled,
+[data-theme="dark"] .spark-ui input[type="file"]:disabled,
+[data-theme="dark"] .modal input[type="file"]:disabled {
+  background-color: #0f172a !important;
+  color: #64748b !important;
+}
+
+[data-theme="dark"] .spark-ui .file-input .kv-fileinput-upload,
+[data-theme="dark"] .modal .file-input .kv-fileinput-upload,
+[data-theme="dark"] .file-input .kv-fileinput-upload {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}

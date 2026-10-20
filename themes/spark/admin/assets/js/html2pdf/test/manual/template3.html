@@ -1,0 +1,1801 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        div.clsoflow {
+            overflow: auto;
+        }
+
+        @media (min-width:992px) {
+            div.clsoflow {
+                overflow: hidden;
+            }
+        }
+        /*
+        @media print {
+                        .no-print { display: none; }
+                        overflow:visible;
+
+
+                    }*/
+
+    </style>
+
+        <title>html2pdf Test - Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+        <title>view sales details - مؤسسة دار الطبيعة للعطارة</title>
+        <link rel="shortcut icon" href="http://localhost/spark_erp/themes/default/admin/assets/images/icon.png" />
+
+
+
+
+
+
+
+
+
+
+
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/template1/build/css/custom.min.css" rel="stylesheet">
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+        <!-- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/styles/theme.css" rel="stylesheet" />
+
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/styles/style.css" rel="stylesheet" />
+
+        <script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/styles/helpers/bootstrap-rtl.min.css" rel="stylesheet" />
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/styles/style-rtl.css" rel="stylesheet" />
+        <link href="http://localhost/spark_erp/themes/default/admin/assets/styles/style_rtl.css" rel="stylesheet" />
+
+        <script type="text/javascript">
+            $(document).ready(function () { $('.pull-right, .pull-left').addClass('flip'); });
+        </script>
+
+
+
+
+
+
+
+
+
+
+        <script type="text/javascript">
+            $(window).load(function () {
+                $("#loading").fadeOut("slow");
+            });
+        </script>
+    </head>
+
+
+
+<body>
+
+
+
+
+    <div id="root">
+
+        <div id="loading"></div>
+        <div id="app_wrapper">
+
+
+
+
+
+            <body class="nav-md ">
+                <div class="container2 body">
+                    <div class=" main_container2">
+
+
+
+
+
+
+
+
+
+                        <div class=" ar_left_col" role="main" id="controls" style="min-height:677px;">
+                            <div class="container" id="container">
+
+                                <div class="row clsoflow" id="main-con">
+
+
+                                    <table class="lt">
+                                        <tr>
+
+                                            <td class="content-con">
+                                                <div id="content">
+                                                    <div class="row">
+                                                        <div class="alerts-con"></div>
+                                                    </div>
+
+
+
+
+
+
+
+
+                                                    <!--
+
+
+                                                    <div id="sidebar-left">
+                                                        <div class="sidebar-nav nav-collapse collapse navbar-collapse" id="sidebar_menu">
+                                                            <ul class="nav main-menu">
+                                                                <li class="mm_welcome">
+                                                                    <a href="http://localhost/spark_erp/admin/">
+                                                                        <i class="fa fa-dashboard"></i>
+                                                                        <span class="text"> مخطط تفصيلي</span>
+                                                                    </a>
+                                                                </li>
+
+
+                                                                    <li class="mm_products">
+                                                                        <a class="dropmenu" href="#">
+                                                                            <i class="fa fa-barcode"></i>
+                                                                            <span class="text"> المخازن </span>
+                                                                            <span class="chevron closed"></span>
+                                                                        </a>
+                                                                        <ul>
+                                                                            <li id="products_warehouses">
+                                                                                <a href="http://localhost/spark_erp/admin/products/warehouses">
+                                                                                    <i class="fa fa-building-o"></i><span class="text"> المخازن</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="products_index">
+                                                                                        <a class="submenu" href="http://localhost/spark_erp/admin/products">
+                                                                                            <i class="fa fa-barcode"></i>
+                                                                                            <span class="text"> قائمة المنتجات</span>
+                                                                                        </a>
+                                                                            </li>
+                                                                            <li id="products_quantity_adjustments">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/products/quantity_adjustments">
+                                                                                    <i class="fa fa-filter"></i>
+                                                                                    <span class="text"> الرصيد الافتتاحي</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="products_transfers">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/products/transfers">
+                                                                                    <i class="fa fa-star-o"></i><span class="text"> طلب تحويل</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="products_destruction_inventory">
+                                                                                <a href="http://localhost/spark_erp/admin/products/destruction_inventory">
+                                                                                    <i class="fa fa-building"></i><span class="text"> الاتلاف المخزني</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="products_manual_inventory">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/products/manual_inventory">
+                                                                                    <i class="fa fa-list-ol"></i>
+                                                                                    <span class="text"> الجرد اليدوي</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="products_stock_counts">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/products/stock_counts">
+                                                                                    <i class="fa fa-list-ol"></i>
+                                                                                    <span class="text"> الجرد الفعلي</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="mm_products_definitions">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-barcode"></i>
+                                                                                    <span class="text"> تعريفات </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                                <ul>
+
+
+                                                                                    <li id="products_add">
+                                                                                        <a class="submenu" href="http://localhost/spark_erp/admin/products/add">
+                                                                                            <i class="fa fa-plus-circle"></i>
+                                                                                            <span class="text"> إضافة أصناف مخزنية</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li id="products_import_csv">
+                                                                                        <a class="submenu" href="http://localhost/spark_erp/admin/products/import_csv">
+                                                                                            <i class="fa fa-file-text"></i>
+                                                                                            <span class="text"> استيراد المنتجات</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li id="products_print_barcodes">
+                                                                                        <a class="submenu" href="http://localhost/spark_erp/admin/products/print_barcodes">
+                                                                                            <i class="fa fa-tags"></i>
+                                                                                            <span class="text"> طباعة الباركود - الملصقات</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li id="products_units">
+                                                                                        <a href="http://localhost/spark_erp/admin/products/units">
+                                                                                            <i class="fa fa-wrench"></i><span class="text"> الوحدات</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li id="products_categories">
+                                                                                        <a href="http://localhost/spark_erp/admin/products/categories">
+                                                                                            <i class="fa fa-folder-open"></i><span class="text"> الفئات الاساسية</span>
+                                                                                        </a>
+                                                                                    </li>
+
+
+
+
+
+
+
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li id="products_reports">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/products/reports">
+                                                                                    <i class="fa fa-filter"></i>
+                                                                                    <span class="text"> تقارير</span>
+                                                                                </a>
+                                                                            </li>
+
+
+
+
+
+
+
+
+
+
+                                                                        </ul>
+                                                                    </li>
+
+
+                                                                    <li class="mm_sales ">
+                                                                        <a class="dropmenu" href="#">
+                                                                            <i class="fa fa-heart"></i>
+                                                                            <span class="text"> مبيعات                                    </span> <span class="chevron closed"></span>
+                                                                        </a>
+                                                                        <ul>
+                                                                            <li id="sales_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales">
+                                                                                    <i class="fa fa-heart"></i>
+                                                                                    <span class="text"> قائمة المبيعات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                                                                <li id="pos_sales">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/pos/sales">
+                                                                                    <i class="fa fa-heart"></i>
+                                                                                    <span class="text"> مبيعات نقاط البيع</span>
+                                                                                </a>
+                                                                            </li>
+                                                                                                                <li id="sales_add">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales/add">
+                                                                                    <i class="fa fa-plus-circle"></i>
+                                                                                    <span class="text"> إضافة عمليه بيع</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="sales_sale_by_csv">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales/sale_by_csv">
+                                                                                    <i class="fa fa-plus-circle"></i>
+                                                                                    <span class="text"> إضافة بيع بواسطة ملف CSV</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="sales_deliveries">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales/deliveries">
+                                                                                    <i class="fa fa-truck"></i>
+                                                                                    <span class="text"> التسليم</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="sales_gift_cards">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales/gift_cards">
+                                                                                    <i class="fa fa-gift"></i>
+                                                                                    <span class="text"> قائمة كروت الهدايا</span>
+                                                                                </a>
+                                                                            </li>
+
+
+
+                                                                            <li class="mm_sales_quote">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-heart-o"></i>
+                                                                                    <span class="text"> عروض الاسعار </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                                <li id="sales_quotes_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales/quotes_index">
+                                                                                    <i class="fa fa-heart-o"></i>
+                                                                                    <span class="text"> قائمة عروض الاسعار</span>
+                                                                                </a>
+                                                                                </li>
+                                                                                <li id="sales_add_quote">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/sales/add_quote">
+                                                                                    <i class="fa fa-plus-circle"></i>
+                                                                                    <span class="text"> إضافة عرض سعر</span>
+                                                                                </a>
+                                                                                </li>
+
+
+                                                                            </ul>
+                                                                            </li>
+
+
+                                                                            <li class="mm_sales_return">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-random"></i>
+                                                                                    <span class="text"> المرتجعات </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                                    <li id="returns_index">
+                                                                                    <a class="submenu" href="http://localhost/spark_erp/admin/sales/returns_index">
+                                                                                    <i class="fa fa-random"></i><span class="text"> قائمة المرتجعات</span>
+                                                                                    </a>
+                                                                                    </li>
+                                                                                    <li id="returns_add">
+                                                                                    <a class="submenu" href="http://localhost/spark_erp/admin/sales/add_return">
+                                                                                    <i class="fa fa-plus-circle"></i><span class="text"> اضافة مرتجع</span>
+                                                                                    </a>
+                                                                                    </li>
+
+
+                                                                            </ul>
+                                                                            </li>
+
+
+
+                                                                            <li class="mm_sales_report">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-bar-chart-o"></i>
+                                                                                    <span class="text"> تقارير </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                            <li id="sales_best_sellers">
+                                                                                <a href="http://localhost/spark_erp/admin/sales/best_sellers">
+                                                                                    <i class="fa fa-line-chart"></i><span class="text"> الافضل مبيعا</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="sales_daily_sales">
+                                                                                <a href="http://localhost/spark_erp/admin/sales/daily_sales">
+                                                                                    <i class="fa fa-calendar"></i><span class="text"> المبيعات اليومية</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="sales_monthly_sales">
+                                                                                <a href="http://localhost/spark_erp/admin/sales/monthly_sales">
+                                                                                    <i class="fa fa-calendar"></i><span class="text"> المبيعات الشهرية</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="sales_sales">
+                                                                                <a href="http://localhost/spark_erp/admin/sales/sales">
+                                                                                    <i class="fa fa-heart"></i><span class="text"> تقرير المبيعات</span>
+                                                                                </a>
+                                                                            </li>
+
+
+                                                                            </ul>
+                                                                            </li>
+
+
+
+
+
+
+                                                                        </ul>
+                                                                    </li>
+
+
+
+                                                                    <li class="mm_purchases">
+                                                                        <a class="dropmenu" href="#">
+                                                                            <i class="fa fa-star"></i>
+                                                                            <span class="text"> مشتريات                                    </span> <span class="chevron closed"></span>
+                                                                        </a>
+                                                                        <ul>
+                                                                            <li id="purchases_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/purchases">
+                                                                                    <i class="fa fa-star"></i>
+                                                                                    <span class="text"> قائمة مشتريات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="purchases_add">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/purchases/add">
+                                                                                    <i class="fa fa-plus-circle"></i>
+                                                                                    <span class="text"> إضافة عمليه شراء</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="purchases_purchase_by_csv">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/purchases/purchase_by_csv">
+                                                                                    <i class="fa fa-plus-circle"></i>
+                                                                                    <span class="text"> إضافة شراء بواسطة ملف CSV</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li class="mm_purchases_report">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-bar-chart-o"></i>
+                                                                                    <span class="text"> تقارير المشتريات </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                            <li id="purchases_daily_purchases">
+                                                                                <a href="http://localhost/spark_erp/admin/purchases/daily_purchases">
+                                                                                    <i class="fa fa-calendar"></i><span class="text"> المشتريات اليومية</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="purchases_monthly_purchases">
+                                                                                <a href="http://localhost/spark_erp/admin/purchases/monthly_purchases">
+                                                                                    <i class="fa fa-calendar"></i><span class="text"> المشتريات الشهرية</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="purchases_purchases">
+                                                                                <a href="http://localhost/spark_erp/admin/purchases/purchases">
+                                                                                    <i class="fa fa-star"></i><span class="text"> تقرير عن المشتريات</span>
+                                                                                </a>
+                                                                            </li>
+
+
+                                                                            </ul>
+                                                                            </li>
+
+
+
+                                                                            <li id="purchases_expenses">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/purchases/expenses">
+                                                                                    <i class="fa fa-dollar"></i>
+                                                                                    <span class="text"> قائمة المصروفات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="purchases_add_expense">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/purchases/add_expense" data-toggle="modal" data-target="#myModal">
+                                                                                    <i class="fa fa-plus-circle"></i>
+                                                                                    <span class="text"> إضافة المصروفات</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li class="mm_purchases_expenses_report">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-bar-chart-o"></i>
+                                                                                    <span class="text"> تقارير المصروفات </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                            <li id="purchases_expenses_report">
+                                                                                <a href="http://localhost/spark_erp/admin/purchases/expenses_report">
+                                                                                    <i class="fa fa-star"></i><span class="text"> تقرير المصروفات</span>
+                                                                                </a>
+                                                                            </li>
+
+
+                                                                            </ul>
+                                                                            </li>
+
+
+
+
+
+                                                                        </ul>
+                                                                    </li>
+
+
+
+                                                                    <li class="mm_auth mm_customers mm_suppliers mm_billers">
+                                                                        <a class="dropmenu" href="#">
+                                                                        <i class="fa fa-users"></i>
+                                                                        <span class="text"> المستخدمين </span>
+                                                                        <span class="chevron closed"></span>
+                                                                        </a>
+                                                                        <ul>
+                                                                                                                <li id="auth_users">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/users">
+                                                                                    <i class="fa fa-users"></i><span class="text"> قائمة المستخدمين</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="auth_create_user">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/users/create_user">
+                                                                                    <i class="fa fa-user-plus"></i><span class="text"> إضافة مستخدم</span>
+                                                                                </a>
+                                                                            </li>
+
+
+
+                                                                            <li class="mm_auth_report">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-bar-chart-o"></i>
+                                                                                    <span class="text"> تقارير المستخدمين </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                            <li id="auth_users_report">
+                                                                                <a href="http://localhost/spark_erp/admin/auth/users_report">
+                                                                                    <i class="fa fa-users"></i><span class="text"> تقرير المستخدمين</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            </ul>
+                                                                            </li>
+
+
+
+
+
+                                                                            <li id="billers_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/billers">
+                                                                                    <i class="fa fa-users"></i><span class="text"> قائمة موظفي الكاشير</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="billers_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/billers/add" data-toggle="modal" data-target="#myModal">
+                                                                                    <i class="fa fa-plus-circle"></i><span class="text"> إضافة موظف كاشير</span>
+                                                                                </a>
+                                                                            </li>
+                                                                                                                <li id="customers_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/customers">
+                                                                                    <i class="fa fa-users"></i><span class="text"> قائمة العملاء</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="customers_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/customers/add" data-toggle="modal" data-target="#myModal">
+                                                                                    <i class="fa fa-plus-circle"></i><span class="text"> إضافة العملاء</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li class="mm_customers_report">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-bar-chart-o"></i>
+                                                                                    <span class="text"> تقارير العملاء </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                            <li id="customers_customers_report">
+                                                                                <a href="http://localhost/spark_erp/admin/customers/customers_report">
+                                                                                    <i class="fa fa-users"></i><span class="text"> تقرير العملاء</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            </ul>
+                                                                            </li>
+
+
+                                                                            <li id="suppliers_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/suppliers">
+                                                                                    <i class="fa fa-users"></i><span class="text"> قائمة الموردون</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="suppliers_index">
+                                                                                <a class="submenu" href="http://localhost/spark_erp/admin/suppliers/add" data-toggle="modal" data-target="#myModal">
+                                                                                    <i class="fa fa-plus-circle"></i><span class="text"> إضافة مورد</span>
+                                                                                </a>
+                                                                            </li>
+
+
+                                                                            <li class="mm_suppliers_report">
+                                                                                <a class="dropmenu" href="#">
+                                                                                    <i class="fa fa-bar-chart-o"></i>
+                                                                                    <span class="text"> تقارير الموردين </span>
+                                                                                    <span class="chevron closed"></span>
+                                                                                </a>
+                                                                            <ul>
+
+                                                                            <li id="suppliers_supplier_report">
+                                                                                <a href="http://localhost/spark_erp/admin/suppliers/supplier_report">
+                                                                                    <i class="fa fa-users"></i><span class="text"> تقرير الموردين</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            </ul>
+                                                                            </li>
+
+
+
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li class="mm_notifications">
+                                                                        <a class="submenu" href="http://localhost/spark_erp/admin/notifications">
+                                                                            <i class="fa fa-info-circle"></i><span class="text"> إشعارات</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="mm_calendar">
+                                                                        <a class="submenu" href="http://localhost/spark_erp/admin/calendar">
+                                                                            <i class="fa fa-calendar"></i><span class="text"> تقويم</span>
+                                                                        </a>
+                                                                    </li>
+                                                                                                    <li class="mm_system_settings mm_pos">
+                                                                            <a class="dropmenu" href="#">
+                                                                                <i class="fa fa-cog"></i><span class="text"> إعدادات </span>
+                                                                                <span class="chevron closed"></span>
+                                                                            </a>
+                                                                            <ul>
+                                                                                <li id="system_settings_index">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings">
+                                                                                        <i class="fa fa-cogs"></i><span class="text"> إعدادات النظام</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                                                        <li id="pos_settings">
+                                                                                    <a href="http://localhost/spark_erp/admin/pos/settings">
+                                                                                        <i class="fa fa-th-large"></i><span class="text"> إعدادات نقاط البيع</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="promos_index">
+                                                                                    <a href="http://localhost/spark_erp/admin/promos">
+                                                                                        <i class="fa fa-cogs"></i><span class="text"> العروض الترويجية</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="pos_printers">
+                                                                                    <a href="http://localhost/spark_erp/admin/pos/printers">
+                                                                                        <i class="fa fa-print"></i><span class="text"> عرض الطابعات</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="pos_add_printer">
+                                                                                    <a href="http://localhost/spark_erp/admin/pos/add_printer">
+                                                                                        <i class="fa fa-plus-circle"></i><span class="text"> اضافة طابعة</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                                                        <li id="system_settings_change_logo">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/change_logo" data-toggle="modal" data-target="#myModal">
+                                                                                        <i class="fa fa-upload"></i><span class="text"> تغيير اللوجو</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_currencies">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/currencies">
+                                                                                        <i class="fa fa-money"></i><span class="text"> العملات</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_customer_groups">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/customer_groups">
+                                                                                        <i class="fa fa-chain"></i><span class="text"> مجموعات العملاء</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_price_groups">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/price_groups">
+                                                                                        <i class="fa fa-dollar"></i><span class="text"> مجموعات التسعيرة</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_expense_categories">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/expense_categories">
+                                                                                        <i class="fa fa-folder-open"></i><span class="text"> تصنيفات المصروفات</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_brands">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/brands">
+                                                                                        <i class="fa fa-th-list"></i><span class="text"> الماركات</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_variants">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/variants">
+                                                                                        <i class="fa fa-tags"></i><span class="text"> المتغيرات</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_tax_rates">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/tax_rates">
+                                                                                        <i class="fa fa-plus-circle"></i><span class="text"> الضرائب</span>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                                <li id="system_settings_email_templates">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/email_templates">
+                                                                                        <i class="fa fa-envelope"></i><span class="text"> قوالب البريد الإلكتروني</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_user_groups">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/user_groups">
+                                                                                        <i class="fa fa-key"></i><span class="text"> صلاحيات المستخدمين</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li id="system_settings_backups">
+                                                                                    <a href="http://localhost/spark_erp/admin/system_settings/backups">
+                                                                                        <i class="fa fa-database"></i><span class="text"> النسخ الاحتياطي</span>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                            </ul>
+                                                                        </li>
+                                                                                                <li class="mm_reports">
+                                                                        <a class="dropmenu" href="#">
+                                                                            <i class="fa fa-bar-chart-o"></i>
+                                                                            <span class="text"> تقارير </span>
+                                                                            <span class="chevron closed"></span>
+                                                                        </a>
+                                                                        <ul>
+                                                                            <li id="reports_index">
+                                                                                <a href="http://localhost/spark_erp/admin/reports">
+                                                                                    <i class="fa fa-bars"></i><span class="text"> نظرة عامة على الرسم البياني</span>
+                                                                                </a>
+                                                                            </li>
+
+                                                                                                                <li id="reports_register">
+                                                                                <a href="http://localhost/spark_erp/admin/reports/register">
+                                                                                    <i class="fa fa-th-large"></i><span class="text"> تقارير السجلات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                                                                <li id="reports_categories">
+                                                                                <a href="http://localhost/spark_erp/admin/reports/categories">
+                                                                                    <i class="fa fa-folder-open"></i><span class="text"> تقرير عن الفئات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="reports_brands">
+                                                                                <a href="http://localhost/spark_erp/admin/reports/brands">
+                                                                                    <i class="fa fa-cubes"></i><span class="text"> تقرير الماركات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="reports_payments">
+                                                                                <a href="http://localhost/spark_erp/admin/reports/payments">
+                                                                                    <i class="fa fa-money"></i><span class="text"> تقرير عن المدفوعات</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="reports_tax">
+                                                                                <a href="http://localhost/spark_erp/admin/reports/tax">
+                                                                                    <i class="fa fa-area-chart"></i><span class="text"> تقرير الضرائب</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="reports_profit_loss">
+                                                                                <a href="http://localhost/spark_erp/admin/reports/profit_loss">
+                                                                                    <i class="fa fa-money"></i><span class="text"> الأرباح و / أو الخسارة</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+
+                                                                                    </ul>
+                                                        </div>
+                                                        <a href="#" id="main-menu-act" class="full visible-md visible-lg">
+                                                            <i class="fa fa-angle-double-left"></i>
+                                                        </a>
+                                                    </div>
+                                                    </td><td class="content-con">
+                                                    <div id="content">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <ul class="breadcrumb">
+                                                                    <li><a href="http://localhost/spark_erp/">صفحة البداية</a></li><li><a href="http://localhost/spark_erp/admin/sales">مبيعات</a></li><li class="active">عرض</li>                            <li class="right_log hidden-xs">
+                                                                        عنوان بروتوكول الإنترنت الخاص بك ::1 <span class='hidden-sm'>( آخر تسجيل دخول في: 08/12/2021 19:19  )</span>                            </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                                                                                                                <div class="alerts-con"></div>-->
+
+
+
+
+
+
+
+                                                    <style>
+                                                        th {
+                                                            font-size: 12px;
+                                                        }
+
+                                                        @media print {
+
+
+                                                            /*h1 {padding:1px;}*/
+                                                            .well {
+                                                                margin-bottom: -2px;
+                                                                padding: 1px;
+                                                            }
+
+
+                                                            .col-xs-1 {
+                                                                width: 4.33333333%;
+                                                            }
+
+                                                            .col-xs-11 {
+                                                                width: 95.66666667%;
+                                                            }
+
+                                                            td {
+                                                                border: 1px solid #ddd;
+                                                            }
+
+                                                            .from {
+                                                                margin-bottom: 15px;
+                                                            }
+
+
+                                                            div.divFooter {
+                                                                position: fixed;
+                                                                bottom: 0;
+                                                            }
+
+
+                                                            table {
+                                                                page-break-inside: auto
+                                                            }
+
+                                                            tr {
+                                                                page-break-inside: avoid;
+                                                                page-break-after: auto
+                                                            }
+
+
+                                                            .inv-details table {
+                                                                page-break-inside: avoid;
+                                                                page-break-after: auto
+                                                            }
+
+                                                            .inv-details tr {
+                                                                page-break-inside: avoid;
+                                                                page-break-after: auto
+                                                            }
+
+                                                                .inv-details tr td {
+                                                                    font-size: 9pt;
+                                                                }
+
+                                                            div.container {
+                                                                min-width: 100%;
+                                                                overflow: hidden;
+                                                                border: no-border;
+                                                            }
+
+                                                            div. content {
+                                                                overflow: hidden;
+                                                            }
+
+
+
+                                                            div {
+                                                                overflow: visible !important;
+                                                            }
+                                                        }
+
+
+
+
+                                                        .divbg:after {
+                                                            content: '';
+                                                            width: 100%;
+                                                            height: 99%;
+                                                            position: absolute;
+                                                            background-color: #2A3F54;
+                                                            top: 0;
+                                                            right: 0;
+                                                            -webkit-print-color-adjust: exact;
+                                                        }
+
+                                                        .col-xs-1 {
+                                                            width: 4.33333333%;
+                                                        }
+
+                                                        div.right_col {
+                                                            padding: 10px 20px 0;
+                                                            margin-left: 1px !important;
+                                                        }
+
+                                                        div.ar_left_col {
+                                                            padding: 10px 20px 0;
+                                                            margin-right: 1px !important;
+                                                        }
+                                                    </style>
+
+                                                    <div class="box ">
+
+                                                        <div class="box-content">
+                                                            <div class="row bold">
+                                                                <div class="col-xs-12 no-print">
+
+
+                                                                    <button type="button" class="btn btn-xs btn-default no-print pull-right" style="margin-right:15px;" onclick="window.print();">
+                                                                        <i class="fa fa-print"></i> طباعة
+                                                                    </button>
+
+                                                                    <button type="button" class="btn btn-xs btn-default no-print pull-right" style="margin-right:15px;" onclick="test();">
+                                                                        <i class="fa fa-print"></i> pdf
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="row bold">
+                                                                <div class="col-xs-6 pull-left" style=" margin-bottom:10px;">
+
+                                                                    <span valign="top"><h1 style=" font-size: 25px;">Tax Invoice / فاتوره ضريبية</h1><span>
+
+                                                                </div>
+
+                                                                <div class="col-xs-6">
+
+                                                                    <div class="pull-right" style="margin-top:10px;">
+                                                                        <img src="http://localhost/spark_erp/assets/uploads/logos/logo2sm.png"
+                                                                             alt="مؤسسة دار الطبيعة للعطارة">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div class="row">
+                                                                <div class="col-xs-1 divbg">
+                                                                </div>
+                                                                <div class="col-xs-11">
+
+
+
+
+                                                                    <div class="well well-sm">
+                                                                        <div class="row bold">
+                                                                            <div class="col-xs-4">
+                                                                                <p class="bold">
+                                                                                    تاريخ الإصدار: 2021-12-05 23:42:28<br>
+                                                                                    الرقم التسلسلسي للفاتوره: 1832<br>
+                                                                                    الرقم المرجعي: SALE2021/12/0070<br>
+                                                                                    تاريخ التوريد: 2021-12-05 23:42:28<br>
+                                                                                    حالة البيع: عملية مكتملة<br>
+                                                                                    حالة الدفع: مدفوع
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col-xs-8 text-right order_barcodes">
+                                                                                <img src="http://localhost/spark_erp/admin/misc/barcode/U0FMRTIwMjEvMTIvMDA3MA/code128/74/0/1" alt="SALE2021/12/0070" class="bcimg" />
+                                                                                <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAAByAQMAAAC1Exc+AAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACO0lEQVQ4jW3VwarFugoGYCFTwVcRnAZ89YBTIa8iOA14XPfCgVN3R/1K17L5aw3A8lrCegogoI+PNZ/LemfZ8axpFj+8MVOAc/3l9x6o4A7/21rUlZ7U/suacXBLsC35f/3/Gpb8ezBMV+Ht00hRrDrDEWDS9cr1mU771UqrdLWifp6vUVx2LbA8iTTN74bD69Cu+p3e7GgUWWrH3hkmfccqaBk/u9OL0/YOw07F1/RRdq13L/DdPK2Bq5cj66azwrBT/yY2g3ZL1DSfq49Q2Euyn/frt5+ve8KV0GK6jgDR7zoHdV5fP9p1o1ioHv6uf6xxMWzt0ivlMHyL1ZK4CPev3tdL1Loh9qGdp6aVOoc8YYmdOgwXiK2ERbGrFz+8ld59K86+qt0vX19RT0ipDBaY3qqdsiTrtY58WGBHlwHyvozTpdIdad30W6zf59fPNohTKtK95wwrGSBzt+Ih9elrjEirb8/45fH1vpluT1e9TX/4LIzM1VXxLp1Ofdgt+ZTxde7D1mPqhLpbMtp0XC8uxGvyfrl8jXHFajNXZLfecA+qBdmLDjen6TqL+48W7Uf3neGj0p9yT4OD4A+Ge95gbCftwUt5hmsLPeCFJtTNNSzW08jLMpZYTHfgbpsgMeL3PX9diapdhygNup+G+3sRz3wJV2Ua1l6rw/TaKjStaSeORDj/7/6vez+wHie95VyE9ZfB9IJCPNj+lxXP7rHocbSmey1l3LtGiZnBMKxuo34TvR/cfitf/wMwTzsING3AsQAAAABJRU5ErkJggg==' alt='http://localhost/spark_erp/SalesDetails/view/spark/cdcc1a3dfcdaa6f84487bceec2cea2e392480662932b7299a960e57ac32fb0a6' class='qrimg' />
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+
+                                                                    <div class="row" style="margin-bottom:15px;margin-top:-10px;">
+
+                                                                        <!--<div class="col-xs-4 text-center">
+
+                                                                        </div>
+                                                                        <div class="col-xs-4 text-center">
+                                                                            <h1 style="min-height: 20px;padding: 10px;margin-top: -5px;background-color: #f5f5f5;border: 1px solid #e3e3e3;border-radius: 20px;-webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%); font-size: 25px;">Tax Invoice <br>فاتوره ضريبية</h1>
+
+                                                                        </div>
+                                                                        <div class="col-xs-4 text-center">
+
+                                                                        </div>-->
+
+
+
+                                                                        <div class="col-xs-6 from">
+                                                                            من:
+                                                                            <h2 style="margin-top:10px;">مؤسسة دار الطبيعة للعطارة</h2>
+                                                                            <!--مؤسسة دار الطبيعة-->
+                                                                            حي الجسر<br>رقم التسجيل الضريبي: 123<br>الهاتف: 009661122801010<br>البريد الإلكتروني: info@companypro.com
+                                                                        </div>
+
+
+                                                                        <div class="col-xs-6">
+                                                                            إلى:<br />
+                                                                            <h2 style="margin-top:10px;"></h2>
+                                                                            Attn:
+                                                                            <br>   <br><br>الهاتف: <br>البريد الإلكتروني:
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-striped jambo_table bulk_action print-table order-table">
+
+
+                                                                            <thead>
+
+                                                                                <tr style="-webkit-print-color-adjust:exact;">
+                                                                                    <th>متسلسل <br /><br /> Sr. No</th>
+                                                                                    <!--<th>رقم الصنف <br/><br/> Item Code</th>-->
+                                                                                    <th class="col-xs-12">وصف الصنف <br /><br /> Description</th>
+                                                                                    <th>الوحدة <br /><br /> Unit</th>
+                                                                                    <th>الكمية <br /><br /> QTY</th>
+
+                                                                                    <th class="col-xs-2">السعر  قبل الضريبة <br /> Unit Price</th>
+                                                                                    <!--<th>القيمة</th>-->
+                                                                                    <th class="col-xs-2">قيمة خصم العرض <br /> Discount</th>
+                                                                                    <th class="col-xs-2">٪ ضريبة القيمة المضافة <br /> VAT %</th>
+                                                                                    <th class="col-xs-2">قيمة الضريبة المضافة <br /> VAT Amount</th>
+                                                                                    <th>السعر الإجمالي <br /> Total Price</th>
+                                                                                </tr>
+
+                                                                            </thead>
+
+                                                                            <tbody>
+
+                                                                                <tr>
+                                                                                    <td style="text-align:center; width:40px; vertical-align:middle;">1</td>
+                                                                                    <!--<td style="vertical-align:middle;">
+                                                                                        33675145                            </td>-->
+                                                                                    <td style="vertical-align:middle;">
+                                                                                        كود:33675145<br>ip1
+                                                                                    </td>
+
+                                                                                    <td>واحدة</td>
+
+                                                                                    <td style="width: 80px; text-align:center; vertical-align:middle;">100.00 </td>
+
+                                                                                    <td style="text-align:right; width:100px;">
+                                                                                        <!--                                -->
+                                                                                        43.48
+                                                                                    </td>
+                                                                                    <!--<td>5,000.00SR</td>-->
+                                                                                    <td style="width: 100px; text-align:right; vertical-align:middle;">0.00</td>
+                                                                                    <td style="width: 100px; text-align:right; vertical-align:middle;">15%</td>
+                                                                                    <td style="width: 100px; text-align:right; vertical-align:middle;">652.17 </td>
+                                                                                    <td style="text-align:right; width:120px;">5,000.00 </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <!--<tfoot>
+                                                                                                    <tr>
+                                                                                    <td colspan="6"
+                                                                                        style="text-align:right; padding-right:10px;">مجموع                                (SR)
+                                                                                    </td>
+
+                                                                                                            <td></td>
+                                                                                <td></td>
+                                                                                <td style="text-align:right;">652.17SR</td>                            <td style="text-align:right; padding-right:10px;">5,000.00SR</td>
+                                                                                </tr>
+
+
+                                                                                                                    <tr><td colspan="9" style="text-align:right; padding-right:10px;;">الشحن (SR)</td><td style="text-align:right; padding-right:10px;">1,000.00SR</td></tr>                    <tr>
+                                                                                <td colspan="9"
+                                                                                    style="text-align:right; font-weight:bold;">المبلغ الكلي <br/> Total Amount                            (SR)
+                                                                                </td>
+
+                                                                                <td style="text-align:right; padding-right:10px; font-weight:bold;">6,000.00SR</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="9"
+                                                                                    style="text-align:right; font-weight:bold;">مدفوع                            (SR)
+                                                                                </td>
+
+                                                                                <td style="text-align:right; font-weight:bold;">6,000.00SR</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="9"
+                                                                                    style="text-align:right; font-weight:bold;">الرصيد                            (SR)
+                                                                                </td>
+
+                                                                                <td style="text-align:right; font-weight:bold;">0.00</td>
+                                                                            </tr>
+
+                                                                            </tfoot>-->
+                                                                        </table>
+                                                                    </div>
+
+
+                                                                    <div class="row inv-details">
+                                                                        <div class="col-xs-6 pull-right">
+                                                                            <div class="well well-sm">
+                                                                                <p>
+                                                                                    <table class="table table-striped jambo_table bulk_action print-table order-table">
+                                                                                        <tfoot style="-webkit-print-color-adjust:exact;">
+                                                                                            <tr style="-webkit-print-color-adjust:exact;">
+
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    عدد الأصناف المباعة
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; font-weight:bold;">100</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Item Sold Total
+
+                                                                                                </td>
+
+                                                                                            </tr>
+                                                                                            <tr>
+
+
+
+
+
+
+
+
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    إجمالي خصم العروض
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">0.00</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Total Discounts
+
+                                                                                                </td>
+
+
+
+                                                                                                <!--
+                                                                                                        <td colspan="9"
+                                                                                                            style=" font-weight:bold;">إجمالي خصم العروض <br/> Total Discounts
+                                                                                                        </td>
+
+                                                                                                        <td style="text-align:right; padding-right:10px; font-weight:bold;">0.00</td>
+                                                                                                    -->
+                                                                                            </tr>
+                                                                                            <tr>
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    الإجمالي قبل الضريبة
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">4,347.83SR</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    VAT Before Total
+
+                                                                                                </td>
+
+
+
+
+                                                                                                <!--
+                                                                                                <td colspan="9"
+                                                                                                     style=" font-weight:bold;">الإجمالي قبل الضريبة <br/> VAT Before Total
+                                                                                                 </td>
+
+
+                                                                                                 <td style="text-align:right; font-weight:bold;">4,347.83SR</td>
+
+                                                                                                 -->
+                                                                                            </tr>
+                                                                                            <tr>
+
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    ضريبة القيمة المضافة
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">652.17SR</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    VAT
+
+                                                                                                </td>
+                                                                                                <!--
+
+                                                                                                <td colspan="9"
+                                                                                                    style=" font-weight:bold;">ضريبة القيمة المضافة <br/> VAT
+                                                                                                </td>
+
+                                                                                                <td style="text-align:right; font-weight:bold;">652.17SR</td>
+                                                                                                -->
+                                                                                            </tr>
+                                                                                            <tr>
+
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    المبلغ الكلي
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">6,000.00SR</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Total Amount
+
+                                                                                                </td>
+
+                                                                                                <!--
+                                                                                                <td colspan="9"
+                                                                                                    style=" font-weight:bold;">المبلغ الكلي <br/> Total Amount
+                                                                                                </td>
+
+                                                                                                <td style="text-align:right; padding-right:10px; font-weight:bold;">6,000.00SR</td>
+                                                                                                -->
+                                                                                            </tr>
+
+
+                                                                                        </tfoot>
+                                                                                    </table>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-6 pull-left">
+                                                                            <div class="well well-sm">
+                                                                                <p>
+                                                                                    <table class="table table-striped jambo_table bulk_action print-table order-table">
+                                                                                        <tfoot style="-webkit-print-color-adjust:exact;">
+                                                                                            <tr style="-webkit-print-color-adjust:exact;">
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    مدفوع
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">6,000.00SR</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Paid
+
+                                                                                                </td>
+
+                                                                                                <!--
+                                                                                                <td colspan="9"
+                                                                                                    style=" font-weight:bold;">مدفوع </br> Paid
+                                                                                                </td>
+
+                                                                                                <td style="text-align:right; font-weight:bold;">6,000.00SR</td>
+                                                                                                -->
+                                                                                            </tr>
+                                                                                            <tr>
+
+
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    مدفوع بواسطة
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">
+                                                                                                    (نقدا)
+                                                                                                    6,000.00SR
+                                                                                                </td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Paid by
+
+                                                                                                </td>
+
+
+                                                                                                <!--
+
+                                                                                                <td colspan="9"
+                                                                                                    style=" font-weight:bold;">مدفوع بواسطة </br> Paid by
+                                                                                                          (نقدا)
+                                                                                                                                                                                    </td>
+
+                                                                                                <td style="text-align:right; font-weight:bold;">6,000.00SR</td>
+                                                                                                -->
+                                                                                            </tr>
+
+
+                                                                                            <tr>
+
+
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    تاريخ الدفع
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">05/12/2021 23:42</td>
+
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Paid Date
+
+                                                                                                </td>
+
+
+
+                                                                                            </tr>
+
+
+                                                                                            <tr>
+
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    الرصيد
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">0.00</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Balance
+
+                                                                                                </td>
+                                                                                                <!--
+                                                                                                <td colspan="9"
+                                                                                                    style="font-weight:bold;">الرصيد <br/> Balance
+                                                                                                </td>
+
+                                                                                                <td style="text-align:right; font-weight:bold;">0.00</td>
+                                                                                                -->
+                                                                                            </tr>
+                                                                                            <tr>
+
+                                                                                                <td colspan="5" style=" text-align:right;font-weight:bold;">
+                                                                                                    الشحن
+
+                                                                                                </td>
+
+                                                                                                <td style="text-align:left; padding-right:10px; font-weight:bold;">1,000.00SR</td>
+
+
+                                                                                                <td colspan="4"
+                                                                                                    style=" text-align:left;font-weight:bold;">
+                                                                                                    Shipping
+
+                                                                                                </td>
+                                                                                                <!--
+                                                                                                <td colspan="9"
+                                                                                                    style=" font-weight:bold;">الشحن <br/> Shipping
+                                                                                                </td>
+
+                                                                                                <td style="text-align:right; font-weight:bold;">1,000.00SR</td>
+                                                                                                -->
+                                                                                            </tr>
+
+
+                                                                                        </tfoot>
+                                                                                    </table>
+
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-xs-12">
+                                                                        </div>
+
+
+                                                                        <div class="col-xs-5 pull-right">
+                                                                            <div class="well well-sm">
+                                                                                <p>
+                                                                                    تم الانشاء بواسطة ملف: Owner Owner <br>
+                                                                                    تاريخ: 2021-12-05 23:42:28
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div><div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+
+    </div>
+    <?php
+
+    ?>
+    <!-- Include html2pdf bundle. -->
+    <script src="../../dist/html2pdf.bundle.js"></script>
+    <script>
+        function test() {
+            // Get the element.
+            var element = document.getElementById('root');
+
+            // Generate the PDF.
+            html2pdf().from(element).set({
+                margin: .1,
+                filename: 't.pdf',
+                html2canvas: { scale: 1 },
+                jsPDF: { orientation: 'portrait', unit: 'in', format: 'a3', compressPDF: true }
+            }).toPdf()
+      .get("pdf")
+      .then((pdf) => {
+        var totalPages = pdf.internal.getNumberOfPages();
+        pdf.addImage('http://localhost/spark_erp/assets/uploads/logos/logo2sm.png', 'png', 0.2, 0.6, 0, 0, undefined, 'FAST', 45);
+
+        for (let i = 1; i <= totalPages; i++) {
+          pdf.setPage(i);
+          pdf.addImage('http://localhost/spark_erp/assets/uploads/logos/logo2sm.png', 'png', 0.2, 0.6, 0, 0, undefined, 'FAST', 45);
+        }
+        pdf.save();
+      });
+        }
+    </script>
+
+</body>
+
+<footer>
+
+    <img class="imgfooter_ar" src="http://localhost/spark_erp/assets/uploads/logos/logo2.png" alt="مؤسسة دار الطبيعة للعطارة" style="margin-bottom:10px;max-width:50%;height:auto;" />
+    <a href="#" id="toTop" class="blue" style="position: fixed; bottom: 30px; right: 30px; font-size: 30px; display: none;">
+        <i class="fa fa-chevron-circle-up"></i>
+    </a>
+
+    <p style="text-align:center;">
+        &copy; 2021 مؤسسة دار الطبيعة للعطارة (<a href="http://localhost/spark_erp/documentation.pdf" target="_blank">v3.4.25</a>
+        )
+    </p>
+</footer>
+</div>
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div class="modal fade in" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true"></div>
+<div id="modal-loading" style="display: none;">
+    <div class="blackbg"></div>
+    <div class="loader"></div>
+</div>
+<div id="ajaxCall"><i class="fa fa-spinner fa-pulse"></i></div>
+<script type="text/javascript">
+var dt_lang = {"sEmptyTable":"\u0644\u0627 \u062a\u0648\u062c\u062f \u0628\u064a\u0627\u0646\u0627\u062a \u0641\u064a \u0627\u0644\u062c\u062f\u0648\u0644","sInfo":"\u0639\u0631\u0636 _START_ \u0625\u0644\u0649 _END_ \u0645\u0646 _TOTAL_ \u0627\u0644\u0625\u062f\u062e\u0627\u0644\u0627\u062a","sInfoEmpty":"\u0639\u0631\u0636 0 \u0625\u0644\u0649 0 \u0645\u0646 0 \u0645\u0642\u0627\u0644\u0627\u062a","sInfoFiltered":"(\u062a\u0645\u062a \u062a\u0635\u0641\u064a\u062a\u0647\u0627 \u0645\u0646 _MAX_ \u0645\u062c\u0645\u0648\u0639 \u0627\u0644\u0625\u062f\u062e\u0627\u0644\u0627\u062a)","sInfoPostFix":"","sInfoThousands":",","sLengthMenu":"\u0627\u0638\u0647\u0627\u0631 _MENU_ ","sLoadingRecords":"\u062a\u062d\u0645\u064a\u0644...","sProcessing":"\u062a\u062d\u0648\u064a\u0644...","sSearch":"\u0628\u062d\u062b","sZeroRecords":"\u0644\u0627 \u062a\u0648\u062c\u062f \u0633\u062c\u0644\u0627\u062a \u0645\u0637\u0627\u0628\u0642\u0629","oAria":{"sSortAscending":": \u062a\u0641\u0639\u064a\u0644 \u0644\u0641\u0631\u0632 \u0627\u0644\u0639\u0645\u0648\u062f \u062a\u0635\u0627\u0639\u062f\u064a","sSortDescending":": \u062a\u0641\u0639\u064a\u0644 \u0644\u0641\u0631\u0632 \u0627\u0644\u0639\u0645\u0648\u062f \u0627\u0644\u0647\u0627\u0628\u0637\u0629"},"oPaginate":{"sFirst":"<< \u0623\u0648\u0644\u0649","sLast":"\u0622\u062e\u0631 >>","sNext":"\u0627\u0644\u062a\u0627\u0644\u064a >","sPrevious":"< \u0633\u0627\u0628\u0642"}}, dp_lang = {"days":["\u0627\u0644\u0623\u062d\u062f","\u0627\u0644\u0625\u062b\u0646\u064a\u0646","\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621","\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621","\u0627\u0644\u062e\u0645\u064a\u0633","\u0627\u0644\u062c\u0645\u0639\u0629","\u0627\u0644\u0633\u0628\u062a","\u0627\u0644\u0623\u062d\u062f"],"daysShort":["\u0623\u062d","\u0625\u062b","\u062b\u0644","\u0623\u0631","\u062e\u0645","\u062c\u0645","\u0633\u0628","\u0623\u062d"],"daysMin":["\u0623\u062d","\u0625\u062b","\u062b\u0644","\u0623\u0631","\u062e\u0645","\u062c\u0645","\u0633\u0628","\u0623\u062d"],"months":["\u064a\u0646\u0627\u064a\u0631","\u0641\u0628\u0631\u0627\u064a\u0631","\u0645\u0627\u0631\u0633","\u0625\u0628\u0631\u064a\u0644","\u0645\u0627\u064a","\u064a\u0648\u0646\u064a\u0648","\u064a\u0648\u0644\u064a\u0648","\u0623\u063a\u0633\u0637\u0633","\u0633\u0628\u062a\u0645\u0628\u0631","\u0623\u0643\u062a\u0648\u0628\u0631","\u0646\u0648\u0641\u0645\u0628\u0631","\u062f\u064a\u0633\u0645\u0628\u0631"],"monthsShort":["\u064a\u0646\u0627","\u0641\u0628\u0631","\u0645\u0627\u0631","\u0623\u0628\u0631","\u0645\u0627\u064a","\u064a\u0648\u0646","\u064a\u0648\u0644","\u0623\u063a\u0633","\u0633\u0628\u062a","\u0623\u0648\u0643","\u0646\u0648\u0641","\u062f\u064a\u0633"],"today":"\u0627\u0644\u064a\u0648\u0645","suffix":[],"meridiem":[]}, site = {"url":"http:\/\/localhost\/spark_erp\/","base_url":"http:\/\/localhost\/spark_erp\/admin\/","assets":"http:\/\/localhost\/spark_erp\/themes\/default\/admin\/assets\/","settings":{"logo":"logo2sm.png","logo2":"logo2.png","site_name":"\u0645\u0624\u0633\u0633\u0629 \u062f\u0627\u0631 \u0627\u0644\u0637\u0628\u064a\u0639\u0629 \u0644\u0644\u0639\u0637\u0627\u0631\u0629","site_ename":"Dar Altabiaa","site_address":"\u0627\u0644\u062c\u0628\u064a\u0644 35811-3372-\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629  \/   Al Jubail 35811-3372-Kingdom of Saudi Arabia","language":"english","default_warehouse":"4","accounting_method":"2","default_currency":"SR","default_tax_rate":"1","rows_per_page":"10","version":"3.4.25","default_tax_rate2":"1","dateformat":"5","sales_prefix":"SALE","quote_prefix":"QUOTE","purchase_prefix":"PO","transfer_prefix":"TR","delivery_prefix":"DO","payment_prefix":"IPAY","return_prefix":"SR","returnp_prefix":"PR","expense_prefix":"","item_addition":"1","theme":"default","product_serial":"1","default_discount":"1","product_discount":"1","discount_method":"1","tax1":"1","tax2":"1","overselling":"1","iwidth":"800","iheight":"800","twidth":"250","theight":"150","watermark":"0","smtp_host":"pop.gmail.com","bc_fix":"4","auto_detect_barcode":"1","captcha":"0","reference_format":"2","racks":"0","attributes":"1","product_expiry":"1","decimals":"2","qty_decimals":"2","decimals_sep":".","thousands_sep":",","invoice_view":"0","default_biller":"3","rtl":"0","each_spent":null,"ca_point":null,"each_sale":null,"sa_point":null,"sac":"0","display_all_products":"0","display_symbol":"2","symbol":"SR","remove_expired":"0","barcode_separator":"-","set_focus":"0","price_group":"1","barcode_img":"1","ppayment_prefix":"POP","disable_editing":"90","qa_prefix":"","update_cost":"1","apis":"0","state":"AN","pdf_lib":"mpdf","pos":"1","accounting":"1","api":"0","IsResturant":"1","IsServices":"0","IsLundry":"0","active":"1","user_language":"arabic","user_rtl":"0","indian_gst":false},"dateFormats":{"js_sdate":"dd\/mm\/yyyy","php_sdate":"d\/m\/Y","mysq_sdate":"%d\/%m\/%Y","js_ldate":"dd\/mm\/yyyy hh:ii","php_ldate":"d\/m\/Y H:i","mysql_ldate":"%d\/%m\/%Y %H:%i"}};
+var lang = {paid: 'مدفوع', pending: 'تحت الإجراء', completed: 'عملية مكتملة', ordered: 'أمر', received: 'تم الاستلام', partial: 'إستلام جزئي', sent: 'تم الارسال', r_u_sure: 'هل أنت متأكد؟', due: 'بسبب', returned: 'مرتجع', transferring: 'transferring', active: 'نشط', inactive: 'غير فعال', unexpected_value: 'قيمة غير متوقعة', select_above: 'الرجاء تحديد فوق لأول مرة', download: 'Download', required_invalid: 'required invalid'};
+</script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/jquery.dataTables.dtFilter.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/custom.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/jquery.calculator.min.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/core.js"></script>
+<script type="text/javascript" src="http://localhost/spark_erp/themes/default/admin/assets/js/perfect-scrollbar.min.js"></script>
+
+
+
+<script type="text/javascript" charset="UTF-8">
+
+
+var isFullscreen = false;
+var elem = document.getElementById("controls");
+
+            function fullscreen(){
+
+
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+
+				/*var d = {};
+                var speed = 300;
+                if(!isFullscreen){ // MAXIMIZATION
+                    d.width = "100%";
+                    d.height = "100%";
+                    isFullscreen = true;
+                    $("#mainnav2").slideUp(speed);
+                    $("#mainnav").slideUp(speed);
+                    $("#mainnav1").slideUp(speed);
+                }
+                else{ // MINIMIZATION
+                    d.width = "300px";
+                    d.height = "100px";
+                    isFullscreen = false;
+                    $("#mainnav2").slideDown(speed);
+                    $("#mainnav").slideDown(speed);
+                    $("#mainnav1").slideDown(speed);
+                }
+                $("#controls").animate(d,speed);  */
+            }
+
+var oTable = '', r_u_sure = "هل أنت متأكد؟";
+    (function ($) { "use strict"; $.fn.select2.locales['sma'] = { formatMatches: function (matches) { if (matches === 1) { return "، دخول الصحافة لتحديده."; } return matches + "هي النتائج المتاحة، واستخدام أعلى وأسفل مفاتيح الأسهم للتنقل."; }, formatNoMatches: function () { return "لا توجد بيانات"; }, formatInputTooShort: function (input, min) { var n = min - input.length; return "يرجى كتابة "+n+" أو أكثر من الأحرف"; }, formatInputTooLong: function (input, max) { var n = input.length - max; if(n == 1) { return "يرجى حذف "+n+" حرف "; } else { return "يرجى حذف "+n+" حرف "; } }, formatSelectionTooBig: function (n) { if(n == 1) { return "يمكنك فقط تحديد "+n+" البند "; } else { return "يمكنك فقط اختيار "+n+" البنود"; } }, formatLoadMore: function (pageNumber) { return "تحميل المزيد من النتائج ..."; }, formatSearching: function () { return "البحث ... "; }, formatAjaxError: function() { return "فشل طلب اياكس"; }, }; $.extend($.fn.select2.defaults, $.fn.select2.locales['sma']); })(jQuery);    $.extend(true, $.fn.dataTable.defaults, {"oLanguage":{"sEmptyTable":"\u0644\u0627 \u062a\u0648\u062c\u062f \u0628\u064a\u0627\u0646\u0627\u062a \u0641\u064a \u0627\u0644\u062c\u062f\u0648\u0644","sInfo":"\u0639\u0631\u0636 _START_ \u0625\u0644\u0649 _END_ \u0645\u0646 _TOTAL_ \u0627\u0644\u0625\u062f\u062e\u0627\u0644\u0627\u062a","sInfoEmpty":"\u0639\u0631\u0636 0 \u0625\u0644\u0649 0 \u0645\u0646 0 \u0645\u0642\u0627\u0644\u0627\u062a","sInfoFiltered":"(\u062a\u0645\u062a \u062a\u0635\u0641\u064a\u062a\u0647\u0627 \u0645\u0646 _MAX_ \u0645\u062c\u0645\u0648\u0639 \u0627\u0644\u0625\u062f\u062e\u0627\u0644\u0627\u062a)","sInfoPostFix":"","sInfoThousands":",","sLengthMenu":"\u0627\u0638\u0647\u0627\u0631 _MENU_ ","sLoadingRecords":"\u062a\u062d\u0645\u064a\u0644...","sProcessing":"\u062a\u062d\u0648\u064a\u0644...","sSearch":"\u0628\u062d\u062b","sZeroRecords":"\u0644\u0627 \u062a\u0648\u062c\u062f \u0633\u062c\u0644\u0627\u062a \u0645\u0637\u0627\u0628\u0642\u0629","oAria":{"sSortAscending":": \u062a\u0641\u0639\u064a\u0644 \u0644\u0641\u0631\u0632 \u0627\u0644\u0639\u0645\u0648\u062f \u062a\u0635\u0627\u0639\u062f\u064a","sSortDescending":": \u062a\u0641\u0639\u064a\u0644 \u0644\u0641\u0631\u0632 \u0627\u0644\u0639\u0645\u0648\u062f \u0627\u0644\u0647\u0627\u0628\u0637\u0629"},"oPaginate":{"sFirst":"<< \u0623\u0648\u0644\u0649","sLast":"\u0622\u062e\u0631 >>","sNext":"\u0627\u0644\u062a\u0627\u0644\u064a >","sPrevious":"< \u0633\u0627\u0628\u0642"}}});
+    $.fn.datetimepicker.dates['sma'] = {"days":["\u0627\u0644\u0623\u062d\u062f","\u0627\u0644\u0625\u062b\u0646\u064a\u0646","\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621","\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621","\u0627\u0644\u062e\u0645\u064a\u0633","\u0627\u0644\u062c\u0645\u0639\u0629","\u0627\u0644\u0633\u0628\u062a","\u0627\u0644\u0623\u062d\u062f"],"daysShort":["\u0623\u062d","\u0625\u062b","\u062b\u0644","\u0623\u0631","\u062e\u0645","\u062c\u0645","\u0633\u0628","\u0623\u062d"],"daysMin":["\u0623\u062d","\u0625\u062b","\u062b\u0644","\u0623\u0631","\u062e\u0645","\u062c\u0645","\u0633\u0628","\u0623\u062d"],"months":["\u064a\u0646\u0627\u064a\u0631","\u0641\u0628\u0631\u0627\u064a\u0631","\u0645\u0627\u0631\u0633","\u0625\u0628\u0631\u064a\u0644","\u0645\u0627\u064a","\u064a\u0648\u0646\u064a\u0648","\u064a\u0648\u0644\u064a\u0648","\u0623\u063a\u0633\u0637\u0633","\u0633\u0628\u062a\u0645\u0628\u0631","\u0623\u0643\u062a\u0648\u0628\u0631","\u0646\u0648\u0641\u0645\u0628\u0631","\u062f\u064a\u0633\u0645\u0628\u0631"],"monthsShort":["\u064a\u0646\u0627","\u0641\u0628\u0631","\u0645\u0627\u0631","\u0623\u0628\u0631","\u0645\u0627\u064a","\u064a\u0648\u0646","\u064a\u0648\u0644","\u0623\u063a\u0633","\u0633\u0628\u062a","\u0623\u0648\u0643","\u0646\u0648\u0641","\u062f\u064a\u0633"],"today":"\u0627\u0644\u064a\u0648\u0645","suffix":[],"meridiem":[]};
+    $(window).load(function () {
+		var x = window.matchMedia("(max-width: 991px)");
+
+		if(!x.matches){
+
+		$('#mm_welcome').css("display", "none");
+        $('#mm_products').css("display", "none");
+        $('#mm_sales').css("display", "none");
+        $('#mm_purchases').css("display", "none");
+        $('#mm_auth').css("display", "none");
+        $('#mm_reports').css("display", "none");
+
+		if('salesdetails'=='system_settings' || 'salesdetails'=='billers')
+		$('#mm_auth').css("display", "block");
+		if('salesdetails'=='pos' && 'view'=='sales'){
+		$('#mm_sales').css("display", "block");
+		}
+		if('salesdetails'=='pos' && 'view'=='settings'){
+		$('#mm_auth').css("display", "block");
+		}
+		if('salesdetails'=='promos' || 'salesdetails'=='promo' || 'salesdetails'=='customers')
+		$('#mm_sales').css("display", "block");
+
+		if('salesdetails'=='suppliers')
+		$('#mm_purchases').css("display", "block");
+
+
+
+
+
+
+
+        $('#mm_salesdetails').css("display", "block");
+        }
+
+
+		$('.mm_salesdetails').addClass('active');
+        $('.mm_salesdetails').find("ul").first().slideToggle();
+        $('#salesdetails_view').addClass('active');
+        $('.mm_salesdetails a .chevron').removeClass("closed").addClass("opened");
+
+
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+<!--
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+-->
+<!-- FastClick -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/Chart.js/dist/Chart.min.js"></script>
+
+
+-->
+<!-- gauge.js -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/Flot/jquery.flot.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/Flot/jquery.flot.time.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/moment/min/moment.min.js"></script>
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts
+<script src="http://localhost/spark_erp/themes/default/admin/assets/template1/build/js/custom.min.js"></script>
+ -->
+
+<script>
+
+	 /**
+ * Resize function without multiple trigger
+ *
+ * Usage:
+ * $(window).smartresize(function(){
+ *     // code here
+ * });
+ */
+
+
+(function($,sr){
+    // debouncing function from John Hann
+    // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+    var debounce = function (func, threshold, execAsap) {
+      var timeout;
+
+        return function debounced () {
+            var obj = this, args = arguments;
+            function delayed () {
+                if (!execAsap)
+                    func.apply(obj, args);
+                timeout = null;
+            }
+
+            if (timeout)
+                clearTimeout(timeout);
+            else if (execAsap)
+                func.apply(obj, args);
+
+            timeout = setTimeout(delayed, threshold || 100);
+        };
+    };
+
+    // smartresize
+    jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+
+})(jQuery,'smartresize');
+
+
+$(document).ready(function () {
+
+    var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
+    $BODY = $('body'),
+    $MENU_TOGGLE = $('#menu_toggle'),
+    $SIDEBAR_MENU = $('#sidebar-menu'),
+    $SIDEBAR_FOOTER = $('.sidebar-footer'),
+    $LEFT_COL = $('.left_col'),
+    $RIGHT_COL = $('.right_col'),
+    $NAV_MENU = $('.nav_menu'),
+    $FOOTER = $('footer');
+	// Sidebar
+try{
+    // TODO: This is some kind of easy fix, maybe we can improve this
+    var setContentHeight = function () {
+        // reset height
+        $RIGHT_COL.css('min-height', $(window).height());
+
+        var bodyHeight = $BODY.outerHeight(),
+            footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
+            leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
+            contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
+
+        // normalize content
+        contentHeight -= $NAV_MENU.height() + footerHeight;
+
+        $RIGHT_COL.css('min-height', contentHeight);
+    };
+
+    var openUpMenu = function () {
+        $SIDEBAR_MENU.find('li').removeClass('active active-sm');
+        $SIDEBAR_MENU.find('li ul').slideUp();
+    }
+
+    $SIDEBAR_MENU.find('a').on('click', function (ev) {
+        var $li = $(this).parent();
+
+        if ($li.is('.active')) {
+            $li.removeClass('active active-sm');
+            $('ul:first', $li).slideUp(function () {
+                setContentHeight();
+            });
+        } else {
+            // prevent closing menu if we are on child menu
+            if ($li.parent().is('.child_menu')) {
+			if (!$li.parent().is('.child_menu')) {
+                openUpMenu();
+            } else {
+                if ($BODY.is('nav-sm')) {
+                    if (!$li.parent().is('child_menu')) {
+                        openUpMenu();
+                    }
+                }
+            }
+			}else{
+			if (!$li.parent().is('.child_menu_ar')) {
+                openUpMenu();
+            } else {
+                if ($BODY.is('nav-sm')) {
+                    if (!$li.parent().is('child_menu_ar')) {
+                        openUpMenu();
+                    }
+                }
+            }
+			}
+
+            $li.addClass('active');
+
+            $('ul:first', $li).slideDown(function () {
+                setContentHeight();
+            });
+        }
+    });
+
+    // toggle small or large menu
+    $MENU_TOGGLE.on('click', function () {
+        if ($BODY.hasClass('nav-md')) {
+            $SIDEBAR_MENU.find('li.active ul').hide();
+            $SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
+        } else {
+            $SIDEBAR_MENU.find('li.active-sm ul').show();
+            $SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
+        }
+
+        $BODY.toggleClass('nav-md nav-sm');
+
+        setContentHeight();
+
+        $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
+    });
+
+    // check active menu
+    $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
+
+    $SIDEBAR_MENU.find('a').filter(function () {
+        return this.href == CURRENT_URL;
+    }).parent('li').addClass('current-page').parents('ul').slideDown(function () {
+        setContentHeight();
+    }).parent().addClass('active');
+
+    // recompute content when resizing
+    $(window).smartresize(function () {
+        setContentHeight();
+    });
+
+    setContentHeight();
+
+    // fixed sidebar
+    if ($.fn.mCustomScrollbar) {
+        $('.menu_fixed').mCustomScrollbar({
+            autoHideScrollbar: true,
+            theme: 'minimal',
+            mouseWheel: { preventDefault: true }
+        });
+    }
+}catch(err){alert(err);}
+// /Sidebar
+
+
+});
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,151 @@
+@font-face
+	{
+	  font-family: 'HelveticaNeue';
+	  src: url("font/HelveticaNeueW23forSKY-Reg.eot") format("embedded-opentype"),
+	  url("font/HelveticaNeueW23forSKY-Reg.woff") format("woff");
+	  font-weight: normal;
+	  font-style: normal;
+	}
+@font-face {
+  font-family: 'Din regular';
+  src: url("font/DinNextRegular.eot") format("embedded-opentype"),
+  url("font/DinNextRegular.svg") format("svg"),
+  url("font/DinNextRegular.woff") format("ttf"),
+  url("font/DinNextRegular.woff") format("woff"),
+  url("font/DinNextRegular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Din light';
+  src: url("font/DinNextLight.eot") format("embedded-opentype"),
+  url("font/DinNextLight.svg") format("svg"),
+  url("font/DinNextLight.woff") format("ttf"),
+  url("font/DinNextLight.woff") format("woff"),
+  url("font/DinNextLight.woff2") format("woff2");
+  font-weight: light;
+  font-style: light; }
+
+@font-face {
+  font-family: 'Din meduim';
+  src: url("font/DinNextMedium.eot") format("embedded-opentype"),
+  url("font/DinNextMedium.svg") format("svg"),
+  url("font/DinNextMedium.woff") format("ttf"),
+  url("font/DinNextMedium.woff") format("woff"),
+  url("font/DinNextMedium.woff2") format("woff2");
+  font-weight: meduim;
+  font-style: meduim; }
+
+@font-face {
+  font-family: 'Din bold';
+  src: url("font/DinNextBold.eot") format("embedded-opentype"),
+  url("font/DinNextBold.svg") format("svg"),
+  url("font/DinNextBold.woff") format("ttf"),
+  url("font/DinNextBold.woff") format("woff"),
+  url("font/DinNextBold.woff2") format("woff2");
+  font-weight: meduim;
+  font-style: meduim; }
+body {
+    padding: 10px 10px;
+    margin: 0;
+    height: 100%;
+    background: #FFF !important;
+    line-height: 1.15 !important;
+    direction: rtl;
+    font-family: 'Din regular';
+}
+
+body:before, body:after {
+    display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+{
+	font-family: 'Din bold';
+  margin: 10px 0 !important;
+}
+.pull-right
+{
+	float:left !important;
+}
+h1 {
+  padding: 3;
+  margin: 0;
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: bold;
+}
+h2 {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+    margin: 20px 0 !important;
+      font-weight: bold;
+}
+h3 {
+    font-size: 15px;
+    line-height: 15px;
+}
+h4 {
+    font-size: 14px;
+    line-height: 14px;
+}
+h5 {
+    font-size: 13px;
+    line-height: 13px;
+}
+h6 {
+    font-size: 12px;
+    line-height: 12px;
+}
+
+header, footer {
+    text-align: center;
+    padding: 5px 25px !important;
+    background-color: #F9F9FF;
+    height: 20px;
+    color: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+header { top: 10px; }
+footer { bottom: 10px; }
+
+.title {
+    text-transform: uppercase !important;
+}
+
+.table th {
+    background-color: #eee !important;
+    text-align: center;
+    padding: 5px;
+    color: #000 !important;
+    border-color: #ddd !important;
+}
+
+.table td {
+    padding: 4px;
+}
+
+.order_barcodes {
+  /* uncomment line below to hide the barcodes */
+  /* display: none; */
+  margin-top: 10px;
+}
+
+.barcode .bcimg {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.qrimg {
+    display: none;
+}
+
+.page {
+    page-break-after: always;
+}
+
+@page { margin: 100px 25px; }
+.pagenum:before { content: counter(page); }

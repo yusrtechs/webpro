@@ -1,0 +1,34 @@
+# ==============================
+# Default page
+# ==============================
+DirectoryIndex index.php
+
+# ==============================
+# CodeIgniter URL rewriting in subfolder
+# ==============================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /nearpay_jwt/
+
+    # Exclude index.php and public folders/files
+    RewriteCond $1 !^(index\.php|assets|upload|backup|forums|images|css|downloads|jquery|js|robots\.txt|favicon\.ico|.*\.swf)
+
+    # If the file or directory exists, do not rewrite
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirect all requests to index.php
+    RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+</IfModule>
+
+# ==============================
+# Protect sensitive files only
+# ==============================
+<FilesMatch "^(composer\.(json|lock)|\.env|\.htaccess|config\.php|.*\.(log|sql))$">
+    <IfModule authz_core_module>
+        Require all denied
+    </IfModule>
+    <IfModule !authz_core_module>
+        Deny from all
+    </IfModule>
+</FilesMatch>

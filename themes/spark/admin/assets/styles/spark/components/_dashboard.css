@@ -1,0 +1,1675 @@
+/**
+ * Spark ERP - Dashboard Component Styles
+ * Strictly scoped under .spark-dashboard and .spark-ui
+ * Consumes Spark ERP Design Tokens from Phase 5A
+ */
+
+.spark-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spark-space-6, 24px);
+  width: 100%;
+  max-width: 100%;
+  animation: sparkDashboardFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sparkDashboardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Dashboard Page Header
+   ========================================================================== */
+.spark-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spark-space-4, 16px);
+  padding-bottom: var(--spark-space-2, 8px);
+  padding-top: var(--spark-space-2, 8px);
+}
+
+.spark-dashboard-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spark-space-1, 4px);
+}
+
+.spark-dashboard-title {
+  font-size: var(--spark-text-2xl, 1.5rem);
+  font-weight: 700;
+  color: var(--spark-text-primary, #0f172a);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.spark-dashboard-subtitle {
+  font-size: var(--spark-text-sm, 0.875rem);
+  color: var(--spark-text-secondary, #64748b);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.spark-dashboard-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3, 12px);
+  flex-wrap: wrap;
+}
+
+.spark-dashboard-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-2, 8px);
+  padding: 8px 14px;
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-full, 9999px);
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: 600;
+  color: var(--spark-text-secondary, #64748b);
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04));
+}
+
+.spark-dashboard-date-pill i {
+  color: var(--spark-primary, #6366f1);
+}
+
+/* ==========================================================================
+   KPI Stat Cards Grid (4 cols desktop, 2 cols tablet, 1 col mobile)
+   ========================================================================== */
+.spark-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spark-space-4, 16px);
+  width: 100%;
+}
+
+@media (max-width: 1199px) {
+  .spark-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .spark-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Individual KPI Stat Card (React SaaS Reference) ─── */
+.spark-stat-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--spark-space-5, 20px) var(--spark-space-5, 22px);
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-xl, 16px);
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04));
+  transition:
+    transform var(--spark-transition-fast, 0.15s cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--spark-transition-fast, 0.15s cubic-bezier(0.4, 0, 0.2, 1)),
+    border-color var(--spark-transition-fast, 0.15s cubic-bezier(0.4, 0, 0.2, 1));
+  overflow: hidden;
+}
+
+.spark-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--spark-shadow-medium, 0 4px 16px rgba(0, 0, 0, 0.08));
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.spark-stat-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spark-space-3, 12px);
+  margin-bottom: var(--spark-space-3, 12px);
+}
+
+.spark-stat-label {
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--spark-text-muted, #94a3b8);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ─── Modern Rounded Icon Containers (46px x 46px) ─── */
+.spark-stat-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--spark-radius-lg, 12px);
+  background-color: var(--spark-primary-subtle, #eef2ff);
+  color: var(--spark-primary, #6366f1);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-stat-card:hover .spark-stat-icon-wrapper {
+  transform: scale(1.06);
+}
+
+.spark-stat-card-success .spark-stat-icon-wrapper {
+  background-color: var(--spark-success-subtle, #ecfdf5);
+  color: var(--spark-success, #10b981);
+  border-color: rgba(16, 185, 129, 0.18);
+}
+
+.spark-stat-card-danger .spark-stat-icon-wrapper {
+  background-color: var(--spark-danger-subtle, #fef2f2);
+  color: var(--spark-danger, #ef4444);
+  border-color: rgba(239, 68, 68, 0.18);
+}
+
+.spark-stat-card-warning .spark-stat-icon-wrapper {
+  background-color: var(--spark-warning-subtle, #fffbeb);
+  color: var(--spark-warning, #f59e0b);
+  border-color: rgba(245, 158, 11, 0.18);
+}
+
+.spark-stat-card-purple .spark-stat-icon-wrapper {
+  background-color: var(--spark-purple-subtle, #f5f3ff);
+  color: var(--spark-purple, #8b5cf6);
+  border-color: var(--spark-focus-ring, rgba(139, 92, 246, 0.18));
+}
+
+/* ─── KPI Value Presentation ─── */
+.spark-stat-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--spark-space-1, 4px);
+  font-size: var(--spark-text-2xl, 1.375rem);
+  font-weight: 700;
+  color: var(--spark-text-primary, #0f172a);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 var(--spark-space-2, 8px) 0;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+/* Inline currency/symbol images inside stats, footers, and tables */
+.spark-dashboard img,
+.spark-stat-value img,
+.spark-stat-footer img,
+.spark-dashboard-table td img {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  height: 1.1em;
+  width: auto !important;
+  max-width: 22px;
+  object-fit: contain;
+  margin-inline-start: 2px;
+}
+
+/* ─── KPI Footer & Supporting Information ─── */
+.spark-stat-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spark-space-2, 8px);
+  padding-top: var(--spark-space-3, 10px);
+  margin-top: var(--spark-space-2, 6px);
+  border-top: 1px solid var(--spark-border-subtle, #f1f5f9);
+  font-size: var(--spark-text-xs, 0.75rem);
+  color: var(--spark-text-secondary, #64748b);
+  line-height: 1.3;
+}
+
+.spark-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--spark-radius-full, 9999px);
+  font-size: var(--spark-text-xs);
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   Dashboard 2-Column Grid (Balanced 1:1 Layout)
+   ========================================================================== */
+.spark-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spark-space-6, 24px);
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .spark-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spark-grid-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spark-space-6, 24px);
+}
+
+/* ==========================================================================
+   Chart & Content Cards
+   ========================================================================== */
+.spark-chart-card,
+.spark-table-card,
+.spark-widget-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-xl, 16px);
+  box-shadow: var(--spark-shadow-soft, 0 2px 8px rgba(0, 0, 0, 0.04));
+  overflow: hidden;
+}
+
+.spark-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spark-space-4, 16px) var(--spark-space-5, 20px);
+  border-bottom: 1px solid var(--spark-border-subtle, #f1f5f9);
+  background-color: transparent;
+  gap: var(--spark-space-3, 12px);
+}
+
+.spark-card-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-2, 8px);
+  font-size: var(--spark-text-base, 1rem);
+  font-weight: 600;
+  color: var(--spark-text-primary, #0f172a);
+  margin: 0;
+}
+
+.spark-card-title i {
+  color: var(--spark-primary, #6366f1);
+  font-size: 16px;
+}
+
+.spark-card-body {
+  padding: var(--spark-space-5, 20px);
+  flex: 1;
+}
+
+.spark-chart-container {
+  width: 100%;
+  height: 320px;
+  position: relative;
+}
+
+.spark-chart-container-sm {
+  width: 100%;
+  height: 240px;
+  position: relative;
+}
+
+/* ==========================================================================
+   Tabbed Transactions Card
+   ========================================================================== */
+.spark-tabs-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-2, 8px);
+  border-bottom: 2px solid var(--spark-border-default, #e2e8f0);
+  padding: 0 var(--spark-space-5, 20px);
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.spark-tabs-header::-webkit-scrollbar {
+  display: none;
+}
+
+.spark-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-2, 8px);
+  padding: 12px 16px;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--spark-text-secondary, #64748b);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all var(--spark-transition-fast, 0.15s ease);
+  white-space: nowrap;
+}
+
+.spark-tab-btn:hover {
+  color: var(--spark-primary, #6366f1);
+  background-color: var(--spark-surface-hover, rgba(0, 0, 0, 0.03));
+}
+
+.spark-tab-btn.is-active {
+  color: var(--spark-primary, #6366f1);
+  border-bottom-color: var(--spark-primary, #6366f1);
+  background-color: transparent;
+}
+
+.spark-tab-btn i {
+  font-size: 13px;
+}
+
+.spark-tab-content {
+  display: none;
+  padding: 0;
+}
+
+.spark-tab-content.is-active {
+  display: block;
+  animation: sparkDashboardFadeIn 0.2s ease-out;
+}
+
+/* ==========================================================================
+   Modern Data Table inside Dashboard
+   ========================================================================== */
+.spark-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.spark-dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.spark-dashboard-table th {
+  padding: 11px 16px;
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  color: var(--spark-text-muted, #94a3b8);
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--spark-border-default, #e2e8f0);
+}
+
+.spark-dashboard-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--spark-border-subtle, #f1f5f9);
+  color: var(--spark-text-primary, #0f172a);
+  font-size: var(--spark-text-sm, 0.875rem);
+  vertical-align: middle;
+}
+
+.spark-dashboard-table tr:last-child td {
+  border-bottom: none;
+}
+
+.spark-dashboard-table tr:hover td {
+  background-color: var(--spark-surface-subtle, #f8fafc);
+}
+
+/* ==========================================================================
+   Leaderboard / Top Products List
+   ========================================================================== */
+.spark-leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spark-space-3, 12px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spark-leaderboard-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spark-space-3, 12px);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--spark-border-subtle, #f1f5f9);
+}
+
+.spark-leaderboard-item:last-child {
+  border-bottom: none;
+}
+
+.spark-leaderboard-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3, 12px);
+  min-width: 0;
+}
+
+.spark-leaderboard-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--spark-radius-full, 9999px);
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  color: var(--spark-text-secondary, #64748b);
+  font-size: var(--spark-text-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.spark-leaderboard-item:nth-child(1) .spark-leaderboard-rank {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.spark-leaderboard-item:nth-child(2) .spark-leaderboard-rank {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.spark-leaderboard-item:nth-child(3) .spark-leaderboard-rank {
+  background-color: #ffedd5;
+  color: #9a3412;
+}
+
+.spark-leaderboard-name {
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--spark-text-primary, #0f172a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spark-leaderboard-qty {
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: 700;
+  color: var(--spark-primary, #6366f1);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Quick Actions Grid (Fluid & Responsive)
+   ========================================================================== */
+.spark-quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--spark-space-3, 12px);
+  width: 100%;
+}
+
+.spark-quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3, 12px);
+  padding: 12px 14px;
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-lg, 12px);
+  color: var(--spark-text-primary, #0f172a);
+  text-decoration: none;
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: 500;
+  transition: all var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-quick-action-btn:hover {
+  background-color: var(--spark-surface-card, #ffffff);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: var(--spark-primary, #6366f1);
+  transform: translateY(-2px);
+  box-shadow: var(--spark-shadow-xs, 0 1px 3px rgba(15, 23, 42, 0.05));
+  text-decoration: none;
+}
+
+.spark-quick-action-btn i {
+  font-size: 16px;
+  color: var(--spark-primary, #6366f1);
+}
+
+
+/* ==========================================================================
+   DARK THEME OVERRIDES FOR DASHBOARD ([data-theme="dark"])
+   ========================================================================== */
+
+[data-theme="dark"] .spark-dashboard-title {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-dashboard-subtitle {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .spark-dashboard-date-pill {
+  background-color: var(--spark-surface-card, #111827);
+  border-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+/* Dark Mode KPI Cards */
+[data-theme="dark"] .spark-stat-card {
+  background-color: var(--spark-surface-card, #111827);
+  border-color: var(--spark-border-default, #1f2937);
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.20));
+}
+
+[data-theme="dark"] .spark-stat-card:hover {
+  border-color: rgba(129, 140, 248, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .spark-stat-value {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-stat-footer {
+  border-top-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .spark-stat-icon-wrapper {
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #818cf8;
+  border-color: rgba(99, 102, 241, 0.30);
+}
+
+[data-theme="dark"] .spark-stat-card-success .spark-stat-icon-wrapper {
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.30);
+}
+
+[data-theme="dark"] .spark-stat-card-danger .spark-stat-icon-wrapper {
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.30);
+}
+
+[data-theme="dark"] .spark-stat-card-warning .spark-stat-icon-wrapper {
+  background-color: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.30);
+}
+
+[data-theme="dark"] .spark-stat-card-purple .spark-stat-icon-wrapper {
+  background-color: rgba(139, 92, 246, 0.18);
+  color: #a78bfa;
+  border-color: rgba(139, 92, 246, 0.30);
+}
+
+/* Dark Mode Content Cards */
+[data-theme="dark"] .spark-chart-card,
+[data-theme="dark"] .spark-table-card,
+[data-theme="dark"] .spark-widget-card {
+  background-color: var(--spark-surface-card, #111827);
+  border-color: var(--spark-border-default, #1f2937);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .spark-card-header {
+  border-bottom-color: var(--spark-border-default, #1f2937);
+}
+
+[data-theme="dark"] .spark-card-title {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-tabs-header {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-bottom-color: var(--spark-border-default, #1f2937);
+}
+
+[data-theme="dark"] .spark-tab-btn {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .spark-tab-btn:hover {
+  color: #818cf8;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .spark-tab-btn.is-active {
+  color: #818cf8;
+  border-bottom-color: #818cf8;
+}
+
+[data-theme="dark"] .spark-dashboard-table th {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-muted, #94a3b8);
+}
+
+[data-theme="dark"] .spark-dashboard-table td {
+  border-bottom-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-dashboard-table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .spark-leaderboard-item {
+  border-bottom-color: var(--spark-border-default, #1f2937);
+}
+
+[data-theme="dark"] .spark-leaderboard-name {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-leaderboard-rank {
+  background-color: #1f2937;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .spark-quick-action-btn {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: var(--spark-border-default, #1f2937);
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-quick-action-btn:hover {
+  background-color: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.35);
+  color: #818cf8;
+}
+
+/* ==========================================================================
+   MODULE DASHBOARDS ADAPTATION (Phase 5G)
+   Seamless transformation of module dashboard legacy classes (.x_panel, .tile, .top_tiles, .quick-button)
+   into the unified Phase 5D visual language.
+   ========================================================================== */
+
+/* ─── Module Dashboard Cards (.x_panel) ─── */
+.spark-ui .x_panel,
+body.spark-ui .x_panel {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border-radius: var(--spark-radius-xl, 16px) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04)) !important;
+  padding: var(--spark-space-5, 22px) !important;
+  margin-bottom: var(--spark-space-5, 20px) !important;
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.spark-ui .x_title,
+body.spark-ui .x_title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid var(--spark-border-subtle, #f1f5f9) !important;
+  padding: 0 0 14px 0 !important;
+  margin-bottom: 18px !important;
+}
+
+.spark-ui .x_title h2,
+body.spark-ui .x_title h2 {
+  font-size: var(--spark-text-base, 1rem) !important;
+  font-weight: 700 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.01em !important;
+  float: none !important;
+}
+
+.spark-ui .x_title .panel_toolbox,
+body.spark-ui .x_title .panel_toolbox {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+.spark-ui .x_content,
+body.spark-ui .x_content {
+  padding: 0 !important;
+  float: none !important;
+  clear: both !important;
+  margin-top: 0 !important;
+}
+
+/* ─── Module KPI Tile Grids (.top_tiles) ─── */
+.spark-ui .top_tiles,
+body.spark-ui .top_tiles {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: var(--spark-space-4, 16px) !important;
+  margin: 0 0 var(--spark-space-4, 16px) 0 !important;
+}
+
+.spark-ui .top_tiles .tile,
+.spark-ui .tile.backg_gray,
+body.spark-ui .top_tiles .tile,
+body.spark-ui .tile.backg_gray {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-xl, 16px) !important;
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04)) !important;
+  padding: var(--spark-space-5, 20px) !important;
+  margin: 0 !important;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  float: none !important;
+  width: auto !important;
+}
+
+.spark-ui .top_tiles .tile:hover,
+.spark-ui .tile.backg_gray:hover,
+body.spark-ui .top_tiles .tile:hover,
+body.spark-ui .tile.backg_gray:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--spark-shadow-medium, 0 4px 16px rgba(0, 0, 0, 0.08)) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.spark-ui .top_tiles .tile span,
+.spark-ui .tile.backg_gray span,
+body.spark-ui .top_tiles .tile span,
+body.spark-ui .tile.backg_gray span {
+  font-size: var(--spark-text-xs, 0.75rem) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--spark-text-muted, #94a3b8) !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+  line-height: 1.3 !important;
+}
+
+.spark-ui .top_tiles .tile h2,
+.spark-ui .tile.backg_gray h2,
+body.spark-ui .top_tiles .tile h2,
+body.spark-ui .tile.backg_gray h2 {
+  font-size: var(--spark-text-2xl, 1.5rem) !important;
+  font-weight: 800 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ─── Quick Buttons in Module Dashboards ─── */
+.spark-ui .quick-button,
+.spark-ui .quick-button-small,
+body.spark-ui .quick-button,
+body.spark-ui .quick-button-small {
+  background-color: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-lg, 12px) !important;
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04)) !important;
+  padding: 16px 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  transition: all var(--spark-transition-fast, 0.15s ease) !important;
+  margin-bottom: 15px !important;
+}
+
+.spark-ui .quick-button:hover,
+.spark-ui .quick-button-small:hover,
+body.spark-ui .quick-button:hover,
+body.spark-ui .quick-button-small:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.spark-ui .quick-button i,
+.spark-ui .quick-button-small i,
+body.spark-ui .quick-button i,
+body.spark-ui .quick-button-small i {
+  font-size: 22px !important;
+  color: var(--spark-primary, #6366f1) !important;
+}
+
+.spark-ui .quick-button p,
+.spark-ui .quick-button-small p,
+body.spark-ui .quick-button p,
+body.spark-ui .quick-button-small p {
+  font-size: var(--spark-text-sm) !important;
+  font-weight: 600 !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+/* ─── Module Dashboards in Dark Mode ─── */
+[data-theme="dark"] .spark-ui .x_panel,
+[data-theme="dark"] body.spark-ui .x_panel,
+body[data-theme="dark"] .x_panel {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+[data-theme="dark"] .spark-ui .x_title,
+[data-theme="dark"] body.spark-ui .x_title,
+body[data-theme="dark"] .x_title {
+  border-bottom-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .spark-ui .x_title h2,
+[data-theme="dark"] body.spark-ui .x_title h2,
+body[data-theme="dark"] .x_title h2 {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .top_tiles .tile,
+[data-theme="dark"] .spark-ui .tile.backg_gray,
+[data-theme="dark"] body.spark-ui .top_tiles .tile,
+[data-theme="dark"] body.spark-ui .tile.backg_gray,
+body[data-theme="dark"] .top_tiles .tile,
+body[data-theme="dark"] .tile.backg_gray {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .spark-ui .top_tiles .tile span,
+[data-theme="dark"] .spark-ui .tile.backg_gray span,
+[data-theme="dark"] body.spark-ui .top_tiles .tile span,
+[data-theme="dark"] body.spark-ui .tile.backg_gray span,
+body[data-theme="dark"] .top_tiles .tile span {
+  color: var(--spark-text-muted, #94a3b8) !important;
+}
+
+[data-theme="dark"] .spark-ui .top_tiles .tile h2,
+[data-theme="dark"] .spark-ui .tile.backg_gray h2,
+[data-theme="dark"] body.spark-ui .top_tiles .tile h2,
+[data-theme="dark"] body.spark-ui .tile.backg_gray h2,
+body[data-theme="dark"] .top_tiles .tile h2 {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+[data-theme="dark"] .spark-ui .quick-button,
+[data-theme="dark"] .spark-ui .quick-button-small,
+[data-theme="dark"] body.spark-ui .quick-button,
+[data-theme="dark"] body.spark-ui .quick-button-small,
+body[data-theme="dark"] .quick-button {
+  background-color: var(--spark-surface-card, #111827) !important;
+  border-color: var(--spark-border-default, #1f2937) !important;
+}
+
+[data-theme="dark"] .spark-ui .quick-button p,
+[data-theme="dark"] .spark-ui .quick-button-small p,
+[data-theme="dark"] body.spark-ui .quick-button p,
+[data-theme="dark"] body.spark-ui .quick-button-small p,
+body[data-theme="dark"] .quick-button p {
+  color: var(--spark-text-primary, #f8fafc) !important;
+}
+
+/* ─── Module Dashboard Grid Responsive ─── */
+@media (max-width: 991px) {
+  .spark-dashboard-grid>div[style*="span 6"] {
+    grid-column: span 12 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .spark-dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .spark-dashboard-meta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   PRODUCTS & INVENTORY SUMMARY CARDS (MATCHING REACT SAAS)
+   ========================================================================== */
+
+.spark-products-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spark-space-4, 16px);
+  width: 100%;
+  margin-bottom: var(--spark-space-6, 24px);
+}
+
+@media (min-width: 1024px) {
+  .spark-products-summary-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .spark-products-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .spark-products-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual Stat Card */
+.spark-product-stat-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+  padding: 20px 22px;
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #f1f5f9);
+  border-radius: var(--spark-radius-xl, 16px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition:
+    transform var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1)),
+    border-color var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.spark-product-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  border-color: rgba(99, 102, 241, 0.2);
+  text-decoration: none !important;
+}
+
+/* Top Header Row of Card: Icon Container (48px x 48px rounded-xl) */
+.spark-product-stat-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.spark-product-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform var(--spark-transition-fast, 0.2s ease);
+  flex-shrink: 0;
+}
+
+.spark-product-stat-card:hover .spark-product-stat-icon {
+  transform: scale(1.08);
+}
+
+.spark-product-stat-icon.is-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+}
+
+.spark-product-stat-icon.is-green {
+  background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.spark-product-stat-icon.is-purple {
+  background: var(--spark-gradient-primary, linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%));
+  box-shadow: 0 4px 12px var(--spark-focus-ring, rgba(139, 92, 246, 0.35));
+}
+
+.spark-product-stat-icon.is-orange {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+
+/* Card Body Content */
+.spark-product-stat-body {
+  margin-bottom: 4px;
+  width: 100%;
+  text-align: start;
+}
+
+.spark-product-stat-title {
+  font-size: var(--spark-text-md);
+  font-weight: 500;
+  color: var(--spark-text-secondary, #64748b);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  text-align: start;
+}
+
+.spark-product-stat-value {
+  font-size: var(--spark-text-3xl);
+  font-weight: 700;
+  color: var(--spark-text-primary, #0f172a);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 6px;
+  text-align: start;
+}
+
+.spark-product-stat-value img {
+  height: 16px;
+  width: auto;
+  vertical-align: middle;
+  display: inline-block;
+  margin-inline: 2px;
+}
+
+.spark-product-stat-currency {
+  font-size: var(--spark-text-md);
+  font-weight: 500;
+  color: var(--spark-text-muted, #64748b);
+}
+
+/* Card Footer Link */
+.spark-product-stat-link {
+  font-size: var(--spark-text-sm);
+  font-weight: 500;
+  color: var(--spark-primary, #6366f1);
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  text-align: start;
+  transition:
+    gap var(--spark-transition-fast, 0.15s ease),
+    color var(--spark-transition-fast, 0.15s ease);
+}
+
+.spark-product-stat-card:hover .spark-product-stat-link {
+  color: var(--spark-primary-hover, #4f46e5);
+  gap: 7px;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] .spark-product-stat-card {
+  background-color: var(--spark-surface-card, #111827);
+  border-color: var(--spark-border-default, #1f2937);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .spark-product-stat-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+[data-theme="dark"] .spark-product-stat-title {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .spark-product-stat-value {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-product-stat-currency {
+  color: var(--spark-text-muted, #64748b);
+}
+
+[data-theme="dark"] .spark-product-stat-link {
+  color: var(--spark-primary, #818cf8);
+}
+
+[data-theme="dark"] .spark-product-stat-card:hover .spark-product-stat-link {
+  color: #a5b4fc;
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD ALERTS & SECTION STATISTICS (REACT SAAS REFERENCE)
+   ========================================================================== */
+
+/* ─── 1. Critical Alert Cards Grid (4 Cols) ─── */
+.spark-dashboard-alerts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spark-space-4, 16px);
+  width: 100%;
+  margin-bottom: var(--spark-space-4, 16px);
+}
+
+@media (max-width: 1199px) and (min-width: 640px) {
+  .spark-dashboard-alerts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .spark-dashboard-alerts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spark-alert-item-card {
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #f1f5f9);
+  border-radius: var(--spark-radius-xl, 16px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  text-decoration: none !important;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1)),
+    border-color var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.spark-alert-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(99, 102, 241, 0.2);
+  text-decoration: none !important;
+}
+
+.spark-alert-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.spark-alert-item-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  transition: transform var(--spark-transition-fast, 0.2s ease);
+}
+
+.spark-alert-item-card:hover .spark-alert-item-icon {
+  transform: scale(1.06);
+}
+
+.spark-alert-item-icon.is-orange-red {
+  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.spark-alert-item-icon.is-blue-cyan {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.spark-alert-item-icon.is-red-pink {
+  background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.spark-alert-item-icon.is-emerald-teal {
+  background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.spark-alert-item-content {
+  flex: 1;
+  min-width: 0;
+  text-align: start;
+}
+
+.spark-alert-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.spark-alert-item-title {
+  font-size: var(--spark-text-md, 14px);
+  font-weight: 700;
+  color: var(--spark-text-primary, #0f172a);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.spark-alert-item-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 7px;
+  border-radius: var(--spark-radius-full, 9999px);
+  font-size: var(--spark-text-xs, 11px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.spark-alert-item-badge.spark-alert-badge-red {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.spark-alert-item-badge.spark-alert-badge-blue {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.spark-alert-item-badge.spark-alert-badge-green {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.spark-alert-item-desc {
+  font-size: var(--spark-text-sm, 12px);
+  color: var(--spark-text-secondary, #64748b);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ─── 2. Section Statistics Panel (إحصائيات الأقسام) ─── */
+.spark-dept-stats-panel {
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #f1f5f9);
+  border-radius: var(--spark-radius-xl, 16px);
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  width: 100%;
+  margin-bottom: var(--spark-space-5, 20px);
+}
+
+.spark-dept-stats-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.spark-dept-stats-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--spark-primary-subtle, #eef2ff);
+  color: var(--spark-primary, #6366f1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.spark-dept-stats-title {
+  font-size: var(--spark-text-lg);
+  font-weight: 700;
+  color: var(--spark-text-primary, #0f172a);
+  margin: 0;
+}
+
+.spark-dept-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spark-space-4, 16px);
+  width: 100%;
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .spark-dept-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .spark-dept-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.spark-dept-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 12px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-xl, 14px);
+  text-decoration: none !important;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1)),
+    border-color var(--spark-transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.spark-dept-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(99, 102, 241, 0.3);
+  text-decoration: none !important;
+}
+
+.spark-dept-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform var(--spark-transition-fast, 0.2s ease);
+}
+
+.spark-dept-stat-card:hover .spark-dept-stat-icon {
+  transform: scale(1.08);
+}
+
+.spark-dept-stat-icon.is-emerald-teal {
+  background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.spark-dept-stat-icon.is-blue-cyan {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+}
+
+.spark-dept-stat-icon.is-purple-pink {
+  background: var(--spark-gradient-premium, linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%));
+  box-shadow: 0 4px 12px var(--spark-focus-ring, rgba(139, 92, 246, 0.35));
+}
+
+.spark-dept-stat-icon.is-orange-red {
+  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+}
+
+.spark-dept-stat-icon.is-cyan-blue {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+}
+
+.spark-dept-stat-icon.is-pink-rose {
+  background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
+}
+
+.spark-dept-stat-value {
+  font-size: var(--spark-text-2xl);
+  font-weight: 700;
+  color: var(--spark-text-primary, #0f172a);
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.spark-dept-stat-title {
+  font-size: var(--spark-text-base);
+  font-weight: 700;
+  color: var(--spark-text-secondary, #334155);
+  margin: 0 0 2px 0;
+  line-height: 1.3;
+}
+
+.spark-dept-stat-desc {
+  font-size: var(--spark-text-xs);
+  color: var(--spark-text-muted, #64748b);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* ─── Dark Theme Overrides ─── */
+[data-theme="dark"] .spark-alert-item-card,
+[data-theme="dark"] .spark-dept-stats-panel {
+  background-color: var(--spark-surface-card, #111827);
+  border-color: var(--spark-border-default, #1f2937);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .spark-dept-stat-card {
+  background: linear-gradient(135deg, #1e293b 0%, #111827 100%);
+  border-color: var(--spark-border-default, #1f2937);
+}
+
+[data-theme="dark"] .spark-alert-item-card:hover,
+[data-theme="dark"] .spark-dept-stat-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+[data-theme="dark"] .spark-alert-item-title,
+[data-theme="dark"] .spark-dept-stats-title,
+[data-theme="dark"] .spark-dept-stat-value {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-dept-stat-title {
+  color: var(--spark-text-primary, #e2e8f0);
+}
+
+[data-theme="dark"] .spark-alert-item-desc,
+[data-theme="dark"] .spark-dept-stat-desc {
+  color: var(--spark-text-muted, #94a3b8);
+}
+
+[data-theme="dark"] .spark-dept-stats-header-icon {
+  background-color: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+}
+
+[data-theme="dark"] .spark-alert-item-badge.spark-alert-badge-red {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+[data-theme="dark"] .spark-alert-item-badge.spark-alert-badge-blue {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .spark-alert-item-badge.spark-alert-badge-green {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+/* ==========================================================================
+   Global Filter Toolbar & Presets (Identical to Accounting Dashboard)
+   ========================================================================== */
+.spark-acc-filter-wrapper {
+  background: var(--spark-surface, #ffffff);
+  border: 1px solid var(--spark-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.spark-acc-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.spark-acc-period-presets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.spark-acc-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: var(--spark-text-sm);
+  font-weight: 500;
+  color: var(--spark-text-secondary, #64748b);
+  background: var(--spark-card-bg, #f8fafc);
+  border: 1px solid var(--spark-border, #e2e8f0);
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.spark-acc-filter-btn:hover {
+  color: var(--spark-primary, #6366f1);
+  border-color: var(--spark-primary, #6366f1);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.spark-acc-filter-btn.active {
+  color: #ffffff !important;
+  background: var(--spark-primary, #6366f1) !important;
+  border-color: var(--spark-primary, #6366f1) !important;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+  font-weight: 600;
+}
+
+.spark-acc-active-range-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  font-size: var(--spark-text-sm);
+  font-weight: 600;
+  color: var(--spark-primary, #6366f1);
+}
+
+.spark-acc-custom-drawer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--spark-border, #e2e8f0);
+}
+
+.spark-acc-custom-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.spark-acc-form-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--spark-text-sm);
+  font-weight: 600;
+  color: var(--spark-text, #1e293b);
+}
+
+.spark-acc-date-input {
+  border-radius: 6px !important;
+  border: 1px solid var(--spark-border, #cbd5e1) !important;
+  padding: 4px 10px !important;
+  font-size: var(--spark-text-sm) !important;
+  height: 32px !important;
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.spark-acc-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-theme="dark"] .spark-acc-filter-wrapper {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .spark-acc-filter-btn {
+  background: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .spark-acc-filter-btn:hover {
+  background: var(--spark-primary-subtle, rgba(99, 102, 241, 0.15));
+  color: var(--spark-primary-hover, #c7d2fe);
+  border-color: var(--spark-primary, #6366f1);
+}
+
+[data-theme="dark"] .spark-acc-date-input {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .spark-acc-custom-drawer {
+  border-top-color: #334155;
+}
+
+[data-theme="dark"] .spark-acc-form-group {
+  color: #e2e8f0;
+}
+
+
+/* ==========================================================================
+   Print Optimization
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .spark-sidebar,
+  .spark-navbar,
+  .spark-acc-filter-wrapper,
+  .spark-quick-actions-grid,
+  .spark-btn,
+  .btn,
+  .btn-group,
+  .panel_toolbox {
+    display: none !important;
+  }
+
+  .spark-dashboard {
+    gap: 12px !important;
+  }
+
+  .spark-stat-card,
+  .spark-chart-card,
+  .spark-table-card {
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+    break-inside: avoid;
+  }
+}

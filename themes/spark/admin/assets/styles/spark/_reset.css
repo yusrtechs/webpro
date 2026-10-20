@@ -1,0 +1,175 @@
+/* ============================================================================
+   Spark ERP Design System — Scoped Reset
+   Version: 1.0.0
+   
+   Minimal CSS reset applied ONLY within .spark-ui containers.
+   
+   CRITICAL: This reset does NOT use global selectors.
+   It will NOT affect any existing application elements outside .spark-ui.
+   ============================================================================ */
+
+/* ==========================================================================
+   BOX SIZING
+   ========================================================================== */
+
+.spark-ui,
+.spark-ui *,
+.spark-ui *::before,
+.spark-ui *::after {
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   MARGIN/PADDING RESET FOR SEMANTIC ELEMENTS
+   Only resets elements that Spark components use directly.
+   ========================================================================== */
+
+.spark-ui h1,
+.spark-ui h2,
+.spark-ui h3,
+.spark-ui h4,
+.spark-ui h5,
+.spark-ui h6,
+.spark-ui p,
+.spark-ui ul,
+.spark-ui ol,
+.spark-ui figure,
+.spark-ui blockquote,
+.spark-ui dl,
+.spark-ui dd {
+  margin: 0;
+}
+
+.spark-ui ul,
+.spark-ui ol {
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ==========================================================================
+   ANCHOR RESET
+   ========================================================================== */
+
+.spark-ui a {
+  /*color: inherit;*/
+  text-decoration: none;
+}
+
+.spark-ui a:focus-visible {
+  outline: 2px solid var(--spark-primary);
+  outline-offset: 2px;
+  border-radius: var(--spark-radius-sm);
+}
+
+
+/* ==========================================================================
+   BUTTON RESET
+   ========================================================================== */
+
+.spark-ui button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   INPUT RESET
+   ========================================================================== */
+
+.spark-ui input,
+.spark-ui textarea,
+.spark-ui select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+
+/* ==========================================================================
+   TABLE RESET
+   ========================================================================== */
+
+.spark-ui table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* ==========================================================================
+   IMAGE RESET
+   ========================================================================== */
+
+.spark-ui img,
+.spark-ui svg {
+  max-width: 100%;
+}
+
+
+/* ==========================================================================
+   MISC RESET
+   ========================================================================== */
+
+.spark-ui fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.spark-ui legend {
+  padding: 0;
+}
+
+/* Remove default focus outline for mouse users, keep for keyboard */
+.spark-ui :focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Prevent text size adjust on orientation change (iOS) */
+.spark-ui {
+  -webkit-text-size-adjust: 100%;
+}
+
+
+/* ==========================================================================
+   SCOPED SCROLLBAR & TRANSITION SYSTEM
+   Strictly scoped to .spark-ui containers to prevent global side-effects.
+   ========================================================================== */
+
+.spark-ui ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.spark-ui ::-webkit-scrollbar-track {
+  background: var(--spark-border-light, #f1f5f9);
+  border-radius: var(--spark-radius-full, 9999px);
+}
+
+.spark-ui ::-webkit-scrollbar-thumb {
+  background: var(--spark-border-strong, #cbd5e1);
+  border-radius: var(--spark-radius-full, 9999px);
+}
+
+.spark-ui ::-webkit-scrollbar-thumb:hover {
+  background: var(--spark-secondary, #64748b);
+}
+
+/* Hide scrollbar utility */
+.spark-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.spark-scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

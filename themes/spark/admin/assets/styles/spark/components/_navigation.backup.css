@@ -1,0 +1,717 @@
+/* ============================================================================
+   Spark ERP Design System — Navigation Components
+   Version: 1.0.0
+   
+   Header, Sidebar, Navigation Items, and Mobile Drawer.
+   Uses CSS Logical Properties exclusively for automatic RTL/LTR compatibility.
+   Namespaced under .spark-header and .spark-sidebar.
+   ============================================================================ */
+
+/* ==========================================================================
+   HEADER COMPONENT (.spark-header)
+   ========================================================================== */
+
+.spark-header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: var(--spark-header-height);
+  background-color: var(--spark-header-bg);
+  border-block-end: 1px solid var(--spark-header-border);
+  color: var(--spark-header-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--spark-space-4);
+  z-index: var(--spark-z-header);
+  box-shadow: var(--spark-shadow-xs);
+  transition:
+    background-color var(--spark-transition-base),
+    border-color var(--spark-transition-base);
+}
+
+/* Header Brand / Left side */
+.spark-header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3);
+  font-size: var(--spark-text-lg);
+  font-weight: var(--spark-weight-bold);
+  color: var(--spark-text);
+  text-decoration: none;
+  min-width: 0;
+}
+
+.spark-header-logo {
+  height: 32px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+.spark-header-brand-text {
+  font-size: var(--spark-text-lg);
+  font-weight: var(--spark-weight-bold);
+  color: var(--spark-text);
+  white-space: nowrap;
+}
+
+/* Hamburger / Toggle Button */
+.spark-header-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--spark-radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--spark-text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  transition:
+    background-color var(--spark-transition-fast),
+    color var(--spark-transition-fast);
+}
+
+.spark-header-toggle:hover {
+  background-color: var(--spark-surface-hover);
+  color: var(--spark-text);
+}
+
+.spark-header-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring);
+}
+
+/* Header Actions / Right side */
+.spark-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-2);
+}
+
+/* Individual Action Item (Icon button) */
+.spark-header-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--spark-radius-md);
+  border: 1px solid var(--spark-border-light);
+  background: var(--spark-surface);
+  color: var(--spark-text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  transition:
+    background-color var(--spark-transition-fast),
+    border-color var(--spark-transition-fast),
+    color var(--spark-transition-fast);
+}
+
+.spark-header-action:hover {
+  background-color: var(--spark-surface-hover);
+  border-color: var(--spark-border);
+  color: var(--spark-text);
+}
+
+.spark-header-action:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring);
+}
+
+/* Notification badge on header action */
+.spark-header-badge {
+  position: absolute;
+  inset-block-start: -4px;
+  inset-inline-end: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: var(--spark-space-1);
+  font-size: 10px;
+  font-weight: var(--spark-weight-bold);
+  line-height: 18px;
+  text-align: center;
+  border-radius: var(--spark-radius-full);
+  background-color: var(--spark-danger);
+  color: var(--spark-text-inverse);
+  font-variant-numeric: tabular-nums;
+  border: 2px solid var(--spark-header-bg);
+}
+
+/* User Menu in Header */
+.spark-header-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-2);
+  padding-inline: var(--spark-space-2);
+  padding-block: var(--spark-space-1);
+  border-radius: var(--spark-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--spark-text);
+  transition: background-color var(--spark-transition-fast);
+}
+
+.spark-header-user:hover {
+  background-color: var(--spark-surface-hover);
+}
+
+.spark-header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--spark-radius-full);
+  object-fit: cover;
+  border: 1px solid var(--spark-border);
+}
+
+.spark-header-username {
+  font-size: var(--spark-text-sm);
+  font-weight: var(--spark-weight-medium);
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .spark-header-username {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   SIDEBAR COMPONENT (.spark-sidebar)
+   ========================================================================== */
+
+.spark-sidebar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: var(--spark-sidebar-width);
+  height: 100vh;
+  background-color: var(--spark-sidebar-bg);
+  border-inline-end: 1px solid var(--spark-sidebar-border);
+  color: var(--spark-sidebar-text);
+  display: flex;
+  flex-direction: column;
+  z-index: var(--spark-z-sidebar);
+  transition:
+    width var(--spark-transition-slow),
+    transform var(--spark-transition-slow);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ─── Sidebar Brand Area ─── */
+.spark-sidebar-brand {
+  height: var(--spark-header-height);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--spark-space-4);
+  gap: var(--spark-space-3);
+  border-block-end: 1px solid var(--spark-sidebar-border);
+  flex-shrink: 0;
+}
+
+.spark-sidebar-logo {
+  height: 30px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.spark-sidebar-brand-text {
+  font-size: var(--spark-text-md);
+  font-weight: var(--spark-weight-bold);
+  color: var(--spark-sidebar-text-active);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Sidebar Navigation Scroll Area ─── */
+.spark-sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-block: var(--spark-space-2);
+  scrollbar-width: thin;
+  scrollbar-color: var(--spark-sidebar-border) transparent;
+}
+
+.spark-sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.spark-sidebar-nav::-webkit-scrollbar-thumb {
+  background-color: var(--spark-sidebar-border);
+  border-radius: var(--spark-radius-full);
+}
+
+/* ─── Sidebar Menu List ─── */
+.spark-sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ─── Sidebar Item ─── */
+.spark-sidebar-item {
+  position: relative;
+  width: 100%;
+}
+
+/* ─── Sidebar Link ─── */
+.spark-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3);
+  padding-block: 9px;
+  padding-inline: var(--spark-space-4);
+  color: var(--spark-sidebar-text);
+  font-family: var(--spark-font-family);
+  font-size: var(--spark-text-base);
+  font-weight: var(--spark-weight-medium);
+  text-decoration: none;
+  border-radius: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--spark-transition-fast),
+    color var(--spark-transition-fast);
+}
+
+.spark-sidebar-link:hover {
+  background-color: var(--spark-sidebar-item-hover);
+  color: var(--spark-sidebar-text-active);
+}
+
+/* Active Item */
+.spark-sidebar-item.is-active > .spark-sidebar-link {
+  background-color: var(--spark-sidebar-item-active);
+  color: var(--spark-sidebar-text-active);
+  font-weight: var(--spark-weight-semibold);
+  position: relative;
+}
+
+.spark-sidebar-item.is-active > .spark-sidebar-link::before {
+  content: '';
+  position: absolute;
+  inset-block: 4px;
+  inset-inline-start: 0;
+  width: 3px;
+  background-color: var(--spark-primary);
+  border-start-end-radius: var(--spark-radius-sm);
+  border-end-end-radius: var(--spark-radius-sm);
+}
+
+/* Icon */
+.spark-sidebar-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* Text label */
+.spark-sidebar-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chevron arrow for expandable menus */
+.spark-sidebar-chevron {
+  font-size: 11px;
+  margin-inline-start: auto;
+  opacity: 0.65;
+  transition: transform var(--spark-transition-base);
+  flex-shrink: 0;
+}
+
+.spark-sidebar-item.is-expanded > .spark-sidebar-link .spark-sidebar-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ─── Submenu ─── */
+.spark-sidebar-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  background-color: hsla(0, 0%, 0%, 0.18);
+  padding-block: var(--spark-space-1);
+}
+
+.spark-sidebar-item.is-expanded > .spark-sidebar-submenu {
+  display: block;
+}
+
+.spark-sidebar-submenu-item {
+  width: 100%;
+}
+
+.spark-sidebar-submenu-link {
+  display: flex;
+  align-items: center;
+  padding-block: 7px;
+  padding-inline-start: calc(var(--spark-space-4) + 24px);
+  padding-inline-end: var(--spark-space-4);
+  font-size: var(--spark-text-sm);
+  color: var(--spark-sidebar-text);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition:
+    background-color var(--spark-transition-fast),
+    color var(--spark-transition-fast);
+}
+
+.spark-sidebar-submenu-link:hover {
+  background-color: var(--spark-sidebar-item-hover);
+  color: var(--spark-sidebar-text-active);
+}
+
+.spark-sidebar-submenu-item.is-active > .spark-sidebar-submenu-link {
+  color: var(--spark-primary);
+  font-weight: var(--spark-weight-semibold);
+  background-color: hsla(215, 65%, 48%, 0.08);
+}
+
+/* ─── Sidebar Footer Area ─── */
+.spark-sidebar-footer {
+  padding-inline: var(--spark-space-4);
+  padding-block: var(--spark-space-3);
+  border-block-start: 1px solid var(--spark-sidebar-border);
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3);
+  flex-shrink: 0;
+  background-color: hsla(0, 0%, 0%, 0.12);
+}
+
+.spark-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spark-space-3);
+  min-width: 0;
+  flex: 1;
+}
+
+.spark-sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--spark-radius-full);
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--spark-sidebar-border);
+}
+
+.spark-sidebar-username {
+  font-size: var(--spark-text-sm);
+  font-weight: var(--spark-weight-medium);
+  color: var(--spark-sidebar-text-active);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========================================================================
+   COLLAPSED SIDEBAR STATE (.spark-sidebar.is-collapsed)
+   ========================================================================== */
+
+.spark-sidebar.is-collapsed {
+  width: var(--spark-sidebar-collapsed);
+}
+
+.spark-sidebar.is-collapsed .spark-sidebar-brand-text,
+.spark-sidebar.is-collapsed .spark-sidebar-text,
+.spark-sidebar.is-collapsed .spark-sidebar-chevron,
+.spark-sidebar.is-collapsed .spark-sidebar-username,
+.spark-sidebar.is-collapsed .spark-sidebar-submenu {
+  display: none !important;
+}
+
+.spark-sidebar.is-collapsed .spark-sidebar-link {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.spark-sidebar.is-collapsed .spark-sidebar-brand {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.spark-sidebar.is-collapsed .spark-sidebar-footer {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE SIDEBAR BEHAVIOR
+   ========================================================================== */
+
+/* Tablet (768px to 1023px) — Collapsed by default */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .spark-sidebar {
+    width: var(--spark-sidebar-collapsed);
+  }
+
+  .spark-sidebar .spark-sidebar-brand-text,
+  .spark-sidebar .spark-sidebar-text,
+  .spark-sidebar .spark-sidebar-chevron,
+  .spark-sidebar .spark-sidebar-username,
+  .spark-sidebar .spark-sidebar-submenu {
+    display: none;
+  }
+
+  .spark-sidebar .spark-sidebar-link,
+  .spark-sidebar .spark-sidebar-brand,
+  .spark-sidebar .spark-sidebar-footer {
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  /* When expanded on tablet via hamburger */
+  .spark-sidebar.is-expanded {
+    width: var(--spark-sidebar-width);
+    box-shadow: var(--spark-shadow-xl);
+    z-index: calc(var(--spark-z-sidebar) + 10);
+  }
+
+  .spark-sidebar.is-expanded .spark-sidebar-brand-text,
+  .spark-sidebar.is-expanded .spark-sidebar-text,
+  .spark-sidebar.is-expanded .spark-sidebar-chevron,
+  .spark-sidebar.is-expanded .spark-sidebar-username {
+    display: block !important;
+  }
+
+  .spark-sidebar.is-expanded .spark-sidebar-link {
+    justify-content: flex-start;
+    padding-inline: var(--spark-space-4);
+  }
+
+  .spark-sidebar.is-expanded .spark-sidebar-brand,
+  .spark-sidebar.is-expanded .spark-sidebar-footer {
+    justify-content: flex-start;
+    padding-inline: var(--spark-space-4);
+  }
+}
+
+/* Mobile (< 768px) — Off-canvas Drawer */
+@media (max-width: 767px) {
+  .spark-sidebar {
+    width: var(--spark-sidebar-width);
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  [dir="rtl"] .spark-sidebar {
+    transform: translateX(100%);
+  }
+
+  .spark-sidebar.is-mobile-open {
+    transform: translateX(0) !important;
+    box-shadow: var(--spark-shadow-xl);
+  }
+}
+
+/* ==========================================================================
+   SPARK MODULE APP LAUNCHER (.spark-module-switcher)
+   ========================================================================== */
+.spark-module-switcher {
+  position: relative;
+  margin-inline-start: var(--spark-space-2, 8px);
+}
+
+.spark-launcher-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-2, 8px);
+  padding: 6px 12px;
+  height: 36px;
+  border-radius: var(--spark-radius-md, 8px);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  background-color: var(--spark-surface-card, #ffffff);
+  color: var(--spark-text-primary, #0f172a);
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.05));
+  transition: all 0.15s ease;
+}
+
+.spark-launcher-btn:hover,
+.spark-module-switcher.open .spark-launcher-btn {
+  background-color: var(--spark-surface-hover, #f8fafc);
+  border-color: var(--spark-primary, #2563eb);
+  color: var(--spark-primary, #2563eb);
+}
+
+.spark-launcher-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--spark-focus-ring, rgba(37, 99, 235, 0.2));
+}
+
+.spark-launcher-icon {
+  font-size: 14px;
+  color: var(--spark-primary, #2563eb);
+}
+
+.spark-launcher-text {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.spark-launcher-arrow {
+  font-size: 11px;
+  color: var(--spark-text-muted, #94a3b8);
+  transition: transform 0.15s ease;
+}
+
+.spark-module-switcher.open .spark-launcher-arrow {
+  transform: rotate(180deg);
+}
+
+/* App Launcher Dropdown Grid Panel */
+.spark-module-grid-menu {
+  position: absolute;
+  inset-block-start: calc(100% + 8px);
+  inset-inline-start: 0;
+  width: 380px;
+  max-width: 90vw;
+  padding: var(--spark-space-3, 12px);
+  background-color: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-lg, 12px);
+  box-shadow: var(--spark-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
+  z-index: 1050;
+  animation: sparkFadeIn 0.15s ease-out;
+}
+
+.spark-module-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px 10px 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--spark-border-subtle, #f1f5f9);
+}
+
+.spark-module-grid-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--spark-text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spark-module-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spark-space-2, 8px);
+}
+
+@media (max-width: 1024px) {
+  .spark-module-grid-menu {
+    width: 320px;
+  }
+  .spark-module-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .spark-module-grid-menu {
+    width: 280px;
+    inset-inline-start: -60px;
+  }
+  .spark-module-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Individual Module Tile Item */
+.spark-module-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 6px;
+  min-height: 72px;
+  border-radius: var(--spark-radius-md, 8px);
+  border: 1px solid transparent;
+  background-color: var(--spark-surface-subtle, #f8fafc);
+  color: var(--spark-text-primary, #0f172a);
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.spark-module-item:hover {
+  background-color: var(--spark-surface-card, #ffffff);
+  border-color: var(--spark-border-hover, #cbd5e1);
+  color: var(--spark-primary, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: var(--spark-shadow-sm, 0 1px 3px rgba(0,0,0,0.08));
+  text-decoration: none;
+}
+
+.spark-module-item.is-active {
+  background-color: rgba(37, 99, 235, 0.08);
+  border-color: var(--spark-primary, #2563eb);
+  color: var(--spark-primary, #2563eb);
+  font-weight: 600;
+}
+
+.spark-module-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--spark-radius-sm, 6px);
+  background-color: var(--spark-surface-card, #ffffff);
+  color: var(--spark-primary, #2563eb);
+  font-size: 15px;
+  box-shadow: var(--spark-shadow-xs, 0 1px 2px rgba(0,0,0,0.04));
+  transition: all 0.15s ease;
+}
+
+.spark-module-item:hover .spark-module-item-icon,
+.spark-module-item.is-active .spark-module-item-icon {
+  background-color: var(--spark-primary, #2563eb);
+  color: #ffffff;
+}
+
+.spark-module-item-title {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+

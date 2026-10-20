@@ -1,0 +1,721 @@
+@charset "UTF-8";
+/* ============================================================================
+   Spark ERP Design System — Loaders & Progress Indicators
+   Version: 1.0.0
+   
+   Unified modern CSS loading system for Spark ERP:
+   - Spark CSS Spinners (xs, sm, md, lg, xl)
+   - Global Page Loader (#loading / .spark-global-loader)
+   - Global AJAX Indicator (#ajaxCall / .spark-ajax-loader)
+   - Button Loading States (.spark-btn-loading, .is-loading)
+   - Table & DataTables Processing (.dataTables_processing, .spark-table-loader)
+   - Modal Loading Overlay (#modal-loading, .spark-modal-loader)
+   - Section / Container Loaders (.spark-section-loader, .spark-loading-container)
+   - Autocomplete & Input Loaders (.ui-autocomplete-loading)
+   
+   Full Light & Dark Mode support ([data-theme="dark"]).
+   Automatic RTL/LTR compatibility using CSS Logical Properties.
+   Zero GIF/raster dependencies.
+   ============================================================================ */
+
+/* ==========================================================================
+   1. KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes spark-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spark-pulse-subtle {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes spark-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes spark-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+}
+
+@keyframes spark-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================================================
+   2. SPARK SPINNER PRIMITIVE (.spark-spinner)
+   ========================================================================== */
+
+.spark-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: rgba(99, 102, 241, 0.2);
+  border-top-color: var(--spark-primary, #6366f1);
+  animation: spark-spin 0.75s linear infinite;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* ─── Sizing Variants ─── */
+.spark-spinner-xs,
+.spark-spinner.spark-spinner-xs {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+.spark-spinner-sm,
+.spark-spinner.spark-spinner-sm {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+
+.spark-spinner-md,
+.spark-spinner.spark-spinner-md {
+  width: 26px;
+  height: 26px;
+  border-width: 3px;
+}
+
+.spark-spinner-lg,
+.spark-spinner.spark-spinner-lg {
+  width: 38px;
+  height: 38px;
+  border-width: 3.5px;
+}
+
+.spark-spinner-xl,
+.spark-spinner.spark-spinner-xl {
+  width: 52px;
+  height: 52px;
+  border-width: 4px;
+}
+
+/* ─── Color Inversion & Tone Variants ─── */
+.spark-spinner-white,
+.spark-spinner-light {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-top-color: #ffffff !important;
+}
+
+.spark-spinner-muted {
+  border-color: rgba(148, 163, 184, 0.25) !important;
+  border-top-color: var(--spark-text-secondary, #64748b) !important;
+}
+
+[data-theme="dark"] .spark-spinner {
+  border-color: rgba(129, 140, 248, 0.22);
+  border-top-color: var(--spark-primary, #818cf8);
+}
+
+/* ==========================================================================
+   3. GLOBAL PAGE LOADER (#loading / .spark-global-loader)
+   ========================================================================== */
+
+#loading,
+.spark-global-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spark-space-4, 16px);
+  background-color: rgba(248, 250, 252, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-image: none !important;
+  /* Disables legacy ajax-loader.gif */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  user-select: none;
+}
+
+/* Page Loader Inner Card */
+.spark-global-loader-content,
+#loading .spark-global-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spark-space-3, 12px);
+  padding: var(--spark-space-6, 24px) var(--spark-space-8, 32px);
+  background: var(--spark-surface-card, #ffffff);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-2xl, 20px);
+  box-shadow: var(--spark-shadow-strong, 0 8px 24px rgba(0, 0, 0, 0.12));
+  text-align: center;
+  max-width: 320px;
+}
+
+/* If inner markup is not yet injected, create pure CSS spinner via pseudo-element */
+#loading:empty::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3.5px solid rgba(99, 102, 241, 0.18);
+  border-top-color: var(--spark-primary, #6366f1);
+  animation: spark-spin 0.75s linear infinite;
+  margin-bottom: 12px;
+}
+
+#loading:empty::after {
+  content: "Spark ERP";
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: var(--spark-weight-semibold, 600);
+  color: var(--spark-text-secondary, #475569);
+  letter-spacing: -0.01em;
+}
+
+.spark-global-loader-brand {
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-base, 1rem);
+  font-weight: var(--spark-weight-bold, 700);
+  color: var(--spark-text-primary, #0f172a);
+  letter-spacing: -0.02em;
+}
+
+.spark-global-loader-text {
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-xs, 0.75rem);
+  color: var(--spark-text-muted, #94a3b8);
+  font-weight: var(--spark-weight-medium, 500);
+}
+
+/* ─── Dark Mode Global Page Loader ─── */
+[data-theme="dark"] #loading,
+[data-theme="dark"] .spark-global-loader {
+  background-color: rgba(15, 23, 42, 0.94);
+}
+
+[data-theme="dark"] .spark-global-loader-content,
+[data-theme="dark"] #loading .spark-global-loader-content {
+  background: var(--spark-surface-card, #1e293b);
+  border-color: var(--spark-border-default, #334155);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] #loading:empty::before {
+  border-color: rgba(129, 140, 248, 0.2);
+  border-top-color: var(--spark-primary, #818cf8);
+}
+
+[data-theme="dark"] #loading:empty::after {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+/* ==========================================================================
+   4. GLOBAL AJAX INDICATOR (#ajaxCall / .spark-ajax-loader)
+   ========================================================================== */
+
+#ajaxCall,
+.spark-ajax-loader {
+  position: fixed;
+  top: 18px;
+  inset-inline-end: 22px;
+  inset-inline-start: auto;
+  z-index: 99999;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spark-space-2, 8px);
+  padding-block: 8px;
+  padding-inline: 14px 18px;
+  background-color: var(--spark-surface-card, #ffffff);
+  color: var(--spark-text-primary, #0f172a);
+  border: 1px solid var(--spark-border-default, #e2e8f0);
+  border-radius: var(--spark-radius-full, 9999px);
+  box-shadow: var(--spark-shadow-strong, 0 8px 24px rgba(0, 0, 0, 0.12)), 0 2px 6px rgba(0, 0, 0, 0.04);
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: var(--spark-weight-medium, 500);
+  line-height: 1;
+  pointer-events: none;
+  transform-origin: top center;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: auto !important;
+  height: auto !important;
+  text-align: start;
+}
+
+#ajaxCall i,
+.spark-ajax-loader i {
+  display: none !important;
+  /* Hide legacy fa-spinner icon */
+}
+
+/* When empty / legacy, inject spinner and text */
+#ajaxCall:empty::before,
+#ajaxCall:not(:has(.spark-spinner))::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.2);
+  border-top-color: var(--spark-primary, #6366f1);
+  animation: spark-spin 0.75s linear infinite;
+  margin-inline-end: 8px;
+}
+
+#ajaxCall:empty::after {
+  content: "جاري المعالجة...";
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: var(--spark-weight-medium, 500);
+  color: var(--spark-text-primary, #0f172a);
+}
+
+html[lang="en"] #ajaxCall:empty::after,
+body[dir="ltr"] #ajaxCall:empty::after {
+  content: "Processing...";
+}
+
+.spark-ajax-loader-text {
+  color: var(--spark-text-primary, #0f172a);
+  font-weight: var(--spark-weight-semibold, 600);
+  white-space: nowrap;
+}
+
+.spark-ajax-loader-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--spark-primary-subtle, #eef2ff);
+  color: var(--spark-primary, #6366f1);
+  border-radius: 9999px;
+  margin-inline-start: 4px;
+}
+
+/* ─── Dark Mode AJAX Indicator ─── */
+[data-theme="dark"] #ajaxCall,
+[data-theme="dark"] .spark-ajax-loader {
+  background-color: var(--spark-surface-card, #1e293b);
+  border-color: var(--spark-border-default, #334155);
+  color: var(--spark-text-primary, #f8fafc);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] #ajaxCall:empty::before,
+[data-theme="dark"] #ajaxCall:not(:has(.spark-spinner))::before {
+  border-color: rgba(129, 140, 248, 0.2);
+  border-top-color: var(--spark-primary, #818cf8);
+}
+
+[data-theme="dark"] #ajaxCall:empty::after {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-ajax-loader-text {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+[data-theme="dark"] .spark-ajax-loader-badge {
+  background: rgba(99, 102, 241, 0.25);
+  color: var(--spark-primary, #818cf8);
+}
+
+/* ==========================================================================
+   5. BUTTON LOADING STATE (.spark-btn-loading / .is-loading)
+   ========================================================================== */
+
+.spark-btn.is-loading,
+.spark-btn.spark-btn-loading,
+.btn.spark-btn-loading,
+.btn.is-loading {
+  position: relative !important;
+  pointer-events: none !important;
+  cursor: wait !important;
+  user-select: none !important;
+}
+
+/* Inline Spinner for Buttons */
+.spark-btn.is-loading .spark-spinner,
+.spark-btn.spark-btn-loading .spark-spinner,
+.btn.spark-btn-loading .spark-spinner,
+.btn.is-loading .spark-spinner {
+  margin-inline-end: var(--spark-space-2, 8px);
+}
+
+/* Primary Button Loading State */
+.spark-btn-primary.is-loading,
+.spark-btn-primary.spark-btn-loading,
+.btn-primary.spark-btn-loading,
+.btn-primary.is-loading {
+  opacity: 0.85;
+}
+
+.spark-btn-primary.is-loading .spark-spinner,
+.spark-btn-primary.spark-btn-loading .spark-spinner,
+.btn-primary.spark-btn-loading .spark-spinner,
+.btn-primary.is-loading .spark-spinner {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-top-color: #ffffff !important;
+}
+
+/* Secondary & Subtle Button Loading */
+.spark-btn-secondary.is-loading .spark-spinner,
+.spark-btn-subtle.is-loading .spark-spinner,
+.spark-btn-outline.is-loading .spark-spinner,
+.btn-default.spark-btn-loading .spark-spinner {
+  border-color: rgba(99, 102, 241, 0.2) !important;
+  border-top-color: var(--spark-primary, #6366f1) !important;
+}
+
+/* Danger Button Loading */
+.spark-btn-danger.is-loading .spark-spinner,
+.btn-danger.spark-btn-loading .spark-spinner {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-top-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   6. TABLE & DATATABLES PROCESSING (.dataTables_processing / .spark-table-loader)
+   ========================================================================== */
+
+.dataTables_processing,
+.spark-table-loader {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+  padding: var(--spark-space-4, 16px) var(--spark-space-6, 24px) !important;
+  width: auto !important;
+  min-width: 180px !important;
+  height: auto !important;
+  background: var(--spark-surface-card, #ffffff) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-xl, 16px) !important;
+  box-shadow: var(--spark-shadow-strong, 0 8px 24px rgba(0, 0, 0, 0.12)) !important;
+  z-index: 1050 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--spark-space-2, 8px) !important;
+  font-family: var(--spark-font-family, inherit) !important;
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  font-weight: var(--spark-weight-medium, 500) !important;
+  text-align: center !important;
+  background-image: none !important;
+  /* Disables legacy loading_bar.gif */
+  animation: spark-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Auto-inject spinner before text if element is legacy */
+.dataTables_processing::before,
+.spark-table-loader::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(99, 102, 241, 0.18);
+  border-top-color: var(--spark-primary, #6366f1);
+  animation: spark-spin 0.75s linear infinite;
+}
+
+/* If processing text was hidden (legacy font-size: 0px), restore modern typography */
+.dataTables_processing {
+  font-size: var(--spark-text-sm, 0.875rem) !important;
+  color: var(--spark-text-primary, #0f172a) !important;
+}
+
+/* ─── Dark Mode DataTables Loader ─── */
+[data-theme="dark"] .dataTables_processing,
+[data-theme="dark"] .spark-table-loader {
+  background: var(--spark-surface-card, #1e293b) !important;
+  border-color: var(--spark-border-default, #334155) !important;
+  color: var(--spark-text-primary, #f8fafc) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .dataTables_processing::before,
+[data-theme="dark"] .spark-table-loader::before {
+  border-color: rgba(129, 140, 248, 0.2);
+  border-top-color: var(--spark-primary, #818cf8);
+}
+
+/* ==========================================================================
+   7. MODAL LOADING OVERLAY (#modal-loading / .spark-modal-loader)
+   ========================================================================== */
+
+#modal-loading,
+.spark-modal-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1060;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal-loading.is-active,
+.spark-modal-loader.is-active {
+  display: flex;
+}
+
+/* Modern Frosted Backdrop replacing legacy .blackbg */
+#modal-loading .blackbg,
+.spark-modal-loader-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
+}
+
+/* Modern Center Card replacing legacy .loader */
+#modal-loading .loader,
+.spark-modal-loader-card {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  padding: var(--spark-space-6, 24px) var(--spark-space-8, 32px) !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 200px !important;
+  background: var(--spark-surface-card, #ffffff) !important;
+  border: 1px solid var(--spark-border-default, #e2e8f0) !important;
+  border-radius: var(--spark-radius-2xl, 20px) !important;
+  box-shadow: var(--spark-shadow-strong, 0 8px 24px rgba(0, 0, 0, 0.12)) !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--spark-space-3, 12px) !important;
+  background-image: none !important;
+  /* Disables legacy ajax-loader.gif */
+  animation: spark-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Typography for Modal Loader Text */
+.spark-modal-loader-text {
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: var(--spark-weight-medium, 500);
+  color: var(--spark-text-primary, #0f172a);
+}
+
+[data-theme="dark"] .spark-modal-loader-text {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+/* Fallback: Auto-inject spinner inside empty .loader */
+#modal-loading .loader:empty::before,
+.spark-modal-loader-card:empty::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(99, 102, 241, 0.18);
+  border-top-color: var(--spark-primary, #6366f1);
+  animation: spark-spin 0.75s linear infinite;
+}
+
+#modal-loading .loader:empty::after {
+  content: "\062c\0627\0631\064a\0020\0627\0644\062a\062d\0645\064a\0644\002e\002e\002e";
+  /* "جاري التحميل..." in Unicode */
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: var(--spark-weight-medium, 500);
+  color: var(--spark-text-primary, #0f172a);
+}
+
+html[lang="en"] #modal-loading .loader:empty::after,
+body[dir="ltr"] #modal-loading .loader:empty::after {
+  content: "Loading...";
+}
+
+/* ─── Dark Mode Modal Loader ─── */
+[data-theme="dark"] #modal-loading .blackbg,
+[data-theme="dark"] .spark-modal-loader-backdrop {
+  background-color: rgba(0, 0, 0, 0.65) !important;
+}
+
+[data-theme="dark"] #modal-loading .loader,
+[data-theme="dark"] .spark-modal-loader-card {
+  background: var(--spark-surface-card, #1e293b) !important;
+  border-color: var(--spark-border-default, #334155) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] #modal-loading .loader::before,
+[data-theme="dark"] .spark-modal-loader-card::before {
+  border-color: rgba(129, 140, 248, 0.2);
+  border-top-color: var(--spark-primary, #818cf8);
+}
+
+[data-theme="dark"] #modal-loading .loader::after {
+  color: var(--spark-text-primary, #f8fafc);
+}
+
+/* ==========================================================================
+   8. SECTION & CONTAINER LOADER (.spark-loading-container / .spark-section-loader)
+   ========================================================================== */
+
+.spark-loading-container {
+  position: relative !important;
+  min-height: 80px;
+}
+
+.spark-section-loader {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spark-space-2, 8px);
+  background-color: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: inherit;
+  animation: spark-fade-in 0.2s ease;
+}
+
+.spark-section-loader-text {
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-xs, 0.75rem);
+  font-weight: var(--spark-weight-medium, 500);
+  color: var(--spark-text-secondary, #475569);
+}
+
+[data-theme="dark"] .spark-section-loader {
+  background-color: rgba(15, 23, 42, 0.85);
+}
+
+[data-theme="dark"] .spark-section-loader-text {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+/* ==========================================================================
+   9. AUTOCOMPLETE & FORM INPUT LOADING (.ui-autocomplete-loading)
+   ========================================================================== */
+
+.ui-autocomplete-loading,
+.form-control.is-loading,
+.spark-input.is-loading {
+  background-image: none !important;
+  /* Disable raster loading.gif */
+  position: relative;
+  background: var(--spark-surface, #ffffff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/svg%3E") no-repeat !important;
+  background-position: calc(100% - 12px) center !important;
+  background-size: 16px 16px !important;
+}
+
+/* RTL positioning */
+body.rtl .ui-autocomplete-loading,
+html[dir="rtl"] .ui-autocomplete-loading,
+.rtl .form-control.is-loading {
+  background-position: 12px center !important;
+}
+
+[data-theme="dark"] .ui-autocomplete-loading,
+[data-theme="dark"] .form-control.is-loading,
+[data-theme="dark"] .spark-input.is-loading {
+  background-color: var(--spark-surface, #1e293b) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/svg%3E") !important;
+}
+
+/* ==========================================================================
+   10. LIGHTBOX & CUSTOM MODAL LOADING (.modal-loading)
+   ========================================================================== */
+
+.modal-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spark-space-2, 8px);
+  padding: var(--spark-space-6, 24px);
+  font-family: var(--spark-font-family, inherit);
+  font-size: var(--spark-text-sm, 0.875rem);
+  font-weight: var(--spark-weight-medium, 500);
+  color: var(--spark-text-secondary, #475569);
+  text-align: center;
+}
+
+.modal-loading::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(99, 102, 241, 0.2);
+  border-top-color: var(--spark-primary, #6366f1);
+  animation: spark-spin 0.75s linear infinite;
+  margin-inline-end: 8px;
+}
+
+[data-theme="dark"] .modal-loading {
+  color: var(--spark-text-secondary, #94a3b8);
+}
+
+[data-theme="dark"] .modal-loading::before {
+  border-color: rgba(129, 140, 248, 0.2);
+  border-top-color: var(--spark-primary, #818cf8);
+}
